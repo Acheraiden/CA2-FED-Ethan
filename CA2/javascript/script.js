@@ -105,7 +105,7 @@ function initChatWidget() {
         return; // Widget isn't on this page
     }
 
-    var NUDGE_DELAY_MS = 60 * 1000; // 1 minute
+    var NUDGE_DELAY_MS = 20 * 1000; // 1 minute
     var chatOpenedAlready = false;
     var nudgeTimer = null;
 
