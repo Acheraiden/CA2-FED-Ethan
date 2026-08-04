@@ -108,7 +108,7 @@ function initChatWidget() {
         return; // Widget isn't on this page
     }
 
-    var NUDGE_DELAY_MS = 20 * 1000; // 1 minute
+    var NUDGE_DELAY_MS = 60 * 1000; // 1 minute
     var chatOpenedAlready = false;
     var nudgeTimer = null;
 
@@ -222,351 +222,351 @@ const PERIPHERAL_COMPARE_TRAITS = {
 const PERIPHERALS_DATA = [
     // ---------- Mouse ----------
     {
-        id: 'mouse-vortex-x1',
+        id: 'mouse-logitech-superlight-2',
         type: 'Mouse',
-        brand: 'Vortex',
-        name: 'Vortex X1 Wireless Gaming Mouse',
-        price: 79.99,
+        brand: 'Logitech',
+        name: 'Logitech G Pro X Superlight 2',
+        price: 159.99,
         connectivity: 'Wireless',
         image: 'placeholder.jpg',
-        rating: 4.7,
-        reviewCount: 312,
+        rating: 4.8,
+        reviewCount: 512,
         stock: 'in-stock',
         specs: {
-            'Sensor': 'Optical, 26K',
-            'DPI': '26,000',
-            'Polling Rate': '1000 Hz',
-            'Weight': '63 g',
-            'Battery Life': '70 hrs',
-            'Buttons': '6 programmable'
+            'Sensor': 'HERO 2, optical',
+            'DPI': '32,000',
+            'Polling Rate': '1000 Hz (4000 Hz w/ adapter)',
+            'Weight': '60 g',
+            'Battery Life': '95 hrs',
+            'Buttons': '5 programmable'
         },
         reviews: [
             { author: 'Alex R.', rating: 5, comment: 'Incredibly light and the sensor tracks perfectly at any speed.' },
-            { author: 'Jamie T.', rating: 4, comment: 'Great mouse overall, wish the battery lasted a little longer.' }
+            { author: 'Jamie T.', rating: 5, comment: 'Best competitive mouse I have used, worth the price.' }
         ]
     },
     {
-        id: 'mouse-clutch-gx',
+        id: 'mouse-razer-viper-8khz',
         type: 'Mouse',
-        brand: 'ClutchPlay',
-        name: 'ClutchPlay GX Wired Mouse',
-        price: 34.99,
+        brand: 'Razer',
+        name: 'Razer Viper 8KHz',
+        price: 79.99,
         connectivity: 'Wired',
         image: 'placeholder.jpg',
-        rating: 4.3,
-        reviewCount: 148,
+        rating: 4.5,
+        reviewCount: 289,
         stock: 'low-stock',
         specs: {
-            'Sensor': 'Optical, 16K',
-            'DPI': '16,000',
-            'Polling Rate': '1000 Hz',
-            'Weight': '82 g',
+            'Sensor': 'Focus+ 20K, optical',
+            'DPI': '20,000',
+            'Polling Rate': '8000 Hz',
+            'Weight': '71 g',
             'Battery Life': 'N/A (wired)',
             'Buttons': '8 programmable'
         },
         reviews: [
-            { author: 'Priya S.', rating: 4, comment: 'Solid budget mouse, cable is a bit stiff out of the box.' },
-            { author: 'Dev K.', rating: 5, comment: 'Best value wired mouse I have used for FPS games.' }
+            { author: 'Priya S.', rating: 4, comment: 'Cable is light and flexible, barely notice it is wired.' },
+            { author: 'Dev K.', rating: 5, comment: 'The 8000Hz polling makes flicks feel razor sharp.' }
         ]
     },
 
     // ---------- Keyboard ----------
     {
-        id: 'keyboard-neotech-k80',
+        id: 'keyboard-wooting-60he',
         type: 'Keyboard',
-        brand: 'NeoTech',
-        name: 'NeoTech K80 Mechanical Keyboard',
-        price: 129.99,
-        connectivity: 'Wired',
-        image: 'placeholder.jpg',
-        rating: 4.8,
-        reviewCount: 421,
-        stock: 'in-stock',
-        specs: {
-            'Switch Type': 'Hot-swap linear',
-            'Layout': 'Full-size (104-key)',
-            'Backlight': 'Per-key RGB',
-            'Polling Rate': '1000 Hz',
-            'Connectivity': 'Wired (USB-C)',
-            'Battery Life': 'N/A (wired)'
-        },
-        reviews: [
-            { author: 'Morgan L.', rating: 5, comment: 'Hot-swap sockets made it easy to try different switches.' },
-            { author: 'Sam W.', rating: 5, comment: 'Sturdy aluminum plate, typing feels premium.' }
-        ]
-    },
-    {
-        id: 'keyboard-waveform-tkl',
-        type: 'Keyboard',
-        brand: 'WaveForm',
-        name: 'WaveForm TKL Wireless Keyboard',
-        price: 99.99,
-        connectivity: 'Wireless',
-        image: 'placeholder.jpg',
-        rating: 4.5,
-        reviewCount: 203,
-        stock: 'in-stock',
-        specs: {
-            'Switch Type': 'Tactile brown',
-            'Layout': 'Tenkeyless (87-key)',
-            'Backlight': 'White backlight',
-            'Polling Rate': '1000 Hz (2.4 GHz)',
-            'Connectivity': 'Wireless / Bluetooth',
-            'Battery Life': '200 hrs (backlight off)'
-        },
-        reviews: [
-            { author: 'Chris B.', rating: 4, comment: 'Great for a clean desk setup, latency feels the same as wired.' },
-            { author: 'Nadia F.', rating: 5, comment: 'Love the compact layout, more desk space for mouse swings.' }
-        ]
-    },
-
-    // ---------- Monitor ----------
-    {
-        id: 'monitor-pulsegear-27',
-        type: 'Monitor',
-        brand: 'PulseGear',
-        name: 'PulseGear 27" 240Hz Gaming Monitor',
-        price: 349.99,
-        connectivity: 'Wired',
-        image: 'placeholder.jpg',
-        rating: 4.6,
-        reviewCount: 178,
-        stock: 'in-stock',
-        specs: {
-            'Panel Type': 'Fast IPS',
-            'Refresh Rate': '240 Hz',
-            'Resolution': '2560 x 1440',
-            'Response Time': '1 ms (GtG)',
-            'Screen Size': '27 in',
-            'HDR': 'HDR400'
-        },
-        reviews: [
-            { author: 'Owen P.', rating: 5, comment: 'Motion clarity is fantastic for fast-paced shooters.' },
-            { author: 'Lena V.', rating: 4, comment: 'Colors are vivid, stand could be a bit more adjustable.' }
-        ]
-    },
-    {
-        id: 'monitor-gripline-24',
-        type: 'Monitor',
-        brand: 'GripLine',
-        name: 'GripLine 24" 165Hz Gaming Monitor',
-        price: 199.99,
-        connectivity: 'Wired',
-        image: 'placeholder.jpg',
-        rating: 4.2,
-        reviewCount: 96,
-        stock: 'low-stock',
-        specs: {
-            'Panel Type': 'VA',
-            'Refresh Rate': '165 Hz',
-            'Resolution': '1920 x 1080',
-            'Response Time': '4 ms (GtG)',
-            'Screen Size': '24 in',
-            'HDR': 'HDR10'
-        },
-        reviews: [
-            { author: 'Tariq A.', rating: 4, comment: 'Great entry point into high refresh rate gaming.' },
-            { author: 'Ivy C.', rating: 4, comment: 'Some black smearing in dark scenes, otherwise solid.' }
-        ]
-    },
-
-    // ---------- Headset ----------
-    {
-        id: 'headset-sonicwave-h7',
-        type: 'Headset',
-        brand: 'SonicWave',
-        name: 'SonicWave H7 Wireless Headset',
-        price: 149.99,
-        connectivity: 'Wireless',
-        image: 'placeholder.jpg',
-        rating: 4.6,
-        reviewCount: 265,
-        stock: 'in-stock',
-        specs: {
-            'Driver Size': '50 mm',
-            'Frequency Response': '20 Hz - 20 kHz',
-            'Microphone': 'Detachable cardioid',
-            'Surround Sound': '7.1 virtual',
-            'Battery Life': '30 hrs',
-            'Weight': '312 g'
-        },
-        reviews: [
-            { author: 'Ruth N.', rating: 5, comment: 'Comfortable for long sessions and the mic sounds clean.' },
-            { author: 'Ben H.', rating: 4, comment: 'Great sound, ear cups run a little warm after a few hours.' }
-        ]
-    },
-    {
-        id: 'headset-echoforge-e2',
-        type: 'Headset',
-        brand: 'EchoForge',
-        name: 'EchoForge E2 Wired Headset',
-        price: 59.99,
-        connectivity: 'Wired',
-        image: 'placeholder.jpg',
-        rating: 4.1,
-        reviewCount: 134,
-        stock: 'in-stock',
-        specs: {
-            'Driver Size': '40 mm',
-            'Frequency Response': '20 Hz - 20 kHz',
-            'Microphone': 'Fixed boom',
-            'Surround Sound': 'Stereo',
-            'Battery Life': 'N/A (wired)',
-            'Weight': '278 g'
-        },
-        reviews: [
-            { author: 'Kelly M.', rating: 4, comment: 'Good budget headset for the price, mic is a little quiet.' },
-            { author: 'Theo J.', rating: 4, comment: 'Comfortable clamp, does the job for casual gaming.' }
-        ]
-    },
-
-    // ---------- Earpiece (true wireless earbuds) ----------
-    {
-        id: 'earpiece-airloop-buds',
-        type: 'Earpiece',
-        brand: 'AirLoop',
-        name: 'AirLoop Buds Pro Gaming Earbuds',
-        price: 89.99,
-        connectivity: 'Wireless',
-        image: 'placeholder.jpg',
-        rating: 4.4,
-        reviewCount: 87,
-        stock: 'in-stock',
-        specs: {
-            'Driver Size': '10 mm',
-            'Frequency Response': '20 Hz - 20 kHz',
-            'ANC': 'Yes, hybrid',
-            'Water Resistance': 'IPX4',
-            'Battery Life': '6 hrs (24 hrs w/ case)',
-            'Weight': '4.8 g per bud'
-        },
-        reviews: [
-            { author: 'Grace O.', rating: 4, comment: 'Low latency mode makes a real difference in shooters.' },
-            { author: 'Marcus D.', rating: 5, comment: 'Surprisingly good bass for such a small driver.' }
-        ]
-    },
-    {
-        id: 'earpiece-nimbus-lite',
-        type: 'Earpiece',
-        brand: 'Nimbus',
-        name: 'Nimbus Lite Wireless Earpiece',
-        price: 39.99,
-        connectivity: 'Wireless',
-        image: 'placeholder.jpg',
-        rating: 3.9,
-        reviewCount: 52,
-        stock: 'out-of-stock',
-        specs: {
-            'Driver Size': '8 mm',
-            'Frequency Response': '30 Hz - 18 kHz',
-            'ANC': 'No',
-            'Water Resistance': 'IPX2',
-            'Battery Life': '4 hrs (16 hrs w/ case)',
-            'Weight': '3.9 g per bud'
-        },
-        reviews: [
-            { author: 'Faye L.', rating: 4, comment: 'Fine for casual listening, not ideal for competitive play.' },
-            { author: 'Ken U.', rating: 4, comment: 'Fit is comfortable, sound is a bit thin on bass.' }
-        ]
-    },
-
-    // ---------- Mic ----------
-    {
-        id: 'mic-broadcastr-usb1',
-        type: 'Mic',
-        brand: 'Broadcastr',
-        name: 'Broadcastr USB-1 Streaming Mic',
-        price: 119.99,
+        brand: 'Wooting',
+        name: 'Wooting 60HE',
+        price: 174.99,
         connectivity: 'Wired',
         image: 'placeholder.jpg',
         rating: 4.7,
         reviewCount: 231,
         stock: 'in-stock',
         specs: {
-            'Polar Pattern': 'Cardioid',
-            'Frequency Response': '20 Hz - 20 kHz',
-            'Sample Rate': '48 kHz',
-            'Bit Depth': '24-bit',
-            'Connectivity': 'USB-C',
-            'Mounting': 'Desk stand + boom compatible'
+            'Switch Type': 'Lekker analog (Hall effect)',
+            'Layout': '60% (61-key)',
+            'Backlight': 'Per-key RGB',
+            'Polling Rate': '1000 Hz',
+            'Connectivity': 'Wired (USB-C)',
+            'Battery Life': 'N/A (wired)'
         },
         reviews: [
-            { author: 'Yara M.', rating: 5, comment: 'Crisp, clean audio right out of the box, no interface needed.' },
-            { author: 'Colin P.', rating: 4, comment: 'Great mic, gain knob is a little sensitive at high levels.' }
+            { author: 'Morgan L.', rating: 5, comment: 'Adjustable actuation points are a game changer for rapid trigger.' },
+            { author: 'Sam W.', rating: 4, comment: 'Great board, takes some setup time to dial in the analog curves.' }
         ]
     },
     {
-        id: 'mic-quietroom-lav1',
-        type: 'Mic',
-        brand: 'QuietRoom',
-        name: 'QuietRoom LAV-1 Condenser Mic',
-        price: 69.99,
+        id: 'keyboard-logitech-g915-tkl',
+        type: 'Keyboard',
+        brand: 'Logitech',
+        name: 'Logitech G915 TKL',
+        price: 229.99,
+        connectivity: 'Wireless',
+        image: 'placeholder.jpg',
+        rating: 4.6,
+        reviewCount: 347,
+        stock: 'in-stock',
+        specs: {
+            'Switch Type': 'GL Tactile, low-profile',
+            'Layout': 'Tenkeyless (87-key)',
+            'Backlight': 'LIGHTSYNC RGB',
+            'Polling Rate': '1000 Hz (LIGHTSPEED)',
+            'Connectivity': 'Wireless / Bluetooth / USB-C',
+            'Battery Life': '40 hrs (RGB on)'
+        },
+        reviews: [
+            { author: 'Chris B.', rating: 5, comment: 'Low-profile switches feel great and the wireless latency is unnoticeable.' },
+            { author: 'Nadia F.', rating: 4, comment: 'Love the compact layout, wish the battery lasted longer with RGB on.' }
+        ]
+    },
+
+    // ---------- Monitor ----------
+    {
+        id: 'monitor-asus-rog-swift-pg27aqn',
+        type: 'Monitor',
+        brand: 'ASUS ROG',
+        name: 'ASUS ROG Swift PG27AQN',
+        price: 899.00,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.7,
+        reviewCount: 164,
+        stock: 'in-stock',
+        specs: {
+            'Panel Type': 'Fast IPS',
+            'Refresh Rate': '360 Hz',
+            'Resolution': '2560 x 1440',
+            'Response Time': '1 ms (GtG)',
+            'Screen Size': '27 in',
+            'HDR': 'HDR400 (G-SYNC Ultimate)'
+        },
+        reviews: [
+            { author: 'Owen P.', rating: 5, comment: 'Motion clarity at 360Hz is fantastic for fast-paced shooters.' },
+            { author: 'Lena V.', rating: 4, comment: 'Stunning panel, premium price to match.' }
+        ]
+    },
+    {
+        id: 'monitor-razer-raptor-27',
+        type: 'Monitor',
+        brand: 'Razer',
+        name: 'Razer Raptor 27',
+        price: 699.99,
         connectivity: 'Wired',
         image: 'placeholder.jpg',
         rating: 4.3,
         reviewCount: 98,
         stock: 'low-stock',
         specs: {
-            'Polar Pattern': 'Supercardioid',
-            'Frequency Response': '30 Hz - 18 kHz',
-            'Sample Rate': '44.1 kHz',
-            'Bit Depth': '16-bit',
-            'Connectivity': '3.5 mm (XLR adapter incl.)',
-            'Mounting': 'Boom arm only'
+            'Panel Type': 'IPS',
+            'Refresh Rate': '165 Hz',
+            'Resolution': '2560 x 1440',
+            'Response Time': '1 ms (GtG, overdrive)',
+            'Screen Size': '27 in',
+            'HDR': 'HDR400'
         },
         reviews: [
-            { author: 'Anya B.', rating: 4, comment: 'Great isolation from keyboard noise thanks to the tight pickup pattern.' },
-            { author: 'Felix G.', rating: 4, comment: 'Good value if you already have an audio interface.' }
+            { author: 'Tariq A.', rating: 4, comment: 'Cable management built into the stand is a nice touch.' },
+            { author: 'Ivy C.', rating: 4, comment: 'Great colors out of the box, stand is sturdy.' }
+        ]
+    },
+
+    // ---------- Headset ----------
+    {
+        id: 'headset-hyperx-cloud-2',
+        type: 'Headset',
+        brand: 'HyperX',
+        name: 'HyperX Cloud II',
+        price: 99.99,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.6,
+        reviewCount: 401,
+        stock: 'in-stock',
+        specs: {
+            'Driver Size': '53 mm',
+            'Frequency Response': '15 Hz - 25 kHz',
+            'Microphone': 'Detachable noise-cancelling',
+            'Surround Sound': '7.1 (USB sound card)',
+            'Battery Life': 'N/A (wired)',
+            'Weight': '320 g'
+        },
+        reviews: [
+            { author: 'Ruth N.', rating: 5, comment: 'Memory foam ear cushions make long sessions comfortable.' },
+            { author: 'Ben H.', rating: 4, comment: 'Great value headset, mic quality is solid for the price.' }
+        ]
+    },
+    {
+        id: 'headset-steelseries-arctis-nova-pro-wireless',
+        type: 'Headset',
+        brand: 'SteelSeries',
+        name: 'SteelSeries Arctis Nova Pro Wireless',
+        price: 349.99,
+        connectivity: 'Wireless',
+        image: 'placeholder.jpg',
+        rating: 4.7,
+        reviewCount: 187,
+        stock: 'in-stock',
+        specs: {
+            'Driver Size': '40 mm neodymium',
+            'Frequency Response': '10 Hz - 40 kHz',
+            'Microphone': 'ClearCast Gen 2, retractable',
+            'Surround Sound': 'Sonar virtual 360',
+            'Battery Life': '44 hrs (dual swappable batteries)',
+            'Weight': '337 g'
+        },
+        reviews: [
+            { author: 'Kelly M.', rating: 5, comment: 'Swappable batteries mean I never have to stop mid-session to charge.' },
+            { author: 'Theo J.', rating: 4, comment: 'Premium sound and build, priced accordingly.' }
+        ]
+    },
+
+    // ---------- Earpiece (true wireless earbuds) ----------
+    {
+        id: 'earpiece-logitech-g-fits',
+        type: 'Earpiece',
+        brand: 'Logitech',
+        name: 'Logitech G FITS',
+        price: 229.99,
+        connectivity: 'Wireless',
+        image: 'placeholder.jpg',
+        rating: 4.3,
+        reviewCount: 76,
+        stock: 'in-stock',
+        specs: {
+            'Driver Size': '10 mm',
+            'Frequency Response': '20 Hz - 20 kHz',
+            'ANC': 'No',
+            'Water Resistance': 'IPX4',
+            'Battery Life': '8 hrs (24 hrs w/ case)',
+            'Weight': '5.4 g per bud'
+        },
+        reviews: [
+            { author: 'Grace O.', rating: 4, comment: 'The custom-molded fit is genuinely unique and very comfortable.' },
+            { author: 'Marcus D.', rating: 4, comment: 'Low latency mode works well for competitive play.' }
+        ]
+    },
+    {
+        id: 'earpiece-razer-hammerhead-true-wireless-pro',
+        type: 'Earpiece',
+        brand: 'Razer',
+        name: 'Razer Hammerhead True Wireless Pro',
+        price: 179.99,
+        connectivity: 'Wireless',
+        image: 'placeholder.jpg',
+        rating: 4.2,
+        reviewCount: 112,
+        stock: 'out-of-stock',
+        specs: {
+            'Driver Size': '10 mm',
+            'Frequency Response': '20 Hz - 20 kHz',
+            'ANC': 'Yes, hybrid',
+            'Water Resistance': 'IPX4',
+            'Battery Life': '6 hrs (24 hrs w/ case)',
+            'Weight': '5 g per bud'
+        },
+        reviews: [
+            { author: 'Faye L.', rating: 4, comment: 'ANC is solid for the size, low-latency mode is a nice bonus.' },
+            { author: 'Ken U.', rating: 4, comment: 'Fit is comfortable, case feels a little bulky in a pocket.' }
+        ]
+    },
+
+    // ---------- Mic ----------
+    {
+        id: 'mic-hyperx-quadcast-s',
+        type: 'Mic',
+        brand: 'HyperX',
+        name: 'HyperX QuadCast S',
+        price: 159.99,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.6,
+        reviewCount: 264,
+        stock: 'in-stock',
+        specs: {
+            'Polar Pattern': 'Selectable (4 patterns)',
+            'Frequency Response': '20 Hz - 20 kHz',
+            'Sample Rate': '48 kHz',
+            'Bit Depth': '16-bit',
+            'Connectivity': 'USB',
+            'Mounting': 'Built-in shock mount + boom compatible'
+        },
+        reviews: [
+            { author: 'Yara M.', rating: 5, comment: 'RGB lighting looks great and the built-in shock mount really works.' },
+            { author: 'Colin P.', rating: 4, comment: 'Great all-rounder mic, gain knob is a little sensitive.' }
+        ]
+    },
+    {
+        id: 'mic-blue-yeti-x',
+        type: 'Mic',
+        brand: 'Blue',
+        name: 'Blue Yeti X',
+        price: 169.99,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.5,
+        reviewCount: 318,
+        stock: 'low-stock',
+        specs: {
+            'Polar Pattern': 'Selectable (4 patterns)',
+            'Frequency Response': '20 Hz - 20 kHz',
+            'Sample Rate': '48 kHz',
+            'Bit Depth': '24-bit',
+            'Connectivity': 'USB',
+            'Mounting': 'Desk stand + boom arm compatible'
+        },
+        reviews: [
+            { author: 'Anya B.', rating: 5, comment: 'The LED metering makes it easy to keep levels in check while streaming.' },
+            { author: 'Felix G.', rating: 4, comment: 'Studio-quality sound straight out of the box.' }
         ]
     },
 
     // ---------- Mousepad ----------
     {
-        id: 'mousepad-driftmat-xl',
+        id: 'mousepad-logitech-g840-xl',
         type: 'Mousepad',
-        brand: 'DriftMat',
-        name: 'DriftMat XL Extended Mousepad',
-        price: 24.99,
+        brand: 'Logitech',
+        name: 'Logitech G840 XL',
+        price: 34.99,
         connectivity: 'Wired',
         image: 'placeholder.jpg',
         rating: 4.6,
-        reviewCount: 176,
+        reviewCount: 203,
         stock: 'in-stock',
         specs: {
-            'Surface Type': 'Micro-woven cloth',
+            'Surface Type': 'Woven cloth',
             'Dimensions': '900 x 400 mm',
-            'Thickness': '4 mm',
+            'Thickness': '3 mm',
             'Base Material': 'Natural rubber',
             'Stitched Edges': 'Yes',
             'RGB': 'No'
         },
         reviews: [
-            { author: 'Wren S.', rating: 5, comment: 'Covers my whole desk, edges have held up after months of use.' },
-            { author: 'Idris K.', rating: 4, comment: 'Great glide, a bit thin for wrist comfort.' }
+            { author: 'Wren S.', rating: 5, comment: 'Covers my whole desk, edges have held up after months of daily use.' },
+            { author: 'Idris K.', rating: 4, comment: 'Consistent glide across the whole surface.' }
         ]
     },
     {
-        id: 'mousepad-glowbase-rgb',
+        id: 'mousepad-razer-goliathus-extended-chroma',
         type: 'Mousepad',
-        brand: 'GlowBase',
-        name: 'GlowBase RGB Hard Mousepad',
-        price: 44.99,
+        brand: 'Razer',
+        name: 'Razer Goliathus Extended Chroma',
+        price: 59.99,
         connectivity: 'Wired',
         image: 'placeholder.jpg',
-        rating: 4.0,
-        reviewCount: 61,
+        rating: 4.1,
+        reviewCount: 87,
         stock: 'in-stock',
         specs: {
-            'Surface Type': 'Hard polycarbonate',
-            'Dimensions': '350 x 250 mm',
+            'Surface Type': 'Micro-woven cloth',
+            'Dimensions': '920 x 294 mm',
             'Thickness': '3 mm',
-            'Base Material': 'ABS plastic',
-            'Stitched Edges': 'N/A (hard edge)',
-            'RGB': 'Yes, 16.8M colors'
+            'Base Material': 'Natural rubber',
+            'Stitched Edges': 'Yes',
+            'RGB': 'Yes, Chroma RGB'
         },
         reviews: [
-            { author: 'Talia R.', rating: 4, comment: 'RGB looks great and syncs with the rest of my setup.' },
-            { author: 'Noah E.', rating: 4, comment: 'Fast surface, a bit loud with mechanical mouse feet.' }
+            { author: 'Talia R.', rating: 4, comment: 'Chroma lighting syncs nicely with the rest of my Razer gear.' },
+            { author: 'Noah E.', rating: 4, comment: 'Good glide and stitching, USB cable is a bit short.' }
         ]
     }
 ];

@@ -70,15 +70,25 @@
     <!-- Body -->
     <main>
 
-        <!-- Page intro -->
-        <section class="peripherals-hero bg-light" aria-label="Peripherals introduction">
-            <div class="container">
-                <h1 class="display-6 fw-bold mb-2">Gaming Peripherals</h1>
-                <p class="text-muted mb-0">
-                    Browse mice, keyboards, monitors, headsets, earpieces, mics, and mousepads.
-                    Filter to narrow things down, tap a card for the full spec sheet, and add
-                    items of the same type to the tray to compare them side by side.
-                </p>
+        <!-- Hero Banner -->
+        <section class="hero-banner text-light d-flex align-items-center" aria-label="Peripherals introduction">
+            <div class="container py-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <h1 class="display-4 fw-bold mb-3">Gear up with the right peripherals.</h1>
+                        <p class="lead mb-4">
+                            Need gaming peripherals? Don't worry, we've got you covered. Choose
+                            from top-rated mice, keyboards, monitors, headsets, and more from
+                            trusted brands like Logitech, Razer, and Wooting.
+                        </p>
+                        <a href="#peripheralsGrid" class="btn btn-primary btn-lg">Browse Peripherals</a>
+                    </div>
+                    <div class="col-lg-5 mt-4 mt-lg-0 text-center peripherals-hero-icons">
+                        <i class="bi bi-mouse2-fill" aria-hidden="true"></i>
+                        <i class="bi bi-keyboard-fill" aria-hidden="true"></i>
+                        <i class="bi bi-headset" aria-hidden="true"></i>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -96,10 +106,10 @@
                         <label for="filterPrice">Price range</label>
                         <select id="filterPrice" class="form-select form-select-sm">
                             <option value="all">Any price</option>
-                            <option value="30">Under $30</option>
-                            <option value="75">Under $75</option>
-                            <option value="150">Under $150</option>
-                            <option value="500">Under $500</option>
+                            <option value="50">Under $50</option>
+                            <option value="100">Under $100</option>
+                            <option value="200">Under $200</option>
+                            <option value="1000">Under $1000</option>
                         </select>
                     </div>
                     <div class="col-6 col-md-3">
@@ -239,7 +249,7 @@
         <div class="compare-overlay-panel" role="dialog" aria-modal="true" aria-labelledby="compareOverlayTitle">
             <div class="compare-overlay-header">
                 <h2 id="compareOverlayTitle" class="h5 mb-0">Comparing items</h2>
-                <button type="button" id="compareOverlayCloseBtn" class="btn btn-sm btn-outline-secondary" aria-label="Close comparison">
+                <button type="button" id="compareOverlayCloseBtn" class="btn btn-sm btn-outline-danger" aria-label="Close comparison">
                     <i class="bi bi-x-lg" aria-hidden="true"></i>
                 </button>
             </div>

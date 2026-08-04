@@ -90,12 +90,13 @@ body {
 .chat-panel-close {
     background: none;
     border: none;
-    color: #fff;
+    color: #dc3545;
     line-height: 1;
-    opacity: 0.85;
+    opacity: 0.9;
 }
 
 .chat-panel-close:hover {
+    color: #b02a37;
     opacity: 1;
 }
 
@@ -126,14 +127,14 @@ body {
     right: 0.5rem;
     background: none;
     border: none;
-    color: #6c757d;
+    color: #dc3545;
     font-size: 0.75rem;
     line-height: 1;
     padding: 0.15rem;
 }
 
 .chat-notification-close:hover {
-    color: #212529;
+    color: #b02a37;
 }
 
 /* =========================================================
@@ -156,9 +157,21 @@ body.has-compare-tray {
     }
 }
 
-/* ---- Page header ---- */
-.peripherals-hero {
-    padding: 2.5rem 0 1.5rem;
+/* ---- Hero banner icon cluster (peripherals page) ---- */
+.peripherals-hero-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 991.98px) {
+    .peripherals-hero-icons {
+        font-size: 3.5rem;
+        gap: 1.25rem;
+    }
 }
 
 /* ---- Sticky filter bar ---- */
@@ -298,6 +311,12 @@ body.has-compare-tray {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #dc3545;
+}
+
+.detail-panel-close:hover {
+    color: #b02a37;
+    border-color: #dc3545;
 }
 
 .detail-specs-table th {
