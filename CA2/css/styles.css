@@ -8,12 +8,24 @@
 
 /* Push content below the fixed navbar */
 body {
-    padding-top: 56px;
+  background-color: #0d0b18 !important;
+  color: #f1f0f7 !important;
+  padding-top: 56px;
+}
+
+/* Headings across the site */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  color: #ffffff !important;
+}
+
+/* Subtext & Muted Text readability */
+p, .text-muted, .text-secondary {
+  color: #a19bb8 !important;
 }
 
 /* Hero banner */
 .hero-banner {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    background: linear-gradient(135deg, #090710 0%, #1c0d38 60%, #2a0845 100%);
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
@@ -24,14 +36,14 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    color: #6c757d;
-    background-color: #f8f9fa;
+   color: #a19bb8;             /* Soft purple-grey text */
+   background-color: #161228;  /* Dark purple container background */
 }
 
 /* Recommend Me a Game card */
 .recommend-card {
-    background-color: #f8f9fa;
-    border: none;
+    background-color: #161228;
+    border: 1px solid #2a2244;
 }
 
 #recommendResult .recommend-card-inner {
@@ -51,90 +63,93 @@ body {
 }
 
 .chat-toggle-btn {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: none;
-    background-color: #0d6efd;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.25);
-    transition: transform 0.15s ease-in-out;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background-color: #8b5cf6;  /* Neon Purple Accent */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.5rem 1.25rem rgba(139, 92, 246, 0.4); /* Purple glow */
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out;
 }
 
 .chat-toggle-btn:hover,
 .chat-toggle-btn:focus {
-    transform: scale(1.06);
-    color: #fff;
+  transform: scale(1.06);
+  background-color: #7c3aed;  /* Slightly deeper purple on hover */
+  color: #fff;
 }
-
 .chat-panel {
-    width: 300px;
-    max-width: calc(100vw - 2.5rem);
-    margin-bottom: 0.75rem;
-    background-color: #fff;
-    border-radius: 0.75rem;
-    box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-    order: -1; /* sit above the toggle button in the column */
+  width: 300px;
+  max-width: calc(100vw - 2.5rem);
+  margin-bottom: 0.75rem;
+  background-color: #161228;    /* Dark purple panel background */
+  border: 1px solid #2a2244;    /* Subtle violet border */
+  color: #f1f0f7;               /* Off-white text */
+  border-radius: 0.75rem;
+  box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  order: -1; /* sit above the toggle button in the column */
 }
 
 .chat-panel-header {
-    background-color: #0d6efd;
-    color: #fff;
-    padding: 0.65rem 0.9rem;
+  background-color: #2a0845;   /* Deep violet header */
+  color: #fff;
+  padding: 0.65rem 0.9rem;
 }
 
 .chat-panel-close {
-    background: none;
-    border: none;
-    color: #dc3545;
-    line-height: 1;
-    opacity: 0.9;
+  background: none;
+  border: none;
+  color: #fff;
+  line-height: 1;
+  opacity: 0.85;
 }
 
 .chat-panel-close:hover {
-    color: #b02a37;
-    opacity: 1;
+  opacity: 1;
 }
 
 .chat-panel-body {
-    padding: 0.9rem;
+  padding: 0.9rem;
+  color: #f1f0f7;
 }
 
 .chat-panel-footer {
-    padding: 0 0.9rem 0.9rem;
+  padding: 0 0.9rem 0.9rem;
 }
 
 .chat-notification {
-    position: relative;
-    width: 260px;
-    max-width: calc(100vw - 2.5rem);
-    margin-bottom: 0.75rem;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 0.75rem;
-    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
-    padding: 0.75rem 1.75rem 0.75rem 0.9rem;
-    order: -2; /* sit above the chat panel / toggle button */
+  position: relative;
+  width: 260px;
+  max-width: calc(100vw - 2.5rem);
+  margin-bottom: 0.75rem;
+  background-color: #161228;    /* Dark purple card background */
+  border: 1px solid #3b2d59;    /* Violet accent border */
+  color: #f1f0f7;               /* Off-white text */
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.4);
+  padding: 0.75rem 1.75rem 0.75rem 0.9rem;
+  order: -2; /* sit above the chat panel / toggle button */
 }
 
 .chat-notification-close {
-    position: absolute;
-    top: 0.35rem;
-    right: 0.5rem;
-    background: none;
-    border: none;
-    color: #dc3545;
-    font-size: 0.75rem;
-    line-height: 1;
-    padding: 0.15rem;
+  position: absolute;
+  top: 0.35rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: #a19bb8;             /* Light purple-grey icon */
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.15rem;
 }
 
 .chat-notification-close:hover {
-    color: #b02a37;
+  color: #c084fc;             /* Bright violet highlight on hover */
 }
 
 /* =========================================================
@@ -157,21 +172,9 @@ body.has-compare-tray {
     }
 }
 
-/* ---- Hero banner icon cluster (peripherals page) ---- */
-.peripherals-hero-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    font-size: 5rem;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-@media (max-width: 991.98px) {
-    .peripherals-hero-icons {
-        font-size: 3.5rem;
-        gap: 1.25rem;
-    }
+/* ---- Page header ---- */
+.peripherals-hero {
+    padding: 2.5rem 0 1.5rem;
 }
 
 /* ---- Sticky filter bar ---- */
@@ -311,12 +314,6 @@ body.has-compare-tray {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #dc3545;
-}
-
-.detail-panel-close:hover {
-    color: #b02a37;
-    border-color: #dc3545;
 }
 
 .detail-specs-table th {
@@ -514,67 +511,3 @@ body.has-compare-tray {
     z-index: 1100;
     width: min(90vw, 420px);
 }
-
-.diamond-btn {
-            width: clamp(85px, 12vw, 130px);
-            height:  clamp(85px, 12vw, 130px);
-            border: 2px solid #000000;
-            background-color: transparent;
-            transform: rotate(45deg);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-     .diamond-btn span {
-            display: inline-block;
-            transform: rotate(-45deg);
-            color: #434447;
-            font-weight: bold;
-            font-size: clamp(0.75rem, 1.4vw, 1.1rem);
-            text-align: center;
-            line-height: 1.1;
-        }
-
-        .diamond-btn:hover {
-            transform: rotate(45deg) scale(1.1);
-        }
-
-        .diamond-container {
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-    
-        .square-buttons{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        margin: 30px 0;
-        }
-
-        
-        .square-btn{
-        width: clamp(200px, 35vw, 320px);
-        height: clamp(80px, 10vw, 100px);
-        background-color: transparent;
-        color: #434447;
-        border: 2px solid #000000;
-        border-radius: 10px;
-        font-size: clamp(1.0rem, 1.2vw, 1.8rem);
-        font-weight: bold;
-
-
-        transition: transform 0.3s ease, background-color 0.3s ease;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        }
-
-        .square-btn:hover{
-            transform: scale(1.1)
-        }
