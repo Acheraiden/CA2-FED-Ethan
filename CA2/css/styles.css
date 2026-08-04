@@ -135,3 +135,363 @@ body {
 .chat-notification-close:hover {
     color: #212529;
 }
+
+/* =========================================================
+   Peripherals page - layout, filter bar, cards, detail
+   overlay, and comparison tray.
+   ========================================================= */
+
+/* Body-level helper states toggled by peripherals.js */
+body.overlay-open {
+    overflow: hidden;
+}
+
+body.has-compare-tray {
+    padding-bottom: 84px;
+}
+
+@media (max-width: 767.98px) {
+    body.has-compare-tray {
+        padding-bottom: 120px;
+    }
+}
+
+/* ---- Page header ---- */
+.peripherals-hero {
+    padding: 2.5rem 0 1.5rem;
+}
+
+/* ---- Sticky filter bar ---- */
+.filter-bar {
+    position: sticky;
+    top: 56px; /* sits directly under the fixed navbar */
+    z-index: 1020;
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+}
+
+.filter-bar .filter-controls {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+}
+
+.filter-bar label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+}
+
+#resultsCount {
+    font-size: 0.9rem;
+}
+
+/* ---- Peripheral cards ---- */
+.peripheral-card {
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    border: 1px solid #e9ecef;
+}
+
+.peripheral-card:hover,
+.peripheral-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.12);
+}
+
+.peripheral-card-image-wrap {
+    position: relative;
+}
+
+.peripheral-card-image-wrap .type-badge {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    background-color: rgba(13, 110, 253, 0.92);
+}
+
+.peripheral-card .card-price {
+    font-size: 1.05rem;
+}
+
+.compare-toggle-btn.active {
+    background-color: #198754;
+    border-color: #198754;
+    color: #fff;
+}
+
+/* Stock badges */
+.stock-badge.in-stock {
+    color: #0f5132;
+    background-color: #d1e7dd;
+}
+
+.stock-badge.low-stock {
+    color: #664d03;
+    background-color: #fff3cd;
+}
+
+.stock-badge.out-of-stock {
+    color: #842029;
+    background-color: #f8d7da;
+}
+
+/* ---- Detail overlay (expanded card) ---- */
+.detail-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.detail-overlay[hidden] {
+    display: none;
+}
+
+.detail-overlay-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.6);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.detail-overlay.is-open .detail-overlay-backdrop {
+    opacity: 1;
+}
+
+.detail-panel {
+    position: relative;
+    background-color: #fff;
+    border-radius: 1rem;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.3);
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+}
+
+.detail-overlay.is-open .detail-panel {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.detail-panel-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-specs-table th {
+    width: 45%;
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.detail-review {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.detail-review:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .detail-panel,
+    .detail-overlay-backdrop,
+    .peripheral-card,
+    .compare-overlay-panel,
+    .compare-tray {
+        transition: none !important;
+    }
+}
+
+/* ---- Comparison tray (bottom-docked) ---- */
+.compare-tray {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1045; /* below the chat widget (1055) so it never covers the toggle */
+    background-color: #16213e;
+    color: #fff;
+    box-shadow: 0 -0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+}
+
+.compare-tray.is-visible {
+    transform: translateY(0);
+}
+
+.compare-tray-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    padding-left: 5.5rem; /* keep clear of the bottom-left chat button */
+}
+
+.compare-tray-items {
+    display: flex;
+    gap: 0.6rem;
+    overflow-x: auto;
+    flex: 1 1 auto;
+    padding-bottom: 0.15rem;
+}
+
+.compare-tray-item {
+    flex: 0 0 auto;
+    width: 130px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 0.5rem;
+    padding: 0.4rem;
+    position: relative;
+}
+
+.compare-tray-item img {
+    width: 100%;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 0.35rem;
+}
+
+.compare-tray-item .item-name {
+    font-size: 0.72rem;
+    line-height: 1.2;
+    display: block;
+    margin-top: 0.25rem;
+    color: #e9ecef;
+}
+
+.compare-tray-item .remove-btn {
+    position: absolute;
+    top: -0.4rem;
+    right: -0.4rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    font-size: 0.7rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.compare-tray-meta {
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    color: #adb5bd;
+    white-space: nowrap;
+}
+
+.compare-tray-actions {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+    .compare-tray-inner {
+        padding-left: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .compare-tray-meta {
+        order: 3;
+        width: 100%;
+    }
+}
+
+/* ---- Comparison full-screen overlay ---- */
+.compare-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1090;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.compare-overlay[hidden] {
+    display: none;
+}
+
+.compare-overlay-panel {
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.compare-overlay.is-open .compare-overlay-panel {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.compare-overlay-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.compare-overlay-body {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 1.25rem;
+}
+
+.compare-table th,
+.compare-table td {
+    vertical-align: middle;
+}
+
+.compare-table thead th {
+    min-width: 180px;
+}
+
+.compare-item-header img {
+    width: 100%;
+    max-width: 140px;
+    border-radius: 0.5rem;
+}
+
+/* ---- Toast for gentle validation alerts ---- */
+.filter-toast-region {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+    width: min(90vw, 420px);
+}
