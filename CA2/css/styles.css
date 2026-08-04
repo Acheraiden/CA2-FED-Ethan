@@ -6,6 +6,27 @@
     margin-top: 0;
 }
 
+/* Navbar - darker shade to match the site's dark purple theme */
+.navbar.bg-dark {
+    background-color: #0a0714 !important;
+    border-bottom: 1px solid #2a2244;
+}
+
+.navbar .dropdown-menu {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+}
+
+.navbar .dropdown-item {
+    color: #f1f0f7;
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+    background-color: #2a0845;
+    color: #fff;
+}
+
 /* Push content below the fixed navbar */
 body {
   background-color: #0d0b18 !important;
@@ -510,4 +531,300 @@ body.has-compare-tray {
     transform: translateX(-50%);
     z-index: 1100;
     width: min(90vw, 420px);
+}
+/* ==========================================================
+   Genre pages (g1-g4) - breadcrumb, hero editor's pick, filter
+   offcanvas, game cards, favorites, compare tray, and the
+   dark-themed Bootstrap modal/accordion/carousel/toast overrides
+   used by the game details and comparison modals.
+   ========================================================== */
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #6c6486;
+}
+
+.breadcrumb-item a {
+    color: #c084fc;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: #a19bb8;
+}
+
+/* ---- Hero editor's pick card ---- */
+.editors-pick-card {
+    background-color: rgba(22, 18, 40, 0.7);
+    border: 1px solid #3b2d59;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+}
+
+.editors-pick-badge {
+    background-color: #8b5cf6;
+    color: #fff;
+}
+
+.editors-pick-thumb {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* ---- Filter offcanvas / sidebar ---- */
+.offcanvas,
+.offcanvas-md {
+    background-color: #12101f;
+    color: #f1f0f7;
+    border-color: #2a2244 !important;
+}
+
+.filter-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #a19bb8;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+#resultsCount {
+    font-size: 0.9rem;
+}
+
+.filter-chip {
+    background-color: #2a2244;
+    color: #f1f0f7;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.4rem 0.65rem;
+}
+
+.filter-chip:hover {
+    background-color: #3b2d59;
+}
+
+/* ---- Game cards ---- */
+.game-card {
+    cursor: pointer;
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    color: #f1f0f7;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.game-card:hover,
+.game-card:focus-within {
+    transform: scale(1.03);
+    box-shadow: 0 0.75rem 1.5rem rgba(139, 92, 246, 0.25);
+}
+
+.game-card-image-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card-image-wrap img {
+    transition: transform 0.35s ease;
+}
+
+.game-card:hover .game-card-image-wrap img {
+    transform: scale(1.08);
+}
+
+.platform-badge {
+    background-color: #2a2244;
+    color: #d8d3ea;
+    font-weight: 500;
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(10, 7, 20, 0.75);
+    color: #f1f0f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
+}
+
+.favorite-btn.active {
+    color: #dc3545;
+}
+
+.compare-toggle-btn.active {
+    background-color: #198754;
+    border-color: #198754;
+    color: #fff;
+}
+
+/* ---- Random pick flash highlight ---- */
+@keyframes flashHighlight {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+    25%, 75% { box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.55); }
+    50% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0.35); }
+}
+
+.flash-highlight {
+    animation: flashHighlight 1.6s ease-in-out;
+}
+
+/* ---- Comparison tray (bottom-center floating pill) ---- */
+.game-compare-tray {
+    z-index: 1045;
+    margin-bottom: 1rem;
+    background-color: #161228;
+    color: #f1f0f7;
+    border: 1px solid #2a2244;
+    border-radius: 2rem;
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.5);
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: calc(100vw - 2rem);
+}
+
+.game-compare-tray-items {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+}
+
+.game-compare-tray-item {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.game-compare-tray-item img {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 0.4rem;
+}
+
+.game-compare-tray-item .remove-btn {
+    position: absolute;
+    top: -0.35rem;
+    right: -0.35rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    font-size: 0.65rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 575.98px) {
+    .game-compare-tray {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 1rem;
+    }
+}
+
+/* ---- Dark-themed Bootstrap modal / accordion / carousel / toast ---- */
+#gameDetailsModal .modal-content,
+#compareModal .modal-content {
+    background-color: #161228;
+    color: #f1f0f7;
+    border: 1px solid #2a2244;
+}
+
+#gameDetailsModal .modal-header,
+#compareModal .modal-header,
+#gameDetailsModal .modal-footer {
+    border-color: #2a2244;
+}
+
+.accordion-item {
+    background-color: #12101f;
+    border-color: #2a2244;
+    color: #f1f0f7;
+}
+
+.accordion-button {
+    background-color: #12101f;
+    color: #f1f0f7;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #2a0845;
+    color: #fff;
+}
+
+.accordion-button::after {
+    filter: invert(1) grayscale(1) brightness(1.6);
+}
+
+.specs-table {
+    color: #f1f0f7;
+}
+
+.specs-table th {
+    color: #a19bb8;
+    font-weight: 600;
+    width: 40%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 1rem;
+}
+
+.similar-to-link {
+    color: #c084fc;
+}
+
+.compare-item-header img {
+    width: 100%;
+    max-width: 120px;
+    border-radius: 0.5rem;
+}
+
+.compare-table th,
+.compare-table td {
+    background-color: #161228;
+    color: #f1f0f7;
+    border-color: #2a2244;
+}
+
+.highlight-best {
+    background-color: rgba(25, 135, 84, 0.35) !important;
+    font-weight: 600;
+}
+
+.highlight-best-swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(25, 135, 84, 0.6);
+    border-radius: 2px;
+    margin-right: 0.35rem;
+    vertical-align: middle;
+}
+
+.toast {
+    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.4);
 }
