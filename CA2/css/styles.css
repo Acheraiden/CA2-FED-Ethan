@@ -533,10 +533,10 @@ body.has-compare-tray {
     width: min(90vw, 420px);
 }
 /* ==========================================================
-   Genre pages (g1-g4) - breadcrumb, hero editor's pick, filter
-   offcanvas, game cards, favorites, compare tray, and the
-   dark-themed Bootstrap modal/accordion/carousel/toast overrides
-   used by the game details and comparison modals.
+   Games page (games.html) - breadcrumb, hero editor's picks
+   row, filter offcanvas, game cards, favorites, compare tray,
+   and the dark-themed Bootstrap modal/accordion/carousel/toast
+   overrides used by the game details and comparison modals.
    ========================================================== */
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -552,12 +552,28 @@ body.has-compare-tray {
     color: #a19bb8;
 }
 
-/* ---- Hero editor's pick card ---- */
+/* ---- Hero editor's picks row (one card per genre) ---- */
+#editorsPicksRow {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+}
+
 .editors-pick-card {
     background-color: rgba(22, 18, 40, 0.7);
     border: 1px solid #3b2d59;
     border-radius: 0.75rem;
-    padding: 1.25rem;
+    padding: 1.1rem;
+    cursor: pointer;
+    flex: 0 0 auto;
+    width: 280px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.editors-pick-card:hover {
+    border-color: #8b5cf6;
+    transform: translateY(-2px);
 }
 
 .editors-pick-badge {
@@ -566,11 +582,21 @@ body.has-compare-tray {
 }
 
 .editors-pick-thumb {
-    width: 96px;
-    height: 96px;
+    width: 72px;
+    height: 72px;
     object-fit: cover;
     border-radius: 0.5rem;
     flex-shrink: 0;
+}
+
+/* ---- Genre badge (shown on cards mixing every genre together) ---- */
+.genre-badge {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    background-color: rgba(139, 92, 246, 0.92);
+    color: #fff;
+    font-weight: 600;
 }
 
 /* ---- Filter offcanvas / sidebar ---- */
