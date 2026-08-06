@@ -949,12 +949,10 @@ var GamesPage = (function () {
 
     function populateFilterOptions() {
         if (els.genreFilter) {
-            els.genreFilter.innerHTML = Object.keys(GENRE_META).map(function (key, index) {
-                var id = 'genre-opt-' + index;
-                return '<div class="form-check">' +
-                    '<input class="form-check-input genre-checkbox" type="checkbox" value="' + key + '" id="' + id + '">' +
-                    '<label class="form-check-label small" for="' + id + '">' + escapeHtml(GENRE_META[key].shortLabel) + '</label>' +
-                    '</div>';
+            els.genreFilter.innerHTML = Object.keys(GENRE_META).map(function (key) {
+                return '<button type="button" class="btn genre-toggle-btn" data-genre="' + key + '" aria-pressed="false">' +
+                    escapeHtml(GENRE_META[key].shortLabel) +
+                    '</button>';
             }).join('');
         }
 
@@ -1004,11 +1002,15 @@ var GamesPage = (function () {
             });
         }
         if (els.genreFilter) {
-            els.genreFilter.addEventListener('change', function () {
-                var checked = Array.prototype.slice.call(
-                    els.genreFilter.querySelectorAll('.genre-checkbox:checked')
-                ).map(function (cb) { return cb.value; });
-                state.filters.genre = checked.length ? checked : 'all';
+            els.genreFilter.addEventListener('click', function (event) {
+                var btn = event.target.closest('.genre-toggle-btn');
+                if (!btn) return;
+                var isActive = btn.classList.toggle('active');
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                var active = Array.prototype.slice.call(
+                    els.genreFilter.querySelectorAll('.genre-toggle-btn.active')
+                ).map(function (b) { return b.getAttribute('data-genre'); });
+                state.filters.genre = active.length ? active : 'all';
                 renderGrid();
             });
         }
@@ -1071,7 +1073,10 @@ var GamesPage = (function () {
         if (els.difficultyFilter) els.difficultyFilter.value = 'all';
         if (els.favoritesOnlyToggle) els.favoritesOnlyToggle.checked = false;
         if (els.genreFilter) {
-            els.genreFilter.querySelectorAll('.genre-checkbox').forEach(function (cb) { cb.checked = false; });
+            els.genreFilter.querySelectorAll('.genre-toggle-btn').forEach(function (btn) {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
         }
         if (els.platformOptions) {
             els.platformOptions.querySelectorAll('.platform-checkbox').forEach(function (cb) { cb.checked = false; });
@@ -1120,7 +1125,12 @@ var GamesPage = (function () {
         if (Array.isArray(state.filters.genre)) {
             chips.push({ label: state.filters.genre.map(function (g) { return GENRE_META[g].shortLabel; }).join(', '), clear: function () {
                 state.filters.genre = 'all';
-                if (els.genreFilter) els.genreFilter.querySelectorAll('.genre-checkbox').forEach(function (cb) { cb.checked = false; });
+                if (els.genreFilter) {
+                    els.genreFilter.querySelectorAll('.genre-toggle-btn').forEach(function (btn) {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-pressed', 'false');
+                    });
+                }
             } });
         }
         if (state.filters.price !== 'all') chips.push({ label: state.filters.price === 'free' ? 'Free' : 'Paid', clear: function () { state.filters.price = 'all'; if (els.priceFilter) els.priceFilter.value = 'all'; } });
