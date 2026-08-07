@@ -825,3 +825,188 @@ body.has-compare-tray {
 .toast {
     box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.4);
 }
+/* ==========================================================
+   Setup Planner (setupplanner.html) - dashboard cards, slot
+   builder, gaming-style pills, item picker, pro player cards,
+   wishlist, and saved-setup rows.
+   ========================================================== */
+
+.dashboard-card {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+}
+
+.dashboard-card dt {
+    font-weight: 400;
+}
+
+/* ---- Gaming style pills (reuses the genre-toggle-btn visual language) ---- */
+.style-toggle-btn {
+    background-color: transparent;
+    border: 1px solid #3b2d59;
+    color: #d8d3ea;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.style-toggle-btn:hover {
+    border-color: #8b5cf6;
+    color: #fff;
+}
+
+.style-toggle-btn.active {
+    background-color: #8b5cf6;
+    border-color: #8b5cf6;
+    color: #fff;
+}
+
+.style-recommendation-card {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    border-radius: 0.6rem;
+    padding: 0.9rem;
+    height: 100%;
+}
+
+/* ---- Setup builder slots ---- */
+.setup-slot {
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.setup-slot-empty {
+    background-color: rgba(22, 18, 40, 0.5);
+    border: 1px dashed #3b2d59;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #a19bb8;
+}
+
+.setup-slot-icon {
+    font-size: 2rem;
+    color: #6c6486;
+    margin-bottom: 0.5rem;
+}
+
+.setup-slot-filled {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+}
+
+.setup-slot-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    background-color: #0a0714;
+}
+
+/* ---- Item picker modal cards ---- */
+.item-picker-card {
+    background-color: #12101f;
+    border: 1px solid #2a2244;
+    color: #f1f0f7;
+    cursor: default;
+    transition: border-color 0.15s ease;
+}
+
+.item-picker-card-selected {
+    border-color: #198754;
+}
+
+.item-picker-wishlist-btn {
+    color: #a19bb8;
+}
+
+.item-picker-wishlist-btn.active {
+    color: #dc3545;
+}
+
+/* ---- Pro player cards (horizontal scroll row) ---- */
+.pro-player-card {
+    flex: 0 0 auto;
+    width: 220px;
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    border-radius: 0.75rem;
+    padding: 1.1rem;
+}
+
+.pro-player-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #8b5cf6;
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.pro-player-preview {
+    min-height: 2.6em;
+}
+
+.pro-setup-table {
+    color: #f1f0f7;
+}
+
+.pro-setup-table th,
+.pro-setup-table td {
+    border-color: #2a2244;
+}
+
+/* ---- Wishlist micro-cards ---- */
+.wishlist-card {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    border-radius: 0.6rem;
+    padding: 0.9rem;
+    height: 100%;
+}
+
+/* ---- Saved setup rows ---- */
+.saved-setup-row {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    border-radius: 0.6rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.6rem;
+}
+
+/* ---- Workspace tabs (Wishlist / Saved Setups) ---- */
+.workspace-tab-content {
+    background-color: #12101f;
+    border: 1px solid #2a2244;
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+#workspaceTabs .nav-link {
+    color: #a19bb8;
+    border-color: #2a2244 #2a2244 transparent;
+}
+
+#workspaceTabs .nav-link.active {
+    background-color: #12101f;
+    color: #fff;
+    border-color: #2a2244 #2a2244 #12101f;
+}
+
+/* ---- Mobile setup-summary offcanvas ---- */
+.summary-offcanvas-toggle {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 1050;
+}
