@@ -203,9 +203,9 @@ body.has-compare-tray {
     position: sticky;
     top: 56px; /* sits directly under the fixed navbar */
     z-index: 1020;
-    background-color: #fff;
-    border-bottom: 1px solid #dee2e6;
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+    background-color: #12101f;
+    border-bottom: 1px solid #2a2244;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.25);
 }
 
 .filter-bar .filter-controls {
@@ -213,12 +213,13 @@ body.has-compare-tray {
     padding-bottom: 0.9rem;
 }
 
-.filter-bar label {
+.filter-bar label,
+.filter-bar .filter-label {
     font-size: 0.78rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-    color: #6c757d;
+    color: #a19bb8;
     margin-bottom: 0.25rem;
 }
 

@@ -872,7 +872,7 @@ var GamesPage = (function () {
         els.searchInput = document.getElementById('searchInput');
         els.genreFilter = document.getElementById('genreFilterOptions');
         els.priceFilter = document.getElementById('priceFilter');
-        els.platformOptions = document.getElementById('platformFilterOptions');
+        els.platformFilter = document.getElementById('platformFilter');
         els.ratingFilter = document.getElementById('ratingFilter');
         els.modeFilter = document.getElementById('modeFilter');
         els.difficultyFilter = document.getElementById('difficultyFilter');
@@ -957,14 +957,13 @@ var GamesPage = (function () {
         }
 
         var platforms = uniqueValues(GAMES_DATA, 'platform').sort();
-        if (els.platformOptions) {
-            els.platformOptions.innerHTML = platforms.map(function (platform, index) {
-                var id = 'platform-opt-' + index;
-                return '<div class="form-check">' +
-                    '<input class="form-check-input platform-checkbox" type="checkbox" value="' + escapeHtml(platform) + '" id="' + id + '">' +
-                    '<label class="form-check-label small" for="' + id + '">' + escapeHtml(platform) + '</label>' +
-                    '</div>';
-            }).join('');
+        if (els.platformFilter) {
+            platforms.forEach(function (platform) {
+                var option = document.createElement('option');
+                option.value = platform;
+                option.textContent = platform;
+                els.platformFilter.appendChild(option);
+            });
         }
 
         var modes = uniqueValues(GAMES_DATA, 'mode').sort();
@@ -1020,12 +1019,9 @@ var GamesPage = (function () {
                 renderGrid();
             });
         }
-        if (els.platformOptions) {
-            els.platformOptions.addEventListener('change', function () {
-                var checked = Array.prototype.slice.call(
-                    els.platformOptions.querySelectorAll('.platform-checkbox:checked')
-                ).map(function (cb) { return cb.value; });
-                state.filters.platform = checked.length ? checked : 'all';
+        if (els.platformFilter) {
+            els.platformFilter.addEventListener('change', function () {
+                state.filters.platform = this.value;
                 renderGrid();
             });
         }
@@ -1078,9 +1074,7 @@ var GamesPage = (function () {
                 btn.setAttribute('aria-pressed', 'false');
             });
         }
-        if (els.platformOptions) {
-            els.platformOptions.querySelectorAll('.platform-checkbox').forEach(function (cb) { cb.checked = false; });
-        }
+        if (els.platformFilter) els.platformFilter.value = 'all';
         renderGrid();
     }
 
@@ -1094,9 +1088,8 @@ var GamesPage = (function () {
             }
             if (state.filters.price === 'free' && game.price !== 0) return false;
             if (state.filters.price === 'paid' && game.price === 0) return false;
-            if (Array.isArray(state.filters.platform)) {
-                var hasPlatform = state.filters.platform.some(function (p) { return game.platform.indexOf(p) !== -1; });
-                if (!hasPlatform) return false;
+            if (state.filters.platform !== 'all' && game.platform.indexOf(state.filters.platform) === -1) {
+                return false;
             }
             if (state.filters.rating === '4' && game.rating < 4) return false;
             if (state.filters.rating === '5' && game.rating < 5) return false;
@@ -1134,10 +1127,10 @@ var GamesPage = (function () {
             } });
         }
         if (state.filters.price !== 'all') chips.push({ label: state.filters.price === 'free' ? 'Free' : 'Paid', clear: function () { state.filters.price = 'all'; if (els.priceFilter) els.priceFilter.value = 'all'; } });
-        if (Array.isArray(state.filters.platform)) {
-            chips.push({ label: state.filters.platform.join(', '), clear: function () {
+        if (state.filters.platform !== 'all') {
+            chips.push({ label: state.filters.platform, clear: function () {
                 state.filters.platform = 'all';
-                if (els.platformOptions) els.platformOptions.querySelectorAll('.platform-checkbox').forEach(function (cb) { cb.checked = false; });
+                if (els.platformFilter) els.platformFilter.value = 'all';
             } });
         }
         if (state.filters.rating !== 'all') chips.push({ label: state.filters.rating + '\u2605 & up', clear: function () { state.filters.rating = 'all'; if (els.ratingFilter) els.ratingFilter.value = 'all'; } });
