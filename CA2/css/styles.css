@@ -950,7 +950,32 @@ body.has-compare-tray {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+}
+
+.pro-player-avatar-lg {
+    width: 64px;
+    height: 64px;
+    font-size: 1.1rem;
+}
+
+.pro-player-catchphrase {
+    min-height: 2.4em;
+}
+
+/* ---- Trending in the Pro Scene ---- */
+.trend-card {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    border-radius: 0.6rem;
+    padding: 1.1rem;
+}
+
+.trend-card-icon {
+    font-size: 1.5rem;
+    color: #8b5cf6;
+    margin-bottom: 0.5rem;
+    display: block;
 }
 
 .pro-player-preview {
