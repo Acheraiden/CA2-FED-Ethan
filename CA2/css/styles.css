@@ -44,13 +44,25 @@ p, .text-muted, .text-secondary {
   color: #a19bb8 !important;
 }
 
-/* Hero banner */
+/* Hero banner - base gradient used on every page (Peripherals, Games,
+   Compare, Tools pages, etc.) */
 .hero-banner {
+    background: linear-gradient(135deg, #090710 0%, #1c0d38 60%, #2a0845 100%);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Homepage hero only: animated GIF background. Scoped to #heroSection
+   (unique to index.html) rather than .hero-banner so other pages keep
+   the plain gradient above. script.js swaps this background on hover
+   over a featured game card; the dark overlay gradient keeps hero text
+   readable over any GIF. */
+#heroSection {
     position: relative;
     min-height: 80vh;
-    background: 
-        linear-gradient(rgba(17, 11, 41, 0.75), rgba(17, 11, 41, 0.85)), 
-        url('../images/cyberpunk-2077-gif-9.gif') center/cover no-repeat;
+    background:
+        linear-gradient(rgba(17, 11, 41, 0.75), rgba(17, 11, 41, 0.85)),
+        url('../images/CyberpunkNight.gif') center/cover no-repeat;
     transition: background-image 0.4s ease-in-out;
 }
 
@@ -85,27 +97,22 @@ p, .text-muted, .text-secondary {
     margin: 0 auto;
 }
 
-/* Chat widget - fixed to bottom-left, stays put while scrolling */
+/* Chat widget - fixed to bottom-left, stays put while scrolling.
+   Position/flex layout now comes from Bootstrap utilities
+   (position-fixed d-flex flex-column align-items-start) on the
+   element itself; only the non-standard 1.25rem offset stays here
+   since it doesn't match Bootstrap's spacing scale exactly. */
 .chat-widget {
-    position: fixed;
     left: 1.25rem;
     bottom: 1.25rem;
     z-index: 1055; /* above Bootstrap navbar (1030) */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 }
 
 .chat-toggle-btn {
   width: 56px;
   height: 56px;
-  border-radius: 50%;
-  border: none;
   background-color: #8b5cf6;  /* Neon Purple Accent */
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-shadow: 0 0.5rem 1.25rem rgba(139, 92, 246, 0.4); /* Purple glow */
   transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out;
 }
@@ -191,11 +198,9 @@ p, .text-muted, .text-secondary {
    overlay, and comparison tray.
    ========================================================= */
 
-/* Body-level helper states toggled by peripherals.js */
-body.overlay-open {
-    overflow: hidden;
-}
-
+/* Body-level helper state toggled by peripherals.js. (The overlay-open
+   scroll-lock now just toggles Bootstrap's .overflow-hidden utility
+   directly instead of a custom class.) */
 body.has-compare-tray {
     padding-bottom: 84px;
 }
@@ -204,11 +209,6 @@ body.has-compare-tray {
     body.has-compare-tray {
         padding-bottom: 120px;
     }
-}
-
-/* ---- Page header ---- */
-.peripherals-hero {
-    padding: 2.5rem 0 1.5rem;
 }
 
 /* ---- Sticky filter bar ---- */
@@ -236,10 +236,6 @@ body.has-compare-tray {
     margin-bottom: 0.25rem;
 }
 
-#resultsCount {
-    font-size: 0.9rem;
-}
-
 /* ---- Peripheral cards ---- */
 .peripheral-card {
     cursor: pointer;
@@ -253,12 +249,7 @@ body.has-compare-tray {
     box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.12);
 }
 
-.peripheral-card-image-wrap {
-    position: relative;
-}
-
 .peripheral-card-image-wrap .type-badge {
-    position: absolute;
     top: 0.6rem;
     left: 0.6rem;
     background-color: rgba(13, 110, 253, 0.92);
@@ -292,13 +283,7 @@ body.has-compare-tray {
 
 /* ---- Detail overlay (expanded card) ---- */
 .detail-overlay {
-    position: fixed;
-    inset: 0;
     z-index: 1080;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
 }
 
 .detail-overlay[hidden] {
@@ -306,8 +291,6 @@ body.has-compare-tray {
 }
 
 .detail-overlay-backdrop {
-    position: absolute;
-    inset: 0;
     background-color: rgba(15, 23, 42, 0.6);
     opacity: 0;
     transition: opacity 0.25s ease;
@@ -318,11 +301,9 @@ body.has-compare-tray {
 }
 
 .detail-panel {
-    position: relative;
     background-color: #fff;
     border-radius: 1rem;
     max-width: 900px;
-    width: 100%;
     max-height: 90vh;
     overflow-y: auto;
     box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.3);
@@ -337,18 +318,13 @@ body.has-compare-tray {
 }
 
 .detail-panel-close {
-    position: absolute;
     top: 0.75rem;
     right: 0.75rem;
     z-index: 2;
     background-color: #fff;
     border: 1px solid #dee2e6;
-    border-radius: 50%;
     width: 36px;
     height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .detail-specs-table th {
@@ -382,10 +358,6 @@ body.has-compare-tray {
 
 /* ---- Comparison tray (bottom-docked) ---- */
 .compare-tray {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
     z-index: 1045; /* below the chat widget (1055) so it never covers the toggle */
     background-color: #16213e;
     color: #fff;
@@ -399,17 +371,12 @@ body.has-compare-tray {
 }
 
 .compare-tray-inner {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
     padding: 0.75rem 1rem;
     padding-left: 5.5rem; /* keep clear of the bottom-left chat button */
 }
 
 .compare-tray-items {
-    display: flex;
     gap: 0.6rem;
-    overflow-x: auto;
     flex: 1 1 auto;
     padding-bottom: 0.15rem;
 }
@@ -420,7 +387,6 @@ body.has-compare-tray {
     background-color: rgba(255, 255, 255, 0.08);
     border-radius: 0.5rem;
     padding: 0.4rem;
-    position: relative;
 }
 
 .compare-tray-item img {
@@ -439,20 +405,15 @@ body.has-compare-tray {
 }
 
 .compare-tray-item .remove-btn {
-    position: absolute;
     top: -0.4rem;
     right: -0.4rem;
     width: 20px;
     height: 20px;
-    border-radius: 50%;
     background-color: #dc3545;
     color: #fff;
     border: none;
     font-size: 0.7rem;
     line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .compare-tray-meta {
@@ -482,11 +443,7 @@ body.has-compare-tray {
 
 /* ---- Comparison full-screen overlay ---- */
 .compare-overlay {
-    position: fixed;
-    inset: 0;
     z-index: 1090;
-    display: flex;
-    flex-direction: column;
     background-color: #fff;
 }
 
@@ -498,9 +455,6 @@ body.has-compare-tray {
     transform: translateY(16px);
     opacity: 0;
     transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
 }
 
 .compare-overlay.is-open .compare-overlay-panel {
@@ -532,7 +486,6 @@ body.has-compare-tray {
 }
 
 .compare-item-header img {
-    width: 100%;
     max-width: 140px;
     border-radius: 0.5rem;
 }
@@ -568,9 +521,7 @@ body.has-compare-tray {
 
 /* ---- Hero editor's picks row (one card per genre) ---- */
 #editorsPicksRow {
-    display: flex;
     gap: 0.75rem;
-    overflow-x: auto;
     padding-bottom: 0.25rem;
 }
 
@@ -605,12 +556,16 @@ body.has-compare-tray {
 
 /* ---- Genre badge (shown on cards mixing every genre together) ---- */
 .genre-badge {
-    position: absolute;
-    top: 0.6rem;
-    left: 0.6rem;
     background-color: rgba(139, 92, 246, 0.92);
     color: #fff;
     font-weight: 600;
+}
+
+/* Card-thumbnail placement only (not used in the details modal's inline
+   badge row, which just needs .genre-badge's colors) */
+.genre-badge-overlay {
+    top: 0.6rem;
+    left: 0.6rem;
 }
 
 /* ---- Filter offcanvas / sidebar ---- */
@@ -629,10 +584,6 @@ body.has-compare-tray {
     color: #a19bb8;
     margin-bottom: 0.25rem;
     display: block;
-}
-
-#resultsCount {
-    font-size: 0.9rem;
 }
 
 .filter-chip {
@@ -687,8 +638,6 @@ body.has-compare-tray {
 }
 
 .game-card-image-wrap {
-    position: relative;
-    overflow: hidden;
     aspect-ratio: 16 / 9;
     background-color: #0a0714;
 }
@@ -711,18 +660,12 @@ body.has-compare-tray {
 }
 
 .favorite-btn {
-    position: absolute;
     top: 0.5rem;
     right: 0.5rem;
     width: 34px;
     height: 34px;
-    border-radius: 50%;
-    border: none;
     background-color: rgba(10, 7, 20, 0.75);
     color: #f1f0f7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: color 0.15s ease, transform 0.15s ease;
 }
 
@@ -754,27 +697,21 @@ body.has-compare-tray {
 /* ---- Comparison tray (bottom-center floating pill) ---- */
 .game-compare-tray {
     z-index: 1045;
-    margin-bottom: 1rem;
     background-color: #161228;
     color: #f1f0f7;
     border: 1px solid #2a2244;
     border-radius: 2rem;
     box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.5);
     padding: 0.6rem 1rem;
-    display: flex;
-    align-items: center;
     gap: 0.75rem;
     max-width: calc(100vw - 2rem);
 }
 
 .game-compare-tray-items {
-    display: flex;
     gap: 0.4rem;
-    overflow-x: auto;
 }
 
 .game-compare-tray-item {
-    position: relative;
     flex: 0 0 auto;
 }
 
@@ -786,20 +723,15 @@ body.has-compare-tray {
 }
 
 .game-compare-tray-item .remove-btn {
-    position: absolute;
     top: -0.35rem;
     right: -0.35rem;
     width: 18px;
     height: 18px;
-    border-radius: 50%;
     background-color: #dc3545;
     color: #fff;
     border: none;
     font-size: 0.65rem;
     line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 @media (max-width: 575.98px) {
@@ -866,7 +798,6 @@ body.has-compare-tray {
 }
 
 .compare-item-header img {
-    width: 100%;
     max-width: 120px;
     border-radius: 0.5rem;
 }
@@ -884,13 +815,11 @@ body.has-compare-tray {
 }
 
 .highlight-best-swatch {
-    display: inline-block;
     width: 12px;
     height: 12px;
     background-color: rgba(25, 135, 84, 0.6);
     border-radius: 2px;
     margin-right: 0.35rem;
-    vertical-align: middle;
 }
 
 .toast {

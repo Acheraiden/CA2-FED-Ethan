@@ -95,7 +95,7 @@
                     </div>
                     <div class="col-lg-6">
                         <h2 class="h6 text-uppercase text-muted mb-2">Editor's Picks</h2>
-                        <div id="editorsPicksRow"></div>
+                        <div id="editorsPicksRow" class="d-flex overflow-x-auto"></div>
                     </div>
                 </div>
             </div>
@@ -237,7 +237,7 @@
     </footer>
 
     <!-- Chat Widget -->
-    <div id="chatWidget" class="chat-widget">
+    <div id="chatWidget" class="chat-widget position-fixed d-flex flex-column align-items-start">
         <div id="chatNotification" class="chat-notification d-none" role="status" aria-live="polite">
             <button type="button" class="chat-notification-close" id="chatNotificationClose" aria-label="Dismiss notification">
                 <i class="bi bi-x-lg" aria-hidden="true"></i>
@@ -264,15 +264,15 @@
             </form>
         </div>
 
-        <button type="button" id="chatToggleBtn" class="chat-toggle-btn" aria-expanded="false" aria-controls="chatPanel" aria-label="Open chat">
+        <button type="button" id="chatToggleBtn" class="chat-toggle-btn rounded-circle border-0 d-flex align-items-center justify-content-center" aria-expanded="false" aria-controls="chatPanel" aria-label="Open chat">
             <i class="bi bi-chat-dots-fill fs-4" aria-hidden="true"></i>
         </button>
     </div>
 
     <!-- Comparison tray (bottom-center floating pill) -->
-    <div id="compareTray" class="position-fixed bottom-0 start-50 translate-middle-x game-compare-tray d-none" aria-live="polite">
+    <div id="compareTray" class="position-fixed bottom-0 start-50 translate-middle-x game-compare-tray mb-3 d-flex align-items-center d-none" aria-live="polite">
         <span id="compareTrayCounter" class="fw-semibold small text-nowrap">0 / 4 Selected</span>
-        <div id="compareTrayItems" class="game-compare-tray-items"></div>
+        <div id="compareTrayItems" class="game-compare-tray-items d-flex overflow-x-auto"></div>
         <button type="button" id="clearCompareBtn" class="btn btn-sm btn-outline-light text-nowrap">Clear All</button>
         <button type="button" id="openCompareModalBtn" class="btn btn-sm btn-primary text-nowrap" disabled>Compare Now</button>
     </div>

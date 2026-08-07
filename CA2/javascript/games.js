@@ -1194,10 +1194,10 @@ var GamesPage = (function () {
 
         col.innerHTML =
             '<div class="card game-card h-100" id="game-card-' + game.id + '" data-id="' + game.id + '">' +
-            '<div class="game-card-image-wrap">' +
+            '<div class="game-card-image-wrap position-relative overflow-hidden">' +
             '<img src="' + game.screenshots[0] + '" class="card-img-top" alt="Cover art for ' + escapeHtml(game.title) + '" />' +
-            '<span class="badge genre-badge">' + escapeHtml(GENRE_META[game.genre].shortLabel) + '</span>' +
-            '<button type="button" class="favorite-btn' + (isFavorite ? ' active' : '') + '" aria-pressed="' + isFavorite + '" aria-label="Toggle favorite for ' + escapeHtml(game.title) + '">' +
+            '<span class="badge genre-badge genre-badge-overlay position-absolute">' + escapeHtml(GENRE_META[game.genre].shortLabel) + '</span>' +
+            '<button type="button" class="favorite-btn position-absolute rounded-circle border-0 d-flex align-items-center justify-content-center' + (isFavorite ? ' active' : '') + '" aria-pressed="' + isFavorite + '" aria-label="Toggle favorite for ' + escapeHtml(game.title) + '">' +
             '<i class="bi ' + (isFavorite ? 'bi-heart-fill' : 'bi-heart') + '" aria-hidden="true"></i>' +
             '</button>' +
             '</div>' +
@@ -1490,9 +1490,9 @@ var GamesPage = (function () {
             els.compareTrayItems.innerHTML = state.compareList.map(function (id) {
                 var game = findById(id);
                 if (!game) return '';
-                return '<div class="game-compare-tray-item" data-id="' + game.id + '">' +
+                return '<div class="game-compare-tray-item position-relative" data-id="' + game.id + '">' +
                     '<img src="' + game.screenshots[0] + '" alt="" />' +
-                    '<button type="button" class="remove-btn" aria-label="Remove ' + escapeHtml(game.title) + ' from comparison">&times;</button>' +
+                    '<button type="button" class="remove-btn position-absolute rounded-circle d-flex align-items-center justify-content-center" aria-label="Remove ' + escapeHtml(game.title) + ' from comparison">&times;</button>' +
                     '</div>';
             }).join('');
 
@@ -1533,7 +1533,7 @@ var GamesPage = (function () {
 
         var headerCells = games.map(function (game) {
             return '<th class="text-center compare-item-header">' +
-                '<img src="' + game.screenshots[0] + '" alt="' + escapeHtml(game.title) + '" />' +
+                '<img src="' + game.screenshots[0] + '" alt="' + escapeHtml(game.title) + '" class="w-100" />' +
                 '<div class="small fw-semibold mt-2">' + escapeHtml(game.title) + '</div>' +
                 '</th>';
         }).join('');
@@ -1570,7 +1570,7 @@ var GamesPage = (function () {
             '<tbody>' + rowsHtml + '</tbody>' +
             '</table>' +
             '</div>' +
-            '<p class="small text-muted mb-0"><span class="highlight-best-swatch"></span> = highest rated, lowest price, or best replayability.</p>';
+            '<p class="small text-muted mb-0"><span class="highlight-best-swatch d-inline-block align-middle"></span> = highest rated, lowest price, or best replayability.</p>';
 
         if (compareModal) {
             compareModal.show();

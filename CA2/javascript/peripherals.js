@@ -663,9 +663,9 @@ var PeripheralsPage = (function () {
         col.innerHTML =
             '<div class="card peripheral-card h-100" data-id="' + item.id + '" tabindex="0" role="button" ' +
             'aria-label="View details for ' + escapeHtml(item.name) + '">' +
-            '<div class="peripheral-card-image-wrap">' +
+            '<div class="peripheral-card-image-wrap position-relative">' +
             '<img src="' + item.image + '" class="card-img-top" alt="' + escapeHtml(item.name) + ', a ' + escapeHtml(item.type.toLowerCase()) + ' by ' + escapeHtml(item.brand) + '" />' +
-            '<span class="badge type-badge">' + escapeHtml(item.type) + '</span>' +
+            '<span class="badge type-badge position-absolute">' + escapeHtml(item.type) + '</span>' +
             '</div>' +
             '<div class="card-body d-flex flex-column">' +
             '<h3 class="h6 card-title mb-1">' + escapeHtml(item.name) + '</h3>' +
@@ -731,7 +731,7 @@ var PeripheralsPage = (function () {
         // Force a reflow so the transition triggers rather than jump-cutting straight to open.
         void els.detailOverlay.offsetWidth;
         els.detailOverlay.classList.add('is-open');
-        document.body.classList.add('overlay-open');
+        document.body.classList.add('overflow-hidden');
 
         var closeBtn = els.detailPanel.querySelector('.detail-panel-close');
         if (closeBtn) {
@@ -750,7 +750,7 @@ var PeripheralsPage = (function () {
     function closeDetailOverlay() {
         if (!els.detailOverlay) return;
         els.detailOverlay.classList.remove('is-open');
-        document.body.classList.remove('overlay-open');
+        document.body.classList.remove('overflow-hidden');
         setTimeout(function () {
             els.detailOverlay.setAttribute('hidden', '');
         }, 260); // matches the CSS transition duration
@@ -775,7 +775,7 @@ var PeripheralsPage = (function () {
         }).join('');
 
         return (
-            '<button type="button" class="detail-panel-close" aria-label="Close details"><i class="bi bi-x-lg" aria-hidden="true"></i></button>' +
+            '<button type="button" class="detail-panel-close position-absolute rounded-circle d-flex align-items-center justify-content-center" aria-label="Close details"><i class="bi bi-x-lg" aria-hidden="true"></i></button>' +
             '<div class="row g-0">' +
             '<div class="col-md-5">' +
             '<img src="' + item.image + '" class="img-fluid w-100 h-100" style="object-fit:cover; max-height:420px;" alt="' + escapeHtml(item.name) + '" />' +
@@ -901,8 +901,8 @@ var PeripheralsPage = (function () {
         els.compareTrayItems.innerHTML = state.compareList.map(function (id) {
             var item = findById(id);
             if (!item) return '';
-            return '<div class="compare-tray-item" data-id="' + item.id + '">' +
-                '<button type="button" class="remove-btn" aria-label="Remove ' + escapeHtml(item.name) + ' from comparison">&times;</button>' +
+            return '<div class="compare-tray-item position-relative" data-id="' + item.id + '">' +
+                '<button type="button" class="remove-btn position-absolute rounded-circle d-flex align-items-center justify-content-center" aria-label="Remove ' + escapeHtml(item.name) + ' from comparison">&times;</button>' +
                 '<img src="' + item.image + '" alt="" />' +
                 '<span class="item-name">' + escapeHtml(item.name) + '</span>' +
                 '</div>';
@@ -955,7 +955,7 @@ var PeripheralsPage = (function () {
 
         var headerCells = items.map(function (item) {
             return '<th class="compare-item-header text-center">' +
-                '<img src="' + item.image + '" alt="' + escapeHtml(item.name) + '" />' +
+                '<img src="' + item.image + '" alt="' + escapeHtml(item.name) + '" class="w-100" />' +
                 '<div class="mt-2 small fw-semibold">' + escapeHtml(item.name) + '</div>' +
                 '<div class="text-muted small">$' + item.price.toFixed(2) + '</div>' +
                 '</th>';
@@ -979,13 +979,13 @@ var PeripheralsPage = (function () {
         els.compareOverlay.removeAttribute('hidden');
         void els.compareOverlay.offsetWidth;
         els.compareOverlay.classList.add('is-open');
-        document.body.classList.add('overlay-open');
+        document.body.classList.add('overflow-hidden');
     }
 
     function closeCompareOverlay() {
         if (!els.compareOverlay) return;
         els.compareOverlay.classList.remove('is-open');
-        document.body.classList.remove('overlay-open');
+        document.body.classList.remove('overflow-hidden');
         setTimeout(function () {
             els.compareOverlay.setAttribute('hidden', '');
         }, 260);
