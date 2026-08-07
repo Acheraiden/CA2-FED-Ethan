@@ -5,6 +5,35 @@ document.addEventListener('DOMContentLoaded', function () {
     initChatWidget();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const heroSection = document.getElementById("heroSection");
+    const gameCards = document.querySelectorAll(".game-card");
+
+    if (!heroSection) {
+        console.error("Hero Banner element with id='heroSection' was NOT found in the DOM!");
+        return;
+    }
+
+    // Preload background GIFs so switching feels instant
+    gameCards.forEach((card) => {
+        const bgUrl = card.getAttribute("data-bg");
+        if (bgUrl) {
+            const img = new Image();
+            img.src = bgUrl;
+        }
+    });
+
+    // Update background on hover and KEEP IT
+    gameCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+            const newBg = card.getAttribute("data-bg");
+            if (newBg) {
+                heroSection.style.backgroundImage = `linear-gradient(rgba(17, 11, 41, 0.75), rgba(17, 11, 41, 0.85)), url("${newBg}")`;
+            }
+        });
+        // "mouseleave" listener removed so the background stays on the last hovered game!
+    });
+});
 /**
  * "Recommend Me a Game" interaction.
  * Picks a random game from a small local catalog and renders it

@@ -74,32 +74,24 @@
     <main>
 
         <!-- Hero Banner -->
-        <section class="hero-banner text-light d-flex align-items-center" aria-label="Introduction">
-            <div class="container py-5">
-                <div class="row align-items-center">
-                    <div class="col-lg-7">
-                        <h1 class="display-4 fw-bold mb-3">Find your next favorite game, faster.</h1>
-                        <p class="lead mb-4">
-                            ReadyPlayer3 curates top-rated games across every genre and matches
-                            you with your next obsession &mdash; no more endless scrolling through
-                            store pages.
-                        </p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <a href="../html/qna.html" class="btn btn-primary btn-lg">Take the Survey</a>
-                            <a href="../html/games.html" class="btn btn-outline-light btn-lg">Browse Games</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 mt-4 mt-lg-0">
-                        <img
-                            src="../images/collage.jpg"
-                            id="heroImage"
-                            class="img-fluid rounded shadow"
-                            alt="Collage of many games"
-                        />
-                    </div>
+<section id="heroSection" class="hero-banner text-light d-flex align-items-center" aria-label="Introduction">
+    <div class="container py-5">
+        <div class="row align-items-center justify-content-center text-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-4">Find your next favorite game, faster.</h1>
+                <p class="lead mb-4">
+                    ReadyPlayer3 curates top-rated games across every genre and matches 
+                    you with your next obsession &mdash; no more endless scrolling through 
+                    store pages.
+                </p>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a href="../html/qna.html" class="btn btn-primary btn-lg">Take the Survey</a>
+                    <a href="../html/games.html" class="btn btn-outline-light btn-lg">Browse Games</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <div class="container">
 
@@ -114,53 +106,73 @@
                     </form>
                 </div>
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="../images/dmc5.jpg" style="height:175px" class="card-img-top" alt="Gameplay for Devil May Cry 5, a well known action fighting game." />
-                            <div class="card-body">
-                                <h3 class="h5 card-title">Devil May Cry</h3>
-                                <p class="card-text text-muted mb-1">Genre: Action Fighting</p>
-                                <p class="card-text">Rating: 4.8 / 5 &middot; $36.90</p>
-                            </div>
-                        </div>
-                    </div>
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+    
+    <!-- Card 1: Cyberpunk 2077 -->
+    <div class="col">
+        <div class="card h-100 bg-dark text-white border-secondary shadow-sm game-card" data-bg="../images/cyberpunk-2077-gif-9.gif">
+            <img src="../images/CBP2077.jpg" style="height:175px; object-fit: cover;" class="card-img-top" alt="Cyberpunk 2077 gameplay" />
+            <div class="card-body d-flex flex-column text-start">
+                <h5 class="card-title fw-bold text-white mb-2">Cyberpunk 2077</h5>
+                <p class="card-text text-light opacity-75 mb-1 small"><strong>Genre:</strong> Action RPG</p>
+                <p class="card-text text-light opacity-75 mb-2 small"><strong>Rating:</strong> 4.8 / 5 &bull; $36.90</p>
+                <p class="card-text text-white small mb-3">
+                    Cyberpunk 2077 is an open-world, action-adventure RPG set in Night City.
+                </p>
+                <a href="../html/games.html" class="link-info text-decoration-none fw-semibold small mt-auto">Find out more &rarr;</a>
+            </div>
+        </div>
+    </div>
 
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="../images/valo.jpg" style="height:175px" class="card-img-top" alt="Gameplay for Valorant, a well known first person tactical shooter game." />
-                            <div class="card-body">
-                                <h3 class="h5 card-title">Valorant</h3>
-                                <p class="card-text text-muted mb-1">Genre: Tactical Shooter</p>
-                                <p class="card-text">Rating: 4.6 / 5 &middot; Free!</p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Card 2: Valorant -->
+    <div class="col">
+        <div class="card h-100 bg-dark text-white border-secondary shadow-sm game-card" data-bg="../images/valorant gif.gif">
+            <img src="../images/valo.jpg" style="height:175px; object-fit: cover;" class="card-img-top" alt="Valorant gameplay" />
+            <div class="card-body d-flex flex-column text-start">
+                <h5 class="card-title fw-bold text-white mb-2">Valorant</h5>
+                <p class="card-text text-light opacity-75 mb-1 small"><strong>Genre:</strong> Tactical Shooter</p>
+                <p class="card-text text-light opacity-75 mb-2 small"><strong>Rating:</strong> 4.6 / 5 &bull; Free!</p>
+                <p class="card-text text-white small mb-3">
+                    Blend your style and experience on a global, competitive stage.
+                </p>
+                <a href="../html/games.html" class="link-info text-decoration-none fw-semibold small mt-auto">Find out more &rarr;</a>
+            </div>
+        </div>
+    </div>
 
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="../images/ff7r.jpg" style="height:175px" class="card-img-top" alt="Gameplay for Final Fantasy 7 Remake, a new retelling of a fan favourite franchise game." />
-                            <div class="card-body">
-                                <h3 class="h5 card-title">Final Fantasy 7</h3>
-                                <p class="card-text text-muted mb-1">Genre: JRPG</p>
-                                <p class="card-text">Rating: 4.9 / 5 &middot; $39.99</p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Card 3: Final Fantasy VII Remake -->
+    <div class="col">
+        <div class="card h-100 bg-dark text-white border-secondary shadow-sm game-card" data-bg="../images/FinalFantasyGif.gif">
+            <img src="../images/ff7r.jpg" style="height:175px; object-fit: cover;" class="card-img-top" alt="Final Fantasy VII Remake gameplay" />
+            <div class="card-body d-flex flex-column text-start">
+                <h5 class="card-title fw-bold text-white mb-2">Final Fantasy VII Remake</h5>
+                <p class="card-text text-light opacity-75 mb-1 small"><strong>Genre:</strong> Action JRPG</p>
+                <p class="card-text text-light opacity-75 mb-2 small"><strong>Rating:</strong> 4.9 / 5 &bull; $39.99</p>
+                <p class="card-text text-white small mb-3">
+                    A reimagining of the iconic original game following Cloud Strife.
+                </p>
+                <a href="../html/games.html" class="link-info text-decoration-none fw-semibold small mt-auto">Find out more &rarr;</a>
+            </div>
+        </div>
+    </div>
 
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="../images/viewfinder.jpg" style="height:175px" class="card-img-top" alt="Gameplay for Viewfinder, a photo puzzle game that warps reality." />
-                            <div class="card-body">
-                                <h3 class="h5 card-title">Viewfinder</h3>
-                                <p class="card-text text-muted mb-1">Genre: Puzzle Adventure</p>
-                                <p class="card-text">Rating: 4.7 / 5 &middot; $24.99</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <!-- Card 4: Viewfinder -->
+    <div class="col">
+        <div class="card h-100 bg-dark text-white border-secondary shadow-sm game-card" data-bg="../images/ViewFinder.gif">
+            <img src="../images/viewfinder.jpg" style="height:175px; object-fit: cover;" class="card-img-top" alt="Viewfinder gameplay" />
+            <div class="card-body d-flex flex-column text-start">
+                <h5 class="card-title fw-bold text-white mb-2">Viewfinder</h5>
+                <p class="card-text text-light opacity-75 mb-1 small"><strong>Genre:</strong> Puzzle Adventure</p>
+                <p class="card-text text-light opacity-75 mb-2 small"><strong>Rating:</strong> 4.7 / 5 &bull; $24.99</p>
+                <p class="card-text text-white small mb-3">
+                    Challenge perception, redefine reality, and reshape the world with an instant camera.
+                </p>
+                <a href="../html/games.html" class="link-info text-decoration-none fw-semibold small mt-auto">Find out more &rarr;</a>
+            </div>
+        </div>
+    </div>
 
+</div>
             <!-- Why Choose Us -->
             <section class="py-5" aria-labelledby="whyUsHeading">
                 <h2 id="whyUsHeading" class="mb-4">Why Choose ReadyPlayer3?</h2>
