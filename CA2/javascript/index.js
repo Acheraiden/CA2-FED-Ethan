@@ -129,14 +129,18 @@ function initChatWidget() {
     var notification = document.getElementById('chatNotification');
     var notificationCloseBtn = document.getElementById('chatNotificationClose');
     var chatForm = document.getElementById('chatForm');
+    var chatInput = document.getElementById('chatInput');
+    var messagesContainer = document.getElementById('chatMessages');
 
     if (!toggleBtn || !panel) {
         return; // Widget isn't on this page
     }
 
-    var NUDGE_DELAY_MS = 60 * 1000; // 1 minute
+    var NUDGE_DELAY_MS = 60 * 1000; // 1 minute - the "still deciding?" bubble outside the widget
+    var INACTIVITY_DELAY_MS = 30 * 1000; // 30 seconds - bot follow-up prompt inside an open chat
     var chatOpenedAlready = false;
     var nudgeTimer = null;
+    var inactivityTimer = null;
 
     function openPanel() {
         panel.classList.remove('d-none');
@@ -148,9 +152,9 @@ function initChatWidget() {
             clearTimeout(nudgeTimer);
             nudgeTimer = null;
         }
-        var input = document.getElementById('chatInput');
-        if (input) {
-            input.focus();
+        resetInactivityTimer();
+        if (chatInput) {
+            chatInput.focus();
         }
     }
 
@@ -158,6 +162,10 @@ function initChatWidget() {
         panel.classList.add('d-none');
         toggleBtn.setAttribute('aria-expanded', 'false');
         toggleBtn.setAttribute('aria-label', 'Open chat');
+        if (inactivityTimer) {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = null;
+        }
     }
 
     function showNotification() {
@@ -171,6 +179,55 @@ function initChatWidget() {
         if (notification) {
             notification.classList.add('d-none');
         }
+    }
+
+    // Resets the 30-second "still there?" bot prompt that appears inside
+    // an open chat panel after a lull in typing/sending.
+    function resetInactivityTimer() {
+        if (!messagesContainer) return;
+        if (inactivityTimer) {
+            clearTimeout(inactivityTimer);
+        }
+        inactivityTimer = setTimeout(function () {
+            if (panel.classList.contains('d-none')) return; // only prompt while open
+            appendBotBubble('Still there? Let me know if you need any help finding games, genres, or gear!');
+        }, INACTIVITY_DELAY_MS);
+    }
+
+    function appendUserBubble(text) {
+        var bubble = document.createElement('div');
+        bubble.className = 'p-2 px-3 text-white rounded-3 align-self-end small';
+        bubble.style.backgroundColor = '#8b5cf6';
+        bubble.style.maxWidth = '80%';
+        bubble.style.wordBreak = 'break-word';
+        bubble.textContent = text;
+        messagesContainer.appendChild(bubble);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function appendBotBubble(text) {
+        var bubble = document.createElement('div');
+        bubble.className = 'p-2 px-3 text-light border border-secondary rounded-3 align-self-start small';
+        bubble.style.backgroundColor = '#2a2244';
+        bubble.style.maxWidth = '85%';
+        bubble.style.wordBreak = 'break-word';
+        bubble.textContent = text;
+        messagesContainer.appendChild(bubble);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function buildBotReply(userText) {
+        var lowerText = userText.toLowerCase();
+        if (lowerText.indexOf('fps') !== -1 || lowerText.indexOf('shooter') !== -1) {
+            return 'Check out our Top Rated FPS games like Valorant or CS2!';
+        }
+        if (lowerText.indexOf('mouse') !== -1 || lowerText.indexOf('keyboard') !== -1 || lowerText.indexOf('gear') !== -1) {
+            return 'You can compare gaming mice and mechanical keyboards on our Peripherals page!';
+        }
+        if (lowerText.indexOf('survey') !== -1 || lowerText.indexOf('recommend') !== -1) {
+            return 'Take our short survey to get personalized game recommendations!';
+        }
+        return 'Thanks for asking! You can explore our Games or Peripherals page to find recommendations tailored for you.';
     }
 
     toggleBtn.addEventListener('click', function () {
@@ -200,115 +257,28 @@ function initChatWidget() {
         });
     }
 
-    if (chatForm) {
+    if (chatInput) {
+        chatInput.addEventListener('input', resetInactivityTimer);
+    }
+
+    if (chatForm && chatInput && messagesContainer) {
         chatForm.addEventListener('submit', function (event) {
             event.preventDefault();
-            // Placeholder submit handler until a real chat backend is wired up
-            var input = document.getElementById('chatInput');
-            if (input) {
-                input.value = '';
-            }
+
+            var userText = chatInput.value.trim();
+            if (!userText) return;
+
+            appendUserBubble(userText);
+            chatInput.value = '';
+            resetInactivityTimer();
+
+            // Simulated bot response
+            setTimeout(function () {
+                appendBotBubble(buildBotReply(userText));
+                resetInactivityTimer();
+            }, 600);
         });
     }
 
     nudgeTimer = setTimeout(showNotification, NUDGE_DELAY_MS);
-}
-
-if (chatForm) {
-  var inactivityTimer = null;
-  var messagesContainer = document.getElementById('chatMessages');
-  var input = document.getElementById('chatInput');
-
-  // Function to start or reset the 30-second inactivity timer
-  function resetInactivityTimer() {
-    // Clear any existing active timer
-    if (inactivityTimer) {
-      clearTimeout(inactivityTimer);
-    }
-
-    // Set a new timer for 30 seconds (30,000 ms)
-    inactivityTimer = setTimeout(function () {
-      // Only show the prompt if the chat panel is actually open
-      var panel = document.getElementById('chatPanel');
-      if (panel && !panel.classList.contains('d-none')) {
-        
-        // Create Bot Inactivity Prompt Bubble
-        var botPrompt = document.createElement('div');
-        botPrompt.className = 'p-2 px-3 text-light border border-secondary rounded-3 align-self-start small';
-        botPrompt.style.backgroundColor = '#2a2244';
-        botPrompt.style.maxWidth = '85%';
-        botPrompt.style.wordBreak = 'break-word';
-        botPrompt.textContent = "Still there? Let me know if you need any help finding games, genres, or gear!";
-
-        messagesContainer.appendChild(botPrompt);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-      }
-    }, 30000); // 30 seconds
-  }
-
-  // 1. Reset timer whenever the user types in the input field
-  input.addEventListener('input', function () {
-    resetInactivityTimer();
-  });
-
-  // 2. Start the timer when the user opens the chat panel
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', function () {
-      // If panel is being opened, start timer
-      if (!panel.classList.contains('d-none')) {
-        resetInactivityTimer();
-      } else if (inactivityTimer) {
-        clearTimeout(inactivityTimer); // Stop timer if panel is closed
-      }
-    });
-  }
-
-  // 3. Handle Chat Form Submission
-  chatForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    var userText = input.value.trim();
-    if (!userText) return;
-
-    // Reset inactivity timer when user sends a message
-    resetInactivityTimer();
-
-    // Create User Message Bubble
-    var userBubble = document.createElement('div');
-    userBubble.className = 'p-2 px-3 text-white rounded-3 align-self-end small';
-    userBubble.style.backgroundColor = '#8b5cf6';
-    userBubble.style.maxWidth = '80%';
-    userBubble.style.wordBreak = 'break-word';
-    userBubble.textContent = userText;
-
-    messagesContainer.appendChild(userBubble);
-    input.value = '';
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    // Simulated Bot Response
-    setTimeout(function () {
-      var botBubble = document.createElement('div');
-      botBubble.className = 'p-2 px-3 text-light border border-secondary rounded-3 align-self-start small';
-      botBubble.style.backgroundColor = '#2a2244';
-      botBubble.style.maxWidth = '85%';
-      botBubble.style.wordBreak = 'break-word';
-
-      var lowerText = userText.toLowerCase();
-      if (lowerText.includes('fps') || lowerText.includes('shooter')) {
-        botBubble.textContent = "Check out our Top Rated FPS games like Valorant or CS2!";
-      } else if (lowerText.includes('mouse') || lowerText.includes('keyboard') || lowerText.includes('gear')) {
-        botBubble.textContent = "You can compare gaming mice and mechanical keyboards on our Peripherals page!";
-      } else if (lowerText.includes('survey') || lowerText.includes('recommend')) {
-        botBubble.textContent = "Take our short survey to get personalized game recommendations!";
-      } else {
-        botBubble.textContent = "Thanks for asking! You can explore our Game Genres or Peripherals page to find recommendations tailored for you.";
-      }
-
-      messagesContainer.appendChild(botBubble);
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-      // Restart timer after bot responds
-      resetInactivityTimer();
-    }, 600);
-  });
 }
