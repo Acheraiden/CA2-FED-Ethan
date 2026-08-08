@@ -302,15 +302,15 @@ const TierListPage = (() => {
 
     function buildGameCard(game) {
         return (
-            '<div class="game-card" draggable="true" data-game-id="' + game.id + '">' +
-            '<img src="' + game.image + '" class="game-card-img" alt="Cover art for ' + escapeHtml(game.name) + '" />' +
-            '<p class="game-card-name">' + escapeHtml(game.name) + '</p>' +
+            '<div class="tier-game-card" draggable="true" data-game-id="' + game.id + '">' +
+            '<img src="' + game.image + '" class="tier-game-card-img" alt="Cover art for ' + escapeHtml(game.name) + '" />' +
+            '<p class="tier-game-card-name">' + escapeHtml(game.name) + '</p>' +
             '</div>'
         );
     }
 
     function bindGameCardEvents(container) {
-        container.querySelectorAll('.game-card').forEach((card) => {
+        container.querySelectorAll('.tier-game-card').forEach((card) => {
             card.addEventListener('dragstart', handleDragStart);
             card.addEventListener('dragend', handleDragEnd);
             card.addEventListener('click', () => openGameInfoModal(card.getAttribute('data-game-id')));
@@ -390,7 +390,7 @@ const TierListPage = (() => {
 
             // Dropping onto a specific game card reorders to that position;
             // dropping on empty tier space just appends to the end.
-            const targetCard = event.target.closest('.game-card');
+            const targetCard = event.target.closest('.tier-game-card');
             const insertBeforeId = targetCard ? Number(targetCard.getAttribute('data-game-id')) : null;
             moveGame(draggedGameId, tierId, insertBeforeId);
             draggedGameId = null;

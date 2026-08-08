@@ -1129,7 +1129,7 @@ body.has-compare-tray {
     background-color: rgba(139, 92, 246, 0.1);
 }
 
-.game-card {
+.tier-game-card {
     width: 96px;
     background-color: #161228;
     border: 1px solid #2a2244;
@@ -1140,15 +1140,15 @@ body.has-compare-tray {
     transition: border-color 0.15s ease, opacity 0.15s ease;
 }
 
-.game-card:hover {
+.tier-game-card:hover {
     border-color: #8b5cf6;
 }
 
-.game-card.dragging {
+.tier-game-card.dragging {
     opacity: 0.4;
 }
 
-.game-card-img {
+.tier-game-card-img {
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
@@ -1158,7 +1158,7 @@ body.has-compare-tray {
     pointer-events: none;
 }
 
-.game-card-name {
+.tier-game-card-name {
     font-size: 0.7rem;
     line-height: 1.2;
     color: #f1f0f7;
