@@ -213,3 +213,102 @@ function initChatWidget() {
 
     nudgeTimer = setTimeout(showNotification, NUDGE_DELAY_MS);
 }
+
+if (chatForm) {
+  var inactivityTimer = null;
+  var messagesContainer = document.getElementById('chatMessages');
+  var input = document.getElementById('chatInput');
+
+  // Function to start or reset the 30-second inactivity timer
+  function resetInactivityTimer() {
+    // Clear any existing active timer
+    if (inactivityTimer) {
+      clearTimeout(inactivityTimer);
+    }
+
+    // Set a new timer for 30 seconds (30,000 ms)
+    inactivityTimer = setTimeout(function () {
+      // Only show the prompt if the chat panel is actually open
+      var panel = document.getElementById('chatPanel');
+      if (panel && !panel.classList.contains('d-none')) {
+        
+        // Create Bot Inactivity Prompt Bubble
+        var botPrompt = document.createElement('div');
+        botPrompt.className = 'p-2 px-3 text-light border border-secondary rounded-3 align-self-start small';
+        botPrompt.style.backgroundColor = '#2a2244';
+        botPrompt.style.maxWidth = '85%';
+        botPrompt.style.wordBreak = 'break-word';
+        botPrompt.textContent = "Still there? Let me know if you need any help finding games, genres, or gear!";
+
+        messagesContainer.appendChild(botPrompt);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    }, 30000); // 30 seconds
+  }
+
+  // 1. Reset timer whenever the user types in the input field
+  input.addEventListener('input', function () {
+    resetInactivityTimer();
+  });
+
+  // 2. Start the timer when the user opens the chat panel
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function () {
+      // If panel is being opened, start timer
+      if (!panel.classList.contains('d-none')) {
+        resetInactivityTimer();
+      } else if (inactivityTimer) {
+        clearTimeout(inactivityTimer); // Stop timer if panel is closed
+      }
+    });
+  }
+
+  // 3. Handle Chat Form Submission
+  chatForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var userText = input.value.trim();
+    if (!userText) return;
+
+    // Reset inactivity timer when user sends a message
+    resetInactivityTimer();
+
+    // Create User Message Bubble
+    var userBubble = document.createElement('div');
+    userBubble.className = 'p-2 px-3 text-white rounded-3 align-self-end small';
+    userBubble.style.backgroundColor = '#8b5cf6';
+    userBubble.style.maxWidth = '80%';
+    userBubble.style.wordBreak = 'break-word';
+    userBubble.textContent = userText;
+
+    messagesContainer.appendChild(userBubble);
+    input.value = '';
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    // Simulated Bot Response
+    setTimeout(function () {
+      var botBubble = document.createElement('div');
+      botBubble.className = 'p-2 px-3 text-light border border-secondary rounded-3 align-self-start small';
+      botBubble.style.backgroundColor = '#2a2244';
+      botBubble.style.maxWidth = '85%';
+      botBubble.style.wordBreak = 'break-word';
+
+      var lowerText = userText.toLowerCase();
+      if (lowerText.includes('fps') || lowerText.includes('shooter')) {
+        botBubble.textContent = "Check out our Top Rated FPS games like Valorant or CS2!";
+      } else if (lowerText.includes('mouse') || lowerText.includes('keyboard') || lowerText.includes('gear')) {
+        botBubble.textContent = "You can compare gaming mice and mechanical keyboards on our Peripherals page!";
+      } else if (lowerText.includes('survey') || lowerText.includes('recommend')) {
+        botBubble.textContent = "Take our short survey to get personalized game recommendations!";
+      } else {
+        botBubble.textContent = "Thanks for asking! You can explore our Game Genres or Peripherals page to find recommendations tailored for you.";
+      }
+
+      messagesContainer.appendChild(botBubble);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // Restart timer after bot responds
+      resetInactivityTimer();
+    }, 600);
+  });
+}
