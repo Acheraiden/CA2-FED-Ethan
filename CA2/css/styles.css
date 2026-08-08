@@ -1035,3 +1035,76 @@ body.has-compare-tray {
     bottom: 1.25rem;
     z-index: 1050;
 }
+
+/* ==========================================================
+   Game Finder Survey (qna.html) - question cards, option
+   buttons/pills, result cards, and the summary/history rows.
+   ========================================================== */
+
+.survey-question-prompt {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.survey-option-btn {
+    background-color: transparent;
+    border: 1px solid #3b2d59;
+    color: #d8d3ea;
+    padding: 0.5rem 1.1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.survey-option-btn:hover {
+    border-color: #8b5cf6;
+    color: #fff;
+}
+
+.survey-option-btn.active {
+    background-color: #8b5cf6;
+    border-color: #8b5cf6;
+    color: #fff;
+}
+
+.survey-checkbox-pill {
+    background-color: #12101f;
+    border: 1px solid #3b2d59;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    margin: 0;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.survey-checkbox-pill.checked {
+    background-color: rgba(139, 92, 246, 0.15);
+    border-color: #8b5cf6;
+}
+
+.summary-row {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #2a2244;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+/* ---- Result cards (top matches + full ranked list) ---- */
+.result-card {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    color: #f1f0f7;
+    padding: 1.1rem;
+}
+
+.result-medal-badge {
+    background-color: #8b5cf6;
+    color: #fff;
+    align-self: flex-start;
+}
+
+.trait-bar-label {
+    width: 80px;
+    flex-shrink: 0;
+}
