@@ -1,8 +1,8 @@
-// ReadyPlayer3 - qna.html (Game Finder Survey) data
+// ReadyPlayer3 - survey.html (Game Finder Survey) data
 //
 // Questions the survey asks, the game catalog it recommends from, and the
 // gamer-personality lookup. Kept separate from the controller logic in
-// qna.js so the data is easy to read/extend on its own.
+// survey.js so the data is easy to read/extend on its own.
 
 const QUESTIONS = [
     {
@@ -201,7 +201,7 @@ const GAMES = [
 ];
 
 // Which personality a user gets is decided by their single highest-rated
-// trait (see determinePersonality() in qna.js).
+// trait (see determinePersonality() in survey.js).
 const PERSONALITY_BY_TRAIT = {
     action: { emoji: '\u2694\ufe0f', name: 'The Competitor', description: 'You want fast, skill-testing action where every reflex matters.' },
     story: { emoji: '\ud83d\udcd6', name: 'The Storyteller', description: 'You play games for the narrative \u2014 characters, choices, and worlds worth remembering.' },
@@ -211,7 +211,7 @@ const PERSONALITY_BY_TRAIT = {
     difficulty: { emoji: '\ud83d\udc80', name: 'The Hardcore Gamer', description: 'If it doesn\u2019t push back, it\u2019s not worth playing.' }
 };
 
-// ReadyPlayer3 - qna.html (Game Finder Survey) interactions
+// ReadyPlayer3 - survey.html (Game Finder Survey) interactions
 //
 // Self-contained controller for the survey: question flow, the scoring
 // algorithm, results (with per-game "Why?" explanations), gamer

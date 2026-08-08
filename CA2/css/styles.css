@@ -54,7 +54,7 @@ p, .text-muted, .text-secondary {
 
 /* Homepage hero only: animated GIF background. Scoped to #heroSection
    (unique to index.html) rather than .hero-banner so other pages keep
-   the plain gradient above. script.js swaps this background on hover
+   the plain gradient above. index.js swaps this background on hover
    over a featured game card; the dark overlay gradient keeps hero text
    readable over any GIF. */
 #heroSection {
