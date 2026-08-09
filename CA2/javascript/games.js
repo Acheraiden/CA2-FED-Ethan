@@ -864,6 +864,14 @@ var GamesPage = (function () {
         bindRandomPickEvent();
         renderGrid();
         renderCompareTray();
+
+        // Deep link support: ?id=<gameId> opens that game's details modal
+        // straight away. Used by the Minigame's "View Full Details" link.
+        var params = new URLSearchParams(window.location.search);
+        var deepLinkId = params.get('id');
+        if (deepLinkId && findById(deepLinkId)) {
+            openDetailsModal(deepLinkId);
+        }
     }
 
     function cacheElements() {

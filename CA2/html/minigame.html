@@ -45,7 +45,7 @@
                             <a class="nav-link" href="../html/compare.html">Compare</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../html/survey.html">Survey</a>
+                            <a class="nav-link" href="../html/qna.html">Survey</a>
                         </li>
                         <li class="nav-item dropdown hover-dropdown">
                             <a
@@ -61,7 +61,7 @@
                                 <li><a class="dropdown-item" href="../html/gamelibrary.html">Game Library</a></li>
                                 <li><a class="dropdown-item active" href="../html/minigame.html">Minigame</a></li>
                                 <li><a class="dropdown-item" href="../html/setupplanner.html">Setup Planner</a></li>
-                                <li><a class="dropdown-item" href="../html/tierlist.html">Tier List Creator</a></li>
+                                <li><a class="dropdown-item" href="../html/tierlistcreator.html">Tier List Creator</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -81,16 +81,173 @@
             </nav>
         </div>
 
+        <!-- Hero Banner -->
         <section class="hero-banner text-light d-flex align-items-center" aria-label="Minigame introduction">
             <div class="container py-5">
-                <h1 class="display-4 fw-bold mb-3">Minigame</h1>
-                <p class="lead mb-0">A quick, playable minigame is coming to this page soon.</p>
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-7">
+                        <h1 class="display-4 fw-bold mb-3">Guess the Game</h1>
+                        <p class="lead mb-0">
+                            A blurred cover, a handful of clues, and five rounds to prove you know
+                            your library. Reveal hints if you're stuck, then favorite anything you
+                            uncover so it's waiting for you on the Games page.
+                        </p>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="minigame-stat-row d-flex justify-content-lg-end gap-3 flex-wrap">
+                            <div class="minigame-stat-pill text-center">
+                                <span class="minigame-stat-label d-block">Round</span>
+                                <span class="minigame-stat-value" id="roundLabel">1 / 5</span>
+                            </div>
+                            <div class="minigame-stat-pill text-center">
+                                <span class="minigame-stat-label d-block">Score</span>
+                                <span class="minigame-stat-value" id="scoreLabel">0</span>
+                            </div>
+                            <div class="minigame-stat-pill text-center">
+                                <span class="minigame-stat-label d-block">Streak</span>
+                                <span class="minigame-stat-value" id="streakLabel">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <div class="container py-5 text-center">
-            <i class="bi bi-cone-striped fs-1 text-muted" aria-hidden="true"></i>
-            <p class="text-muted mt-2 mb-0">This page is under construction. Check back soon.</p>
+        <div class="container py-4">
+
+            <div class="progress minigame-progress mb-4" role="progressbar" aria-label="Round progress" aria-valuemin="0" aria-valuemax="100">
+                <div id="roundProgressBar" class="progress-bar" style="width: 20%;"></div>
+            </div>
+
+            <!-- High Scores (persisted across visits via localStorage) -->
+            <section class="card dashboard-card minigame-panel mb-4" aria-labelledby="historyHeading">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                    <h2 id="historyHeading" class="h6 text-uppercase text-muted mb-0">Your High Scores</h2>
+                    <button type="button" id="clearHistoryBtn" class="btn btn-sm btn-outline-secondary">Clear History</button>
+                </div>
+                <div class="row g-3 mb-3">
+                    <div class="col-6 col-md-3">
+                        <dt class="small fw-normal text-muted mb-1">Best Score</dt>
+                        <dd class="mb-0 fw-bold fs-5" id="historyBestScore">&mdash;</dd>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <dt class="small fw-normal text-muted mb-1">Sessions Played</dt>
+                        <dd class="mb-0 fw-bold fs-5" id="historySessionsPlayed">0</dd>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <dt class="small fw-normal text-muted mb-1">Average Score</dt>
+                        <dd class="mb-0 fw-bold fs-5" id="historyAverageScore">&mdash;</dd>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <dt class="small fw-normal text-muted mb-1">Longest Streak</dt>
+                        <dd class="mb-0 fw-bold fs-5" id="historyBestStreak">&mdash;</dd>
+                    </div>
+                </div>
+                <div id="historyList"></div>
+                <p id="historyEmptyState" class="text-muted small mb-0">Play a round to start building your history.</p>
+            </section>
+
+            <!-- Active round panel -->
+            <section id="roundPanel" class="card dashboard-card minigame-panel">
+                <div class="row g-4">
+
+                    <!-- Clue image -->
+                    <div class="col-md-5">
+                        <div id="clueImageWrap" class="minigame-clue-image-wrap position-relative overflow-hidden">
+                            <img id="clueImage" src="" alt="Mystery game cover" class="minigame-clue-image d-none" />
+                            <div id="clueImageFallback" class="minigame-clue-fallback d-flex align-items-center justify-content-center">
+                                <i class="bi bi-controller" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <button type="button" id="hintBtn" class="btn btn-outline-primary btn-sm w-100 mt-3">
+                            <i class="bi bi-lightbulb me-1" aria-hidden="true"></i>
+                            <span id="hintBtnLabel">Reveal a hint</span>
+                        </button>
+                        <p id="hintStatus" class="small text-muted text-center mt-2 mb-0">No hints used yet &mdash; guess for full points.</p>
+                    </div>
+
+                    <!-- Clues + guess form -->
+                    <div class="col-md-7 d-flex flex-column">
+                        <span class="filter-label">What you know so far</span>
+                        <div id="clueChips" class="d-flex flex-wrap gap-2 mb-3"></div>
+                        <p id="clueStory" class="text-muted small mb-3 d-none"></p>
+
+                        <form id="guessForm" class="mb-2">
+                            <label for="guessInput" class="filter-label">Your guess</label>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <input
+                                    type="text"
+                                    id="guessInput"
+                                    class="form-control"
+                                    placeholder="Type a game title..."
+                                    list="gameTitleList"
+                                    autocomplete="off"
+                                    required
+                                />
+                                <datalist id="gameTitleList"></datalist>
+                                <button type="submit" class="btn btn-primary">Guess</button>
+                                <button type="button" id="skipBtn" class="btn btn-outline-secondary">Skip</button>
+                            </div>
+                        </form>
+                        <p id="guessFeedback" class="small mb-0" aria-live="polite"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reveal card (shown after a guess is submitted or the round is skipped) -->
+            <section id="revealPanel" class="card dashboard-card minigame-panel minigame-reveal-panel d-none">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-4">
+                        <img id="revealImage" src="" alt="" class="minigame-reveal-image w-100 d-none" />
+                        <div id="revealImageFallback" class="minigame-clue-fallback d-flex align-items-center justify-content-center d-none">
+                            <i class="bi bi-controller" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="revealFeedback" class="fw-semibold mb-2"></p>
+                        <h2 id="revealTitle" class="h4 mb-2"></h2>
+                        <div id="revealBadges" class="d-flex flex-wrap gap-2 mb-3"></div>
+                        <p id="revealBlurb" class="text-muted mb-3"></p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" id="revealFavoriteBtn" class="btn btn-outline-danger">
+                                <i class="bi bi-heart me-1" aria-hidden="true"></i>Favorite
+                            </button>
+                            <a id="revealDetailsLink" href="#" target="_blank" rel="noopener" class="btn btn-outline-primary">
+                                View Full Details
+                            </a>
+                            <button type="button" id="nextRoundBtn" class="btn btn-primary ms-md-auto">
+                                Next Round<i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Session summary (shown after the final round) -->
+            <section id="summaryPanel" class="card dashboard-card minigame-panel text-center d-none">
+                <i class="bi bi-trophy-fill fs-1 text-warning mb-2" aria-hidden="true"></i>
+                <h2 class="h4 mb-1">Session complete!</h2>
+                <p class="text-muted mb-3">Here's how you did across all 5 rounds.</p>
+                <div class="d-flex justify-content-center gap-4 flex-wrap mb-4">
+                    <div>
+                        <span class="minigame-stat-label d-block">Final Score</span>
+                        <span class="display-6 fw-bold" id="summaryScore">0</span>
+                    </div>
+                    <div>
+                        <span class="minigame-stat-label d-block">Best Streak</span>
+                        <span class="display-6 fw-bold" id="summaryStreak">0</span>
+                    </div>
+                    <div>
+                        <span class="minigame-stat-label d-block">Correct</span>
+                        <span class="display-6 fw-bold" id="summaryCorrect">0</span>
+                    </div>
+                </div>
+                <div id="summaryBreakdown" class="d-flex flex-wrap justify-content-center gap-2 mb-4"></div>
+                <button type="button" id="playAgainBtn" class="btn btn-primary btn-lg mx-auto">
+                    <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i>Play Again
+                </button>
+            </section>
+
         </div>
     </main>
 
@@ -109,8 +266,8 @@
                         <a href="../html/gamelibrary.html" class="text-light">Game Library</a>
                         <a href="../html/minigame.html" class="text-light">Minigame</a>
                         <a href="../html/setupplanner.html" class="text-light">Setup Planner</a>
-                        <a href="../html/tierlist.html" class="text-light">Tier List Creator</a>
-                        <a href="../html/survey.html" class="text-light">Survey</a>
+                        <a href="../html/tierlistcreator.html" class="text-light">Tier List Creator</a>
+                        <a href="../html/qna.html" class="text-light">Survey</a>
                         <a href="../html/compare.html" class="text-light">Compare</a>
                         <a href="../html/peripherals.html" class="text-light">Rec. Equipment</a>
                     </nav>
@@ -133,7 +290,12 @@
         </div>
     </footer>
 
+    <!-- Toasts (favorite alerts) -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer" style="z-index: 1100;"></div>
+
     <!-- JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../javascript/games.js"></script>
+    <script src="../javascript/minigame.js"></script>
 </body>
 </html>
