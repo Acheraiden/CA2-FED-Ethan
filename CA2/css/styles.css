@@ -54,7 +54,7 @@ p, .text-muted, .text-secondary {
 
 /* Homepage hero only: animated GIF background. Scoped to #heroSection
    (unique to index.html) rather than .hero-banner so other pages keep
-   the plain gradient above. script.js swaps this background on hover
+   the plain gradient above. index.js swaps this background on hover
    over a featured game card; the dark overlay gradient keeps hero text
    readable over any GIF. */
 #heroSection {
@@ -1035,6 +1035,237 @@ body.has-compare-tray {
     bottom: 1.25rem;
     z-index: 1050;
 }
+/* ==========================================================
+   Game Finder Survey (qna.html) - question cards, option
+   buttons/pills, result cards, and the summary/history rows.
+   ========================================================== */
+
+.survey-question-prompt {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.survey-option-btn {
+    background-color: transparent;
+    border: 1px solid #3b2d59;
+    color: #d8d3ea;
+    padding: 0.5rem 1.1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.survey-option-btn:hover {
+    border-color: #8b5cf6;
+    color: #fff;
+}
+
+.survey-option-btn.active {
+    background-color: #8b5cf6;
+    border-color: #8b5cf6;
+    color: #fff;
+}
+
+.survey-checkbox-pill {
+    background-color: #12101f;
+    border: 1px solid #3b2d59;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    margin: 0;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.survey-checkbox-pill.checked {
+    background-color: rgba(139, 92, 246, 0.15);
+    border-color: #8b5cf6;
+}
+
+.summary-row {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #2a2244;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+/* ---- Result cards (top matches + full ranked list) ---- */
+.result-card {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    color: #f1f0f7;
+    padding: 1.1rem;
+}
+
+.result-medal-badge {
+    background-color: #8b5cf6;
+    color: #fff;
+    align-self: flex-start;
+}
+
+.trait-bar-label {
+    width: 80px;
+    flex-shrink: 0;
+}
+/* ==========================================================
+   Tier List Creator (tierlist.html) - game pool cards, tier
+   rows, drag-and-drop states, and tier label controls.
+   ========================================================== */
+
+.game-pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    min-height: 90px;
+    background-color: #12101f;
+    border: 1px dashed #3b2d59;
+    border-radius: 0.6rem;
+    padding: 0.9rem;
+}
+
+.game-pool.drag-over {
+    border-color: #8b5cf6;
+    background-color: rgba(139, 92, 246, 0.1);
+}
+
+.tier-game-card {
+    width: 96px;
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    border-radius: 0.5rem;
+    padding: 0.4rem;
+    cursor: grab;
+    text-align: center;
+    transition: border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.tier-game-card:hover {
+    border-color: #8b5cf6;
+}
+
+.tier-game-card.dragging {
+    opacity: 0.4;
+}
+
+.tier-game-card-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 0.35rem;
+    margin-bottom: 0.3rem;
+    background-color: #0a0714;
+    pointer-events: none;
+}
+
+.tier-game-card-name {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    color: #f1f0f7;
+    margin: 0;
+    pointer-events: none;
+}
+
+/* ---- Tier rows ---- */
+.tier-row {
+    display: flex;
+    border: 1px solid #2a2244;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+}
+
+.tier-label {
+    flex: 0 0 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.75rem 0.5rem;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.tier-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    word-break: break-word;
+}
+
+.tier-name-input {
+    width: 110px;
+    text-align: center;
+}
+
+.tier-label-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.tier-label-controls .btn {
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    color: #1a1a1a;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.tier-label-controls .btn:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.tier-color-input {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+}
+
+.tier-games {
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    background-color: #161228;
+    min-height: 110px;
+}
+
+.tier-games.drag-over {
+    background-color: rgba(139, 92, 246, 0.12);
+}
+
+.stats-tier-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+}
+
+@media (max-width: 575.98px) {
+    .tier-row {
+        flex-direction: column;
+    }
+
+    .tier-label {
+        flex-direction: row;
+        justify-content: space-between;
+        flex: 0 0 auto;
+    }
+}
+
 /* ==========================================================
    Minigame (minigame.html) - "Guess the Game"
    ========================================================== */
