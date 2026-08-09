@@ -1,3 +1,9 @@
+// ReadyPlayer3 - minigame.html interactions
+// "Guess the Game": 5 rounds. Each round shows a blurred cover and a genre
+// badge for a random game. The player can reveal hints (which lowers the
+// max score for that round) or type a guess. Favorites use the same
+// localStorage key as games.js, and "View Full Details" links to
+// games.html?id=... which opens that game's details modal automatically.
 
 // ---- Settings ----
 var TOTAL_ROUNDS = 5;
@@ -23,7 +29,7 @@ var correctCount = 0;
 var roundResults = [];
 
 document.addEventListener('DOMContentLoaded', function () {
-    // GAMES_DATA / GENRE_META come from games.js
+    // GAMES_DATA / GENRE_META come from games.js, loaded before this file.
     if (typeof GAMES_DATA === 'undefined') return;
     if (!document.getElementById('guessForm')) return; // not this page
 
@@ -60,10 +66,12 @@ function fillTitleList() {
     list.innerHTML = options;
 }
 
+// ---------------------------------------------------------------
 // Session / round flow
+// ---------------------------------------------------------------
 
 function startNewSession() {
-    // Copy the games list, shuffle it, and keep the first few for this session
+    // Copy the games list, shuffle it, and keep the first few for this session.
     roundGames = GAMES_DATA.slice();
     roundGames.sort(function () { return Math.random() - 0.5; });
     roundGames = roundGames.slice(0, TOTAL_ROUNDS);
@@ -143,7 +151,9 @@ function endSession() {
     saveSessionToHistory();
 }
 
+// ---------------------------------------------------------------
 // Clues
+// ---------------------------------------------------------------
 
 function updateClueImage() {
     var image = document.getElementById('clueImage');
@@ -228,7 +238,9 @@ function showHint() {
     updateHintButton();
 }
 
+// ---------------------------------------------------------------
 // Guessing
+// ---------------------------------------------------------------
 
 function checkGuess() {
     if (answered) return;
@@ -277,7 +289,9 @@ function finishRound(wasCorrect, points) {
     showRevealCard(wasCorrect, points);
 }
 
+// ---------------------------------------------------------------
 // Reveal card
+// ---------------------------------------------------------------
 
 function showRevealCard(wasCorrect, points) {
     var image = document.getElementById('revealImage');
@@ -339,7 +353,9 @@ function updateFavoriteButton() {
     }
 }
 
+// ---------------------------------------------------------------
 // Favorites (shared with games.js through the same localStorage key)
+// ---------------------------------------------------------------
 
 function toggleFavorite() {
     var index = favorites.indexOf(currentGame.id);
@@ -363,9 +379,9 @@ function toggleFavorite() {
     }
 }
 
-
+// ---------------------------------------------------------------
 // High scores / history
-
+// ---------------------------------------------------------------
 
 function saveSessionToHistory() {
     history.unshift({
@@ -434,9 +450,9 @@ function formatDate(isoString) {
     return datePart + ' - ' + timePart;
 }
 
-
+// ---------------------------------------------------------------
 // Small helpers
-
+// ---------------------------------------------------------------
 
 function updateScoreboard() {
     document.getElementById('scoreLabel').textContent = score;
