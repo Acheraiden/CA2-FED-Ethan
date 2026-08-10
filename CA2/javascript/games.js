@@ -176,7 +176,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 4,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/CODMordenWarfare3.jpg'],
         specs: {
             'OS': 'Windows 10/11 64-bit',
             'Processor': 'Intel i5-6600K',
@@ -204,7 +204,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/CS2.jpeg'],
         specs: {
             'OS': 'Windows 10',
             'Processor': 'Intel i5-750',
@@ -232,7 +232,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 4,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/DoomEternalcover.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i5-3570',
@@ -260,7 +260,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 4,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/overwatch2.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i3',
@@ -288,7 +288,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/Left4Dead2.jpg'],
         specs: {
             'OS': 'Windows 7',
             'Processor': 'Intel Pentium 4, 3.0 GHz',
@@ -374,7 +374,7 @@ const GAMES_DATA = [
         openWorld: true,
         replayability: 4,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/GhostOfTsushima.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i7-8700',
@@ -402,7 +402,7 @@ const GAMES_DATA = [
         openWorld: true,
         replayability: 3,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/DaysGone.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i5-4670K',
@@ -430,7 +430,7 @@ const GAMES_DATA = [
         openWorld: true,
         replayability: 4,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/BatmanArkhamCity.jpg'],
         specs: {
             'OS': 'Windows 7/8/10',
             'Processor': 'Intel Core 2 Duo E8400',
@@ -458,7 +458,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 3,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/Uncharted3.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i5-2500K',
@@ -516,7 +516,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/Persona5Royal.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i5-4460',
@@ -544,7 +544,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/FireEmblem3Houses.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i5',
@@ -572,7 +572,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 4,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/PokemonWhite2.jpg'],
         specs: {
             'OS': 'Windows 10 (emulated)',
             'Processor': 'Intel i3',
@@ -600,7 +600,7 @@ const GAMES_DATA = [
         openWorld: true,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/Fallout4.jpg'],
         specs: {
             'OS': 'Windows 7/8/10 64-bit',
             'Processor': 'Intel i5-2300',
@@ -628,7 +628,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/Undertale.jpg'],
         specs: {
             'OS': 'Windows XP or later',
             'Processor': '1.6 GHz or faster',
@@ -658,7 +658,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: true,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/SidMeier.jpg'],
         specs: {
             'OS': 'Windows 7/8.1/10 64-bit',
             'Processor': 'Intel i3, 2.5 GHz',
@@ -686,7 +686,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 4,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/AgeOfEmpires.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i5-6300U',
@@ -714,7 +714,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/XCom2.jpg'],
         specs: {
             'OS': 'Windows 7 64-bit',
             'Processor': 'Intel i3, 2.4 GHz',
@@ -742,7 +742,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/StarCraft2.jpg'],
         specs: {
             'OS': 'Windows 7/8/10 64-bit',
             'Processor': 'Intel Core i3',
@@ -770,7 +770,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/TotalWar.jpg'],
         specs: {
             'OS': 'Windows 10 64-bit',
             'Processor': 'Intel i5-6600K',
@@ -798,7 +798,7 @@ const GAMES_DATA = [
         openWorld: true,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['placeholder.jpg'],
+        screenshots: ['../images/ProjectZomboid.jpg'],
         specs: {
             'OS': 'Windows 7/8/10',
             'Processor': 'Intel i3 or better',
