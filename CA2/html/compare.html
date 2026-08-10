@@ -70,6 +70,161 @@
         </nav>
     </header>
 
+    <!-- Body -->
+    <main>
+        <div class="container pt-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../html/index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Compare</li>
+                </ol>
+            </nav>
+        </div>
+
+        <section class="hero-banner text-light d-flex align-items-center" aria-label="Compare introduction">
+            <div class="container py-5">
+                <h1 class="display-4 fw-bold mb-3">Compare Games</h1>
+                <p class="lead mb-0">
+                    Select 2&ndash;4 games and see them side-by-side &mdash; ratings, price,
+                    playtime, and more, with the best value in each category highlighted.
+                </p>
+            </div>
+        </section>
+
+        <div class="container py-4">
+
+            <!-- Comparison tray: stays visible while selecting -->
+            <div id="compareTray" class="card dashboard-card selection-tray mb-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
+                    <h2 class="h6 text-uppercase text-muted mb-0">Compare</h2>
+                    <span class="small text-muted" id="trayCounter">Selected: 0 / 4</span>
+                </div>
+                <div id="trayItems" class="d-flex flex-wrap gap-2 mb-3"></div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="button" id="compareNowBtn" class="btn btn-primary" disabled>
+                        <i class="bi bi-bar-chart-line me-1" aria-hidden="true"></i>Compare Now
+                    </button>
+                    <button type="button" id="swapGamesBtn" class="btn btn-outline-light" disabled>
+                        <i class="bi bi-arrow-left-right me-1" aria-hidden="true"></i>Swap
+                    </button>
+                    <button type="button" id="resetComparisonBtn" class="btn btn-outline-danger">
+                        <i class="bi bi-trash me-1" aria-hidden="true"></i>Reset Comparison
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search + Filter + Sort -->
+            <h2 class="h5 mb-2" id="gameSelectionHeading">Select Games to Compare</h2>
+            <div class="row g-2 align-items-end mb-3">
+                <div class="col-md-3">
+                    <label for="compareSearchInput" class="filter-label">Search</label>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
+                        <input type="search" id="compareSearchInput" class="form-control" placeholder="Search games..." />
+                    </div>
+                </div>
+                <div class="col-6 col-md-2">
+                    <label for="compareGenreFilter" class="filter-label">Genre</label>
+                    <select id="compareGenreFilter" class="form-select form-select-sm">
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-2">
+                    <label for="comparePlatformFilter" class="filter-label">Platform</label>
+                    <select id="comparePlatformFilter" class="form-select form-select-sm">
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-1">
+                    <label for="comparePriceFilter" class="filter-label">Price</label>
+                    <select id="comparePriceFilter" class="form-select form-select-sm">
+                        <option value="all">All</option>
+                        <option value="free">Free</option>
+                        <option value="paid">Paid</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-1">
+                    <label for="compareRatingFilter" class="filter-label">Rating</label>
+                    <select id="compareRatingFilter" class="form-select form-select-sm">
+                        <option value="all">Any</option>
+                        <option value="4">4+</option>
+                        <option value="4.5">4.5+</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-1">
+                    <label for="compareTypeFilter" class="filter-label">Type</label>
+                    <select id="compareTypeFilter" class="form-select form-select-sm">
+                        <option value="all">All</option>
+                        <option value="multiplayer">Multi</option>
+                        <option value="singleplayer">Solo</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-1">
+                    <label for="compareYearFilter" class="filter-label">Year</label>
+                    <select id="compareYearFilter" class="form-select form-select-sm">
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="compareSortSelect" class="filter-label">Sort</label>
+                    <select id="compareSortSelect" class="form-select form-select-sm">
+                        <option value="name">A&ndash;Z</option>
+                        <option value="za">Z&ndash;A</option>
+                        <option value="rating-high">Top Rated</option>
+                        <option value="rating-low">Low Rated</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="price-low">Cheapest</option>
+                        <option value="price-high">Priciest</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="gameSelectionGrid" class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 g-3 mb-5"></div>
+
+            <!-- Comparison result -->
+            <div id="comparisonResultSection" class="d-none">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                    <h2 class="h4 mb-0">Comparison Result</h2>
+                    <div class="d-flex gap-2">
+                        <button type="button" id="addAnotherBtn" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Add Another Game
+                        </button>
+                        <button type="button" id="saveComparisonBtn" class="btn btn-sm btn-outline-success">
+                            <i class="bi bi-save me-1" aria-hidden="true"></i>Save Comparison
+                        </button>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs" id="comparisonViewTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="table-view-tab" data-bs-toggle="tab" data-bs-target="#table-view-pane" type="button" role="tab">Table View</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="bars-view-tab" data-bs-toggle="tab" data-bs-target="#bars-view-pane" type="button" role="tab">Visual Bars</button>
+                    </li>
+                </ul>
+                <div id="comparison-result" class="comparison-result-content tab-content p-3 mb-4">
+                    <div class="tab-pane fade show active" id="table-view-pane" role="tabpanel">
+                        <div id="tableViewPane"></div>
+                    </div>
+                    <div class="tab-pane fade" id="bars-view-pane" role="tabpanel">
+                        <div id="barsViewPane"></div>
+                    </div>
+                </div>
+
+                <div class="card dashboard-card mb-4" id="overallWinner"></div>
+
+                <h3 class="h5 mb-3">Best For</h3>
+                <div class="row g-3 mb-5" id="bestForRow"></div>
+            </div>
+
+            <!-- Saved Comparisons -->
+            <h2 class="h5 mb-3">Saved Comparisons</h2>
+            <div id="savedComparisonsList" class="mb-4"></div>
+        </div>
+    </main>
+
     <footer class="bg-dark text-light py-5 mt-0">
         <div class="container">
             <div class="row g-4">
@@ -108,5 +263,76 @@
         </div>
     </footer>
 
+    <!-- Game Details Modal (single, reused, repopulated per game) -->
+    <div class="modal fade" id="gameDetailsModal" tabindex="-1" aria-labelledby="gameDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="gameDetailsModalLabel"></h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="gameDetailsModalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swap Games Modal -->
+    <div class="modal fade" id="swapGamesModal" tabindex="-1" aria-labelledby="swapGamesModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="swapGamesModalLabel">Swap Two Games</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="swapGamesModalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Comparison Modal -->
+    <div class="modal fade" id="saveComparisonModal" tabindex="-1" aria-labelledby="saveComparisonModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="saveComparisonModalLabel">Save Comparison</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="comparisonNameInput" class="form-label">Name</label>
+                    <input type="text" id="comparisonNameInput" class="form-control" placeholder="e.g. Elden Ring vs Hades" maxlength="60" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="confirmSaveComparisonBtn" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Confirmation Modal -->
+    <div class="modal fade" id="resetComparisonModal" tabindex="-1" aria-labelledby="resetComparisonModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="resetComparisonModalLabel">Reset this comparison?</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">This clears your selected games, filters, and sort. Your saved comparisons are not affected.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="confirmResetComparisonBtn" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toasts -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer" style="z-index: 1100;"></div>
+
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../javascript/compare.js"></script>
 </body>
 </html>
