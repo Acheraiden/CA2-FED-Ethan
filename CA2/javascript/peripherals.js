@@ -888,7 +888,6 @@ var PeripheralsPage = (function () {
             '</div>' +
             '<div class="card-body d-flex flex-column">' +
             '<h3 class="h6 card-title mb-1">' + escapeHtml(item.name) + '</h3>' +
-            '<p class="card-text text-muted small mb-2">' + escapeHtml(item.brand) + ' &middot; ' + escapeHtml(item.connectivity) + '</p>' +
             '<p class="card-text card-price fw-bold mb-3">$' + item.price.toFixed(2) + '</p>' +
             '<div class="mt-auto d-flex gap-2">' +
             '<button type="button" class="btn btn-sm btn-outline-primary flex-grow-1 view-details-btn">View Details</button>' +
