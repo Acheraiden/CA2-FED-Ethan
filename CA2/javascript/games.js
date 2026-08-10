@@ -204,7 +204,7 @@ const GAMES_DATA = [
         openWorld: false,
         replayability: 5,
         editorsPick: false,
-        screenshots: ['../images/CS2.jpeg'],
+        screenshots: ['../images/CS2.jpg'],
         specs: {
             'OS': 'Windows 10',
             'Processor': 'Intel i5-750',
