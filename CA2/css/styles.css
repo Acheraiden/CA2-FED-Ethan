@@ -62,7 +62,7 @@ p, .text-muted, .text-secondary {
     min-height: 80vh;
     background:
         linear-gradient(rgba(17, 11, 41, 0.75), rgba(17, 11, 41, 0.85)),
-        url('../images/CyberpunkNight.gif') center/cover no-repeat;
+        url('../images/CBP2077.jpg') center/cover no-repeat;
     transition: background-image 0.4s ease-in-out;
 }
 
