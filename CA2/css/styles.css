@@ -858,6 +858,7 @@ body.has-compare-tray {
     border: 1px solid #2a2244;
     border-radius: 0.75rem;
     padding: 1.25rem;
+    color: #f1f0f7;
 }
 
 .dashboard-card dt {
@@ -893,6 +894,7 @@ body.has-compare-tray {
     border-radius: 0.6rem;
     padding: 0.9rem;
     height: 100%;
+    color: #f1f0f7;
 }
 
 /* ---- Setup builder slots ---- */
@@ -1075,20 +1077,6 @@ body.has-compare-tray {
     background-color: #8b5cf6;
     border-color: #8b5cf6;
     color: #fff;
-}
-
-.survey-checkbox-pill {
-    background-color: #12101f;
-    border: 1px solid #3b2d59;
-    border-radius: 0.5rem;
-    padding: 0.5rem 0.9rem;
-    margin: 0;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
-}
-
-.survey-checkbox-pill.checked {
-    background-color: rgba(139, 92, 246, 0.15);
-    border-color: #8b5cf6;
 }
 
 .summary-row {
@@ -1516,6 +1504,7 @@ body.has-compare-tray {
 .selection-card {
     background-color: #161228;
     border: 1px solid #2a2244;
+    color: #f1f0f7;
     transition: border-color 0.15s ease;
 }
 

@@ -583,25 +583,29 @@ const GameFinderPage = (() => {
 
         els.questionContainer.innerHTML =
             '<p class="survey-question-prompt">' + escapeHtml(question.prompt) + '</p>' +
-            '<div class="d-flex flex-wrap gap-2">' +
-            question.options.map((option, index) => {
-                const isChecked = currentValues.indexOf(option.value) !== -1;
-                const id = 'checkbox-' + question.id + '-' + index;
-                return '<div class="form-check form-check-inline survey-checkbox-pill' + (isChecked ? ' checked' : '') + '">' +
-                    '<input class="form-check-input" type="checkbox" value="' + escapeHtml(option.value) + '" id="' + id + '"' + (isChecked ? ' checked' : '') + '>' +
-                    '<label class="form-check-label" for="' + id + '">' + escapeHtml(option.label) + '</label>' +
-                    '</div>';
+            '<div class="d-flex flex-wrap gap-2" role="group" aria-label="' + escapeHtml(question.prompt) + '">' +
+            question.options.map((option) => {
+                const isActive = currentValues.indexOf(option.value) !== -1;
+                return '<button type="button" class="btn survey-option-btn' + (isActive ? ' active' : '') + '" data-value="' + escapeHtml(option.value) + '" aria-pressed="' + isActive + '">' + escapeHtml(option.label) + '</button>';
             }).join('') +
             '</div>';
 
-        els.questionContainer.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-            checkbox.addEventListener('change', function () {
+        els.questionContainer.querySelectorAll('.survey-option-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
                 const values = state.answers[question.id] || [];
-                const index = values.indexOf(this.value);
-                if (this.checked && index === -1) values.push(this.value);
-                if (!this.checked && index !== -1) values.splice(index, 1);
+                const value = btn.getAttribute('data-value');
+                const index = values.indexOf(value);
+                const nowActive = index === -1;
+
+                if (nowActive) {
+                    values.push(value);
+                } else {
+                    values.splice(index, 1);
+                }
+
                 state.answers[question.id] = values;
-                this.closest('.survey-checkbox-pill').classList.toggle('checked', this.checked);
+                btn.classList.toggle('active', nowActive);
+                btn.setAttribute('aria-pressed', String(nowActive));
                 hideValidationAlert();
             });
         });
