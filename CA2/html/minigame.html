@@ -14,6 +14,7 @@
         rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 <body>
 
@@ -125,7 +126,7 @@
                     <h2 id="historyHeading" class="h6 text-uppercase text-muted mb-0">Your High Scores</h2>
                     <button type="button" id="clearHistoryBtn" class="btn btn-sm btn-outline-secondary">Clear History</button>
                 </div>
-                <div class="row g-3 mb-3">
+                <dl class="row g-3 mb-3">
                     <div class="col-6 col-md-3">
                         <dt class="small fw-normal text-muted mb-1">Best Score</dt>
                         <dd class="mb-0 fw-bold fs-5" id="historyBestScore">&mdash;</dd>
@@ -142,7 +143,7 @@
                         <dt class="small fw-normal text-muted mb-1">Longest Streak</dt>
                         <dd class="mb-0 fw-bold fs-5" id="historyBestStreak">&mdash;</dd>
                     </div>
-                </div>
+                </dl>
                 <div id="historyList"></div>
                 <p id="historyEmptyState" class="text-muted small mb-0">Play a round to start building your history.</p>
             </section>
@@ -154,7 +155,7 @@
                     <!-- Clue image -->
                     <div class="col-md-5">
                         <div id="clueImageWrap" class="minigame-clue-image-wrap position-relative overflow-hidden">
-                            <img id="clueImage" src="" alt="Mystery game cover" class="minigame-clue-image d-none" />
+                            <img id="clueImage" src="collage.jpg" alt="Mystery game cover" class="minigame-clue-image d-none" />
                             <div id="clueImageFallback" class="minigame-clue-fallback d-flex align-items-center justify-content-center">
                                 <i class="bi bi-controller" aria-hidden="true"></i>
                             </div>
@@ -198,7 +199,7 @@
             <section id="revealPanel" class="card dashboard-card minigame-panel minigame-reveal-panel d-none">
                 <div class="row g-4 align-items-center">
                     <div class="col-md-4">
-                        <img id="revealImage" src="" alt="" class="minigame-reveal-image w-100 d-none" />
+                        <img id="revealImage" src="collage.jpg" alt="" class="minigame-reveal-image w-100 d-none" />
                         <div id="revealImageFallback" class="minigame-clue-fallback d-flex align-items-center justify-content-center d-none">
                             <i class="bi bi-controller" aria-hidden="true"></i>
                         </div>

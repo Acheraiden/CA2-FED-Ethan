@@ -14,6 +14,7 @@
         rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 <body>
 
@@ -101,14 +102,14 @@
         <div class="container py-4">
 
             <!-- Gaming Style Selector -->
-            <section class="mb-5" aria-labelledby="styleHeading">
+            <section class="mb-5" role="dialog" aria-labelledby="styleHeading">
                 <h2 id="styleHeading" class="h4 mb-3">Gaming Style</h2>
                 <div id="styleSelectorGroup" class="d-flex flex-wrap gap-2 mb-3" role="group" aria-label="Gaming style filter"></div>
                 <div id="styleRecommendations"></div>
             </section>
 
             <!-- Setup Builder Slots -->
-            <section class="mb-5" aria-labelledby="slotsHeading">
+            <section class="mb-5" role="dialog" aria-labelledby="slotsHeading">
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
                     <h2 id="slotsHeading" class="h4 mb-0">Your Setup</h2>
                     <div class="d-flex align-items-center gap-2">
@@ -233,20 +234,20 @@
             </section>
 
             <!-- Compatibility Checker -->
-            <section class="mb-5" aria-labelledby="compatHeading">
+            <section class="mb-5" role="dialog" aria-labelledby="compatHeading">
                 <h2 id="compatHeading" class="h4 mb-3">Compatibility Checker</h2>
                 <ul id="compatibilityList" class="list-group"></ul>
             </section>
 
             <!-- Pro Player Setups -->
-            <section class="mb-4" aria-labelledby="proHeading">
+            <section class="mb-4" role="dialog" aria-labelledby="proHeading">
                 <h2 id="proHeading" class="h4 mb-3">Pro Player &amp; Streamer Setups</h2>
                 <p class="text-muted small mb-3">Fictional creator profiles for inspiration &mdash; view the full breakdown or copy an entire setup into your workspace in one click.</p>
                 <div id="proPlayersRow" class="d-flex overflow-x-auto gap-3 pb-2"></div>
             </section>
 
             <!-- Trending in the Pro Scene -->
-            <section class="mb-5" aria-labelledby="trendsHeading">
+            <section class="mb-5" role="dialog" aria-labelledby="trendsHeading">
                 <h2 id="trendsHeading" class="h4 mb-1">Trending in the Pro Scene</h2>
                 <p class="text-muted small mb-3">General gear trends reported across the competitive and streaming scene &mdash; not tied to any one player, since sponsored gear changes too often to pin down reliably.</p>
                 <div id="trendsRow" class="row row-cols-1 g-3"></div>
@@ -350,7 +351,7 @@
     </footer>
 
     <!-- Item Picker Modal (Add / Replace) -->
-    <div class="modal fade" id="itemPickerModal" tabindex="-1" aria-labelledby="itemPickerModalLabel" aria-hidden="true">
+    <div class="modal fade" id="itemPickerModal" role="dialog" tabindex="-1" aria-labelledby="itemPickerModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -365,7 +366,7 @@
     </div>
 
     <!-- Pro Player Setup Modal -->
-    <div class="modal fade" id="proSetupModal" tabindex="-1" aria-labelledby="proSetupModalLabel" aria-hidden="true">
+    <div class="modal fade" id="proSetupModal" role="dialog" tabindex="-1" aria-labelledby="proSetupModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -379,7 +380,7 @@
     </div>
 
     <!-- Save Setup Modal -->
-    <div class="modal fade" id="saveSetupModal" tabindex="-1" aria-labelledby="saveSetupModalLabel" aria-hidden="true">
+    <div class="modal fade" id="saveSetupModal" role="dialog" tabindex="-1" aria-labelledby="saveSetupModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -399,7 +400,7 @@
     </div>
 
     <!-- Comparison Modal -->
-    <div class="modal fade" id="comparisonModal" tabindex="-1" aria-labelledby="comparisonModalLabel" aria-hidden="true">
+    <div class="modal fade" id="comparisonModal" role="dialog" tabindex="-1" aria-labelledby="comparisonModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -412,7 +413,7 @@
     </div>
 
     <!-- Reset Confirmation Modal -->
-    <div class="modal fade" id="resetConfirmModal" tabindex="-1" aria-labelledby="resetConfirmModalLabel" aria-hidden="true">
+    <div class="modal fade" id="resetConfirmModal" role="dialog" tabindex="-1" aria-labelledby="resetConfirmModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -434,7 +435,7 @@
     <button type="button" class="btn btn-primary rounded-circle summary-offcanvas-toggle d-lg-none shadow" data-bs-toggle="offcanvas" data-bs-target="#setupSummaryOffcanvas" aria-controls="setupSummaryOffcanvas" style="width: 56px; height: 56px;" aria-label="View setup summary">
         <i class="bi bi-bar-chart-fill" aria-hidden="true"></i>
     </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="setupSummaryOffcanvas" aria-labelledby="setupSummaryOffcanvasLabel">
+    <div class="offcanvas offcanvas-end" role="dialog" tabindex="-1" id="setupSummaryOffcanvas" aria-labelledby="setupSummaryOffcanvasLabel">
         <div class="offcanvas-header">
             <h2 class="offcanvas-title h5" id="setupSummaryOffcanvasLabel">Setup Summary</h2>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>

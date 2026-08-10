@@ -1,4 +1,4 @@
-// ReadyPlayer3 - compare.html data
+// ReadyPlayer3 - compare.html
 //
 // Read-only game catalog, reused from the Games page for consistency.
 // No "developer" field: that data doesn't actually exist anywhere in the
