@@ -131,7 +131,8 @@ const PERIPHERAL_COMPARE_TRAITS = {
     Headset: ['Driver Size', 'Frequency Response', 'Microphone', 'Surround Sound', 'Battery Life', 'Weight'],
     Earpiece: ['Driver Size', 'Frequency Response', 'ANC', 'Water Resistance', 'Battery Life', 'Weight'],
     Mic: ['Polar Pattern', 'Frequency Response', 'Sample Rate', 'Bit Depth', 'Connectivity', 'Mounting'],
-    Mousepad: ['Surface Type', 'Dimensions', 'Thickness', 'Base Material', 'Stitched Edges', 'RGB']
+    Mousepad: ['Surface Type', 'Dimensions', 'Thickness', 'Base Material', 'Stitched Edges', 'RGB'],
+    Controller: ['Connectivity', 'Battery Life', 'Vibration/Haptics', 'Compatible Platforms', 'Buttons', 'Weight']
 };
 
 const PERIPHERALS_DATA = [
@@ -184,6 +185,30 @@ const PERIPHERALS_DATA = [
             { author: 'Dev K.', rating: 5, comment: 'The 8000Hz polling makes flicks feel razor sharp.' }
         ]
     },
+    {
+        id: 'mouse-logitech-g502x',
+        type: 'Mouse',
+        brand: 'Logitech',
+        name: 'Logitech G502 X',
+        price: 99.99,
+        connectivity: 'Wireless',
+        image: 'placeholder.jpg',
+        rating: 4.6,
+        reviewCount: 348,
+        stock: 'in-stock',
+        specs: {
+            'Sensor': 'HERO 25K, optical',
+            'DPI': '25,600',
+            'Polling Rate': '1000 Hz',
+            'Weight': '106 g',
+            'Battery Life': '120 hrs',
+            'Buttons': '13 programmable'
+        },
+        reviews: [
+            { author: 'Elena R.', rating: 5, comment: 'Ergonomic shape fits my hand perfectly for long sessions.' },
+            { author: 'Marcus T.', rating: 4, comment: 'Great all-round mouse, side buttons feel a bit stiff at first.' }
+        ]
+    },
 
     // ---------- Keyboard ----------
     {
@@ -232,6 +257,30 @@ const PERIPHERALS_DATA = [
         reviews: [
             { author: 'Chris B.', rating: 5, comment: 'Low-profile switches feel great and the wireless latency is unnoticeable.' },
             { author: 'Nadia F.', rating: 4, comment: 'Love the compact layout, wish the battery lasted longer with RGB on.' }
+        ]
+    },
+    {
+        id: 'keyboard-steelseries-apex-pro',
+        type: 'Keyboard',
+        brand: 'SteelSeries',
+        name: 'SteelSeries Apex Pro',
+        price: 199.99,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.7,
+        reviewCount: 296,
+        stock: 'in-stock',
+        specs: {
+            'Switch Type': 'OmniPoint adjustable mechanical',
+            'Layout': 'Full-size',
+            'Backlight': 'Per-key RGB',
+            'Polling Rate': '1000 Hz',
+            'Connectivity': 'Wired (USB-C)',
+            'Battery Life': 'N/A (wired)'
+        },
+        reviews: [
+            { author: 'Grace L.', rating: 5, comment: 'Being able to tune actuation per key is amazing for competitive play.' },
+            { author: 'Oscar N.', rating: 4, comment: 'Solid full-size board, OLED display is a nice touch.' }
         ]
     },
 
@@ -284,6 +333,30 @@ const PERIPHERALS_DATA = [
             { author: 'Ivy C.', rating: 4, comment: 'Great colors out of the box, stand is sturdy.' }
         ]
     },
+    {
+        id: 'monitor-asus-tuf-vg259qm',
+        type: 'Monitor',
+        brand: 'ASUS TUF',
+        name: 'ASUS TUF Gaming VG259QM',
+        price: 259.99,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.5,
+        reviewCount: 278,
+        stock: 'in-stock',
+        specs: {
+            'Panel Type': 'Fast IPS',
+            'Refresh Rate': '280 Hz',
+            'Resolution': '1920 x 1080',
+            'Response Time': '1 ms (GtG)',
+            'Screen Size': '24.5 in',
+            'HDR': 'HDR10 (Extreme Low Motion Blur Sync)'
+        },
+        reviews: [
+            { author: 'Beth O.', rating: 5, comment: 'Best budget-friendly high-refresh monitor I have used.' },
+            { author: 'Cole M.', rating: 4, comment: '280Hz is smooth, colors are decent for a fast IPS panel.' }
+        ]
+    },
 
     // ---------- Headset ----------
     {
@@ -332,6 +405,30 @@ const PERIPHERALS_DATA = [
         reviews: [
             { author: 'Kelly M.', rating: 5, comment: 'Swappable batteries mean I never have to stop mid-session to charge.' },
             { author: 'Theo J.', rating: 4, comment: 'Premium sound and build, priced accordingly.' }
+        ]
+    },
+    {
+        id: 'headset-logitech-gprox2',
+        type: 'Headset',
+        brand: 'Logitech',
+        name: 'Logitech G Pro X 2',
+        price: 199.99,
+        connectivity: 'Wireless',
+        image: 'placeholder.jpg',
+        rating: 4.6,
+        reviewCount: 221,
+        stock: 'in-stock',
+        specs: {
+            'Driver Size': '50 mm graphene',
+            'Frequency Response': '20 Hz - 20 kHz',
+            'Microphone': 'Blue VO!CE, detachable boom',
+            'Surround Sound': 'DTS Headphone:X 2.0',
+            'Battery Life': '50 hrs',
+            'Weight': '278 g'
+        },
+        reviews: [
+            { author: 'Priya S.', rating: 5, comment: 'Graphene drivers make a real difference in clarity.' },
+            { author: 'Dev K.', rating: 4, comment: 'Comfortable for long sessions, mic quality is excellent.' }
         ]
     },
 
@@ -434,6 +531,30 @@ const PERIPHERALS_DATA = [
             { author: 'Felix G.', rating: 4, comment: 'Studio-quality sound straight out of the box.' }
         ]
     },
+    {
+        id: 'mic-hyperx-solocast',
+        type: 'Mic',
+        brand: 'HyperX',
+        name: 'HyperX SoloCast',
+        price: 59.99,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.5,
+        reviewCount: 389,
+        stock: 'in-stock',
+        specs: {
+            'Polar Pattern': 'Cardioid',
+            'Frequency Response': '20 Hz - 20 kHz',
+            'Sample Rate': '48 kHz',
+            'Bit Depth': '16-bit',
+            'Connectivity': 'USB',
+            'Mounting': 'Adjustable stand, tripod compatible'
+        },
+        reviews: [
+            { author: 'Ruth D.', rating: 5, comment: 'Perfect budget mic for getting started, tap-to-mute is handy.' },
+            { author: 'Jonas P.', rating: 4, comment: 'Simple and reliable, great value for the price.' }
+        ]
+    },
 
     // ---------- Mousepad ----------
     {
@@ -482,6 +603,104 @@ const PERIPHERALS_DATA = [
         reviews: [
             { author: 'Talia R.', rating: 4, comment: 'Chroma lighting syncs nicely with the rest of my Razer gear.' },
             { author: 'Noah E.', rating: 4, comment: 'Good glide and stitching, USB cable is a bit short.' }
+        ]
+    },
+    {
+        id: 'mousepad-razer-sphex-v3',
+        type: 'Mousepad',
+        brand: 'Razer',
+        name: 'Razer Sphex V3',
+        price: 29.99,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.4,
+        reviewCount: 176,
+        stock: 'in-stock',
+        specs: {
+            'Surface Type': 'Hard, speed-tuned',
+            'Dimensions': '450 x 400 mm',
+            'Thickness': '0.4 mm',
+            'Base Material': 'Adhesive polycarbonate',
+            'Stitched Edges': 'No',
+            'RGB': 'No'
+        },
+        reviews: [
+            { author: 'Miriam K.', rating: 5, comment: 'Ultra-thin and sticks flat to my desk, great for flick shots.' },
+            { author: 'Owen P.', rating: 4, comment: 'Fast surface, wears a little faster than cloth pads.' }
+        ]
+    },
+
+    // ---------- Controller ----------
+    {
+        id: 'controller-xbox-wireless',
+        type: 'Controller',
+        brand: 'Xbox',
+        name: 'Xbox Wireless Controller',
+        price: 59.99,
+        connectivity: 'Wireless',
+        image: 'placeholder.jpg',
+        rating: 4.7,
+        reviewCount: 512,
+        stock: 'in-stock',
+        specs: {
+            'Connectivity': 'Bluetooth / Xbox Wireless',
+            'Battery Life': '40 hrs (AA batteries)',
+            'Vibration/Haptics': 'Dual rumble motors',
+            'Compatible Platforms': 'PC, Xbox',
+            'Buttons': 'Hybrid D-pad, standard layout',
+            'Weight': '287 g'
+        },
+        reviews: [
+            { author: 'Ivy C.', rating: 5, comment: 'Reliable and comfortable, exactly what you expect from Xbox.' },
+            { author: 'Tariq A.', rating: 4, comment: 'Great value, wish it shipped with a rechargeable battery pack.' }
+        ]
+    },
+    {
+        id: 'controller-playstation-dualsense',
+        type: 'Controller',
+        brand: 'PlayStation',
+        name: 'PlayStation DualSense',
+        price: 69.99,
+        connectivity: 'Wireless',
+        image: 'placeholder.jpg',
+        rating: 4.8,
+        reviewCount: 640,
+        stock: 'in-stock',
+        specs: {
+            'Connectivity': 'Bluetooth / USB-C wired',
+            'Battery Life': '12 hrs',
+            'Vibration/Haptics': 'Haptic feedback + adaptive triggers',
+            'Compatible Platforms': 'PlayStation, PC (partial support)',
+            'Buttons': 'Standard layout, built-in mic',
+            'Weight': '280 g'
+        },
+        reviews: [
+            { author: 'Grace L.', rating: 5, comment: 'Adaptive triggers add a whole new layer of immersion.' },
+            { author: 'Colin P.', rating: 4, comment: 'Battery life could be better, but the haptics are unmatched.' }
+        ]
+    },
+    {
+        id: 'controller-razer-wolverine-v2-chroma',
+        type: 'Controller',
+        brand: 'Razer',
+        name: 'Razer Wolverine V2 Chroma',
+        price: 99.99,
+        connectivity: 'Wired',
+        image: 'placeholder.jpg',
+        rating: 4.5,
+        reviewCount: 158,
+        stock: 'in-stock',
+        specs: {
+            'Connectivity': 'Wired (USB-C)',
+            'Battery Life': 'N/A (wired)',
+            'Vibration/Haptics': 'Dual rumble motors',
+            'Compatible Platforms': 'PC, Xbox',
+            'Buttons': '6 remappable multi-function buttons',
+            'Weight': '315 g'
+        },
+        reviews: [
+            { author: 'Beth O.', rating: 5, comment: 'Remappable back buttons are a huge edge in competitive shooters.' },
+            { author: 'Cole M.', rating: 4, comment: 'Great build quality, Chroma lighting is a nice extra.' }
         ]
     }
 ];

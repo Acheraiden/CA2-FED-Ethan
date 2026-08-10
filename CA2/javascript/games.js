@@ -819,18 +819,14 @@ const GAMES_DATA = [
  * Drives the unified Games page (games.html): every game from every genre
  * in one grid, with genre available as just another filter alongside
  * price, platform, rating, mode, and difficulty. Favorites persist
- * globally via localStorage; the compare tray only allows comparing
- * games of the same genre, since the comparison table's rows depend on
- * genre-appropriate traits (open world, replayability, etc. read the
- * same across genres here, so the rule is mainly about keeping
- * comparisons meaningful rather than a technical requirement).
+ * globally via localStorage. Game comparison now lives on the dedicated
+ * Compare page (compare.html) instead of here.
  *
  * Kept as small, named functions grouped by responsibility so any one
- * piece (favorites, compare, filters) can be read or changed on its own.
+ * piece (favorites, filters) can be read or changed on its own.
  */
 var GamesPage = (function () {
     var FAVORITES_KEY = 'rp3-favorite-games';
-    var MAX_COMPARE = 4;
 
     var state = {
         filters: {
@@ -845,13 +841,11 @@ var GamesPage = (function () {
         },
         sort: 'rating-desc',
         favorites: [],
-        compareList: [],
         activeGameId: null // last game opened in the details modal, for "similarTo" jumps
     };
 
     var els = {};
     var detailsModal = null;
-    var compareModal = null;
 
     function init() {
         state.favorites = loadFavorites();
@@ -860,10 +854,8 @@ var GamesPage = (function () {
         renderEditorsPicks();
         populateFilterOptions();
         bindFilterEvents();
-        bindCompareTrayEvents();
         bindRandomPickEvent();
         renderGrid();
-        renderCompareTray();
 
         // Deep link support: ?id=<gameId> opens that game's details modal
         // straight away. Used by the Minigame's "View Full Details" link.
@@ -900,23 +892,11 @@ var GamesPage = (function () {
         els.gameDetailsModalBody = document.getElementById('gameDetailsModalBody');
         els.gameDetailsModalFooter = document.getElementById('gameDetailsModalFooter');
 
-        els.compareTray = document.getElementById('compareTray');
-        els.compareTrayCounter = document.getElementById('compareTrayCounter');
-        els.compareTrayItems = document.getElementById('compareTrayItems');
-        els.clearCompareBtn = document.getElementById('clearCompareBtn');
-        els.openCompareModalBtn = document.getElementById('openCompareModalBtn');
-
-        els.compareModalEl = document.getElementById('compareModal');
-        els.compareModalBody = document.getElementById('compareModalBody');
-
         els.toastContainer = document.getElementById('toastContainer');
 
         if (window.bootstrap) {
             if (els.gameDetailsModalEl) {
                 detailsModal = bootstrap.Modal.getOrCreateInstance(els.gameDetailsModalEl);
-            }
-            if (els.compareModalEl) {
-                compareModal = bootstrap.Modal.getOrCreateInstance(els.compareModalEl);
             }
         }
     }
@@ -1194,7 +1174,6 @@ var GamesPage = (function () {
         col.className = 'col';
 
         var isFavorite = state.favorites.indexOf(game.id) !== -1;
-        var isComparing = state.compareList.indexOf(game.id) !== -1;
         var priceLabel = game.price === 0 ? 'Free' : '$' + game.price.toFixed(2);
         var platformBadges = game.platform.map(function (p) {
             return '<span class="badge platform-badge">' + escapeHtml(p) + '</span>';
@@ -1216,16 +1195,12 @@ var GamesPage = (function () {
             '<p class="card-text fw-bold mb-3">' + priceLabel + '</p>' +
             '<div class="mt-auto d-flex flex-wrap gap-2">' +
             '<button type="button" class="btn btn-sm btn-outline-primary flex-grow-1 view-details-btn">View Details</button>' +
-            '<button type="button" class="btn btn-sm btn-outline-success compare-toggle-btn' + (isComparing ? ' active' : '') + '">' +
-            (isComparing ? '\u2713 Added' : '+ Compare') +
-            '</button>' +
             '</div>' +
             '</div>' +
             '</div>';
 
         var favoriteBtn = col.querySelector('.favorite-btn');
         var viewBtn = col.querySelector('.view-details-btn');
-        var compareBtn = col.querySelector('.compare-toggle-btn');
 
         favoriteBtn.addEventListener('click', function (event) {
             event.stopPropagation();
@@ -1233,9 +1208,6 @@ var GamesPage = (function () {
         });
         viewBtn.addEventListener('click', function () {
             openDetailsModal(game.id);
-        });
-        compareBtn.addEventListener('click', function () {
-            toggleCompare(game.id);
         });
 
         return col;
@@ -1325,14 +1297,6 @@ var GamesPage = (function () {
         var favoriteBtn = els.gameDetailsModalFooter.querySelector('.modal-favorite-btn');
         if (favoriteBtn) {
             favoriteBtn.addEventListener('click', function () { toggleFavorite(game.id); });
-        }
-        var compareBtn = els.gameDetailsModalFooter.querySelector('.modal-compare-btn');
-        if (compareBtn) {
-            compareBtn.addEventListener('click', function () {
-                toggleCompare(game.id);
-                compareBtn.classList.toggle('active', state.compareList.indexOf(game.id) !== -1);
-                compareBtn.innerHTML = state.compareList.indexOf(game.id) !== -1 ? '\u2713 Added to Compare' : '+ Add to Compare';
-            });
         }
 
         if (detailsModal) {
@@ -1427,163 +1391,13 @@ var GamesPage = (function () {
 
     function buildDetailsFooter(game) {
         var isFavorite = state.favorites.indexOf(game.id) !== -1;
-        var isComparing = state.compareList.indexOf(game.id) !== -1;
         return (
             '<button type="button" class="btn btn-outline-danger modal-favorite-btn' + (isFavorite ? ' active' : '') + '">' +
             '<i class="bi ' + (isFavorite ? 'bi-heart-fill' : 'bi-heart') + ' me-1" aria-hidden="true"></i>' + (isFavorite ? 'Favorited' : 'Favorite') +
-            '</button>' +
-            '<button type="button" class="btn btn-outline-success modal-compare-btn' + (isComparing ? ' active' : '') + '">' +
-            (isComparing ? '\u2713 Added to Compare' : '+ Add to Compare') +
             '</button>'
         );
     }
 
-    // ---------------------------------------------------------------
-    // Comparison tray + modal
-    // ---------------------------------------------------------------
-
-    function toggleCompare(id) {
-        var index = state.compareList.indexOf(id);
-        var game = findById(id);
-
-        if (index !== -1) {
-            state.compareList.splice(index, 1);
-        } else {
-            if (state.compareList.length >= MAX_COMPARE) {
-                showToast('You can only compare up to ' + MAX_COMPARE + ' games at a time.', 'warning');
-                return;
-            }
-            var currentGenre = getTrayGenre();
-            if (currentGenre && game && game.genre !== currentGenre) {
-                showToast('You can only compare games from the same genre. Clear the tray first to compare ' + GENRE_META[game.genre].shortLabel + ' titles instead.', 'warning');
-                return;
-            }
-            state.compareList.push(id);
-        }
-
-        renderCompareTray();
-        renderGrid();
-        if (game) updateModalCompareButton(game.id);
-    }
-
-    function getTrayGenre() {
-        if (state.compareList.length === 0) return null;
-        var first = findById(state.compareList[0]);
-        return first ? first.genre : null;
-    }
-
-    function updateModalCompareButton(id) {
-        if (state.activeGameId !== id || !els.gameDetailsModalFooter) return;
-        var btn = els.gameDetailsModalFooter.querySelector('.modal-compare-btn');
-        if (!btn) return;
-        var isComparing = state.compareList.indexOf(id) !== -1;
-        btn.classList.toggle('active', isComparing);
-        btn.innerHTML = isComparing ? '\u2713 Added to Compare' : '+ Add to Compare';
-    }
-
-    function renderCompareTray() {
-        if (!els.compareTray) return;
-
-        if (state.compareList.length === 0) {
-            els.compareTray.classList.add('d-none');
-            return;
-        }
-        els.compareTray.classList.remove('d-none');
-
-        if (els.compareTrayCounter) {
-            els.compareTrayCounter.textContent = state.compareList.length + ' / ' + MAX_COMPARE + ' Selected';
-        }
-
-        if (els.compareTrayItems) {
-            els.compareTrayItems.innerHTML = state.compareList.map(function (id) {
-                var game = findById(id);
-                if (!game) return '';
-                return '<div class="game-compare-tray-item position-relative" data-id="' + game.id + '">' +
-                    '<img src="' + game.screenshots[0] + '" alt="" />' +
-                    '<button type="button" class="remove-btn position-absolute rounded-circle d-flex align-items-center justify-content-center" aria-label="Remove ' + escapeHtml(game.title) + ' from comparison">&times;</button>' +
-                    '</div>';
-            }).join('');
-
-            els.compareTrayItems.querySelectorAll('.remove-btn').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var wrapper = btn.closest('.game-compare-tray-item');
-                    if (wrapper) toggleCompare(wrapper.getAttribute('data-id'));
-                });
-            });
-        }
-
-        if (els.openCompareModalBtn) {
-            els.openCompareModalBtn.disabled = state.compareList.length < 2;
-        }
-    }
-
-    function bindCompareTrayEvents() {
-        if (els.clearCompareBtn) {
-            els.clearCompareBtn.addEventListener('click', function () {
-                state.compareList = [];
-                renderCompareTray();
-                renderGrid();
-            });
-        }
-        if (els.openCompareModalBtn) {
-            els.openCompareModalBtn.addEventListener('click', openCompareModal);
-        }
-    }
-
-    function openCompareModal() {
-        if (!els.compareModalBody || state.compareList.length < 2) return;
-
-        var games = state.compareList.map(findById).filter(Boolean);
-
-        var bestRating = Math.max.apply(null, games.map(function (g) { return g.rating; }));
-        var lowestPrice = Math.min.apply(null, games.map(function (g) { return g.price; }));
-        var bestReplayability = Math.max.apply(null, games.map(function (g) { return g.replayability; }));
-
-        var headerCells = games.map(function (game) {
-            return '<th class="text-center compare-item-header">' +
-                '<img src="' + game.screenshots[0] + '" alt="' + escapeHtml(game.title) + '" class="w-100" />' +
-                '<div class="small fw-semibold mt-2">' + escapeHtml(game.title) + '</div>' +
-                '</th>';
-        }).join('');
-
-        function row(label, cellFn) {
-            var cells = games.map(cellFn).join('');
-            return '<tr><th scope="row">' + label + '</th>' + cells + '</tr>';
-        }
-
-        var rowsHtml =
-            row('Genre', function (g) { return '<td>' + escapeHtml(GENRE_META[g.genre].shortLabel) + '</td>'; }) +
-            row('Price', function (g) {
-                var highlight = g.price === lowestPrice ? ' class="highlight-best"' : '';
-                return '<td' + highlight + '>' + (g.price === 0 ? 'Free' : '$' + g.price.toFixed(2)) + '</td>';
-            }) +
-            row('Rating', function (g) {
-                var highlight = g.rating === bestRating ? ' class="highlight-best"' : '';
-                return '<td' + highlight + '>' + buildStars(g.rating) + ' ' + g.rating.toFixed(1) + '</td>';
-            }) +
-            row('Platforms', function (g) { return '<td>' + escapeHtml(g.platform.join(', ')) + '</td>'; }) +
-            row('Playtime', function (g) { return '<td>' + escapeHtml(g.playTime) + '</td>'; }) +
-            row('Difficulty', function (g) { return '<td>' + escapeHtml(g.difficulty) + '</td>'; }) +
-            row('Mode', function (g) { return '<td>' + escapeHtml(g.mode) + '</td>'; }) +
-            row('Open World', function (g) { return '<td>' + (g.openWorld ? 'Yes' : 'No') + '</td>'; }) +
-            row('Replayability', function (g) {
-                var highlight = g.replayability === bestReplayability ? ' class="highlight-best"' : '';
-                return '<td' + highlight + '>' + g.replayability + ' / 5</td>';
-            });
-
-        els.compareModalBody.innerHTML =
-            '<div class="table-responsive">' +
-            '<table class="table table-bordered compare-table align-middle">' +
-            '<thead><tr><th></th>' + headerCells + '</tr></thead>' +
-            '<tbody>' + rowsHtml + '</tbody>' +
-            '</table>' +
-            '</div>' +
-            '<p class="small text-muted mb-0"><span class="highlight-best-swatch d-inline-block align-middle"></span> = highest rated, lowest price, or best replayability.</p>';
-
-        if (compareModal) {
-            compareModal.show();
-        }
-    }
 
     // ---------------------------------------------------------------
     // "Can't Decide?" random recommendation
