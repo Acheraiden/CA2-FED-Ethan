@@ -39,6 +39,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #ffffff !important;
 }
 
+/* Checkboxes/switches site-wide (Bootstrap's default is styled for a
+   light theme - plain white square/switch - so every checkbox on the
+   site needs this, not just one page's). Checked state keeps Bootstrap's
+   own checkmark/toggle-dot icon, just recolors the fill to the site's
+   accent purple instead of Bootstrap's default blue. */
+.form-check-input {
+  background-color: #12101f;
+  border-color: #3b2d59;
+}
+
+.form-check-input:checked {
+  background-color: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.form-check-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.25);
+}
+
 /* Subtext & Muted Text readability */
 p, .text-muted, .text-secondary {
   color: #a19bb8 !important;
@@ -1504,6 +1524,31 @@ body.has-compare-tray {
     cursor: pointer;
 }
 
+/* ---- Swap Games picker ---- */
+.swap-pick-card {
+    background-color: #161228;
+    border: 1px solid #2a2244;
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.swap-pick-card:hover {
+    border-color: #8b5cf6;
+    transform: translateY(-2px);
+}
+
+.swap-pick-card.active {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.4);
+}
+
+.swap-pick-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    background-color: #0a0714;
+}
+
 /* ---- Comparison result tabs ---- */
 .comparison-result-content {
     background-color: #12101f;
@@ -1521,10 +1566,4 @@ body.has-compare-tray {
     background-color: #12101f;
     color: #fff;
     border-color: #2a2244 #2a2244 #12101f;
-}
-
-.swap-pick-btn.active {
-    background-color: #8b5cf6;
-    border-color: #8b5cf6;
-    color: #fff;
 }

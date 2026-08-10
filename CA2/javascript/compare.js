@@ -388,28 +388,40 @@ const ComparePage = (() => {
         swapFirstPick = null;
 
         els.swapModalBody.innerHTML =
-            '<p class="small text-muted mb-3">Pick two games to swap their positions in the comparison.</p>' +
-            '<div class="d-flex flex-wrap gap-2" id="swapPickRow">' +
+            '<p class="small text-muted mb-3" id="swapHelperText">Pick two games to swap their positions in the comparison.</p>' +
+            '<div class="row g-2" id="swapPickRow">' +
             games.map((game) =>
-                '<button type="button" class="btn btn-outline-light swap-pick-btn" data-game-id="' + game.id + '">' + escapeHtml(game.name) + '</button>'
+                '<div class="col-6 col-sm-4">' +
+                '<div class="card swap-pick-card h-100" data-game-id="' + game.id + '">' +
+                '<img src="' + game.image + '" class="swap-pick-img" alt="Cover art for ' + escapeHtml(game.name) + '" />' +
+                '<div class="card-body p-2 text-center">' +
+                '<p class="small fw-semibold mb-0">' + escapeHtml(game.name) + '</p>' +
+                '</div>' +
+                '</div>' +
+                '</div>'
             ).join('') +
             '</div>';
 
-        els.swapModalBody.querySelectorAll('.swap-pick-btn').forEach((btn) => {
-            btn.addEventListener('click', () => handleSwapPick(btn));
+        els.swapModalBody.querySelectorAll('.swap-pick-card').forEach((card) => {
+            card.addEventListener('click', () => handleSwapPick(card));
         });
 
         if (swapModal) swapModal.show();
     }
 
-    function handleSwapPick(btn) {
-        const gameId = btn.getAttribute('data-game-id');
+    function handleSwapPick(card) {
+        const gameId = card.getAttribute('data-game-id');
+        const helperText = document.getElementById('swapHelperText');
         if (!swapFirstPick) {
             swapFirstPick = gameId;
-            btn.classList.add('active');
+            card.classList.add('active');
+            if (helperText) {
+                const game = findGame(gameId);
+                helperText.textContent = 'Swapping ' + (game ? game.name : 'that game') + ' with\u2026 pick the second game.';
+            }
             return;
         }
-        if (swapFirstPick === gameId) return; // same button clicked twice, ignore
+        if (swapFirstPick === gameId) return; // same card clicked twice, ignore
 
         const indexA = comparisonState.selectedGames.indexOf(swapFirstPick);
         const indexB = comparisonState.selectedGames.indexOf(gameId);

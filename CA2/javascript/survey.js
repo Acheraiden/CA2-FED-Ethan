@@ -200,6 +200,30 @@ const GAMES = [
     }
 ];
 
+// Survey and Games each keep their own separate game catalog with their
+// own id scheme (e.g. Survey's 'valorant' vs. Games' 'fps-valorant'), so
+// a plain id can't be reused between pages. This maps Survey's ids to
+// the matching id on the Games page, for the "View in Games" link on
+// each result card - Games supports ?id=<gameId> as a deep link that
+// opens that game's details modal directly.
+const GAMES_PAGE_ID_MAP = {
+    'valorant': 'fps-valorant',
+    'counter-strike-2': 'fps-counter-strike-2',
+    'doom-eternal': 'fps-doom-eternal',
+    'left-4-dead-2': 'fps-left-4-dead-2',
+    'ghost-of-tsushima': 'action-adventure-ghost-of-tsushima',
+    'devil-may-cry-5': 'action-adventure-devil-may-cry-5',
+    'batman-arkham-city': 'action-adventure-batman-arkham-city',
+    'final-fantasy-7-remake': 'rpg-final-fantasy-7-remake',
+    'persona-5-royal': 'rpg-persona-5-royal',
+    'undertale': 'rpg-undertale',
+    'fallout-4': 'rpg-fallout-4',
+    'civilization-6': 'strategy-civilization-6',
+    'xcom-2': 'strategy-xcom-2',
+    'starcraft-2': 'strategy-starcraft-2',
+    'project-zomboid': 'strategy-project-zomboid'
+};
+
 // Which personality a user gets is decided by their single highest-rated
 // trait (see determinePersonality() in survey.js).
 const PERSONALITY_BY_TRAIT = {
@@ -777,6 +801,11 @@ const GameFinderPage = (() => {
         }).join('');
 
         const whyList = entry.why.map((reason) => '<li><i class="bi bi-check-circle-fill text-success me-1" aria-hidden="true"></i>' + escapeHtml(reason) + '</li>').join('');
+        const gamesPageId = GAMES_PAGE_ID_MAP[game.id];
+        const viewInGamesLink = gamesPageId
+            ? '<a href="../html/games.html?id=' + encodeURIComponent(gamesPageId) + '" target="_blank" rel="noopener" class="btn btn-sm btn-outline-info w-100 mb-2">' +
+              '<i class="bi bi-box-arrow-up-right me-1" aria-hidden="true"></i>View in Games</a>'
+            : '';
 
         return (
             '<div class="col">' +
@@ -793,6 +822,7 @@ const GameFinderPage = (() => {
             '<div class="progress-bar bg-success" role="progressbar" style="width: ' + entry.score + '%;" aria-valuenow="' + entry.score + '" aria-valuemin="0" aria-valuemax="100"></div>' +
             '</div>' +
             '<p class="small fw-semibold mb-2">' + entry.score + '% Match</p>' +
+            viewInGamesLink +
             '<button type="button" class="btn btn-sm btn-outline-secondary w-100 mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#' + collapseId + '" aria-expanded="false">' +
             '\u25bc View Why' +
             '</button>' +
