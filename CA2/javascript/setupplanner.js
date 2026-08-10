@@ -35,19 +35,19 @@ const SETUP_PRODUCTS = [
     // ---- Mouse ----
     {
         id: 'mouse-superlight2', slot: 'mouse', brand: 'Logitech', name: 'G Pro X Superlight 2',
-        price: 159.99, specs: 'Wireless \u00b7 32,000 DPI HERO 2 \u00b7 60 g', image: 'placeholder.jpg',
+        price: 159.99, specs: 'Wireless \u00b7 32,000 DPI HERO 2 \u00b7 60 g', image: '../images/logitech-g-pro-x-superlight-2.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 95, comfort: 80, competitive: 98, value: 70 }
     },
     {
         id: 'mouse-viper8k', slot: 'mouse', brand: 'Razer', name: 'Viper 8KHz',
-        price: 79.99, specs: 'Wired \u00b7 20,000 DPI \u00b7 8000 Hz polling', image: 'placeholder.jpg',
+        price: 79.99, specs: 'Wired \u00b7 20,000 DPI \u00b7 8000 Hz polling', image: '../images/razer-viper-8khz.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba', 'casual'],
         scores: { performance: 90, comfort: 75, competitive: 92, value: 85 }
     },
     {
         id: 'mouse-g502x', slot: 'mouse', brand: 'Logitech', name: 'G502 X',
-        price: 99.99, specs: 'Wireless \u00b7 25,600 DPI \u00b7 ergonomic shape', image: 'placeholder.jpg',
+        price: 99.99, specs: 'Wireless \u00b7 25,600 DPI \u00b7 ergonomic shape', image: '../images/logitech-g502-x.jpg',
         platforms: ['PC'], styles: ['rpg', 'casual', 'content-creation'],
         scores: { performance: 80, comfort: 92, competitive: 75, value: 80 }
     },
@@ -55,19 +55,19 @@ const SETUP_PRODUCTS = [
     // ---- Keyboard ----
     {
         id: 'keyboard-wooting60he', slot: 'keyboard', brand: 'Wooting', name: '60HE',
-        price: 174.99, specs: 'Wired \u00b7 Hall-effect analog \u00b7 60% layout', image: 'placeholder.jpg',
+        price: 174.99, specs: 'Wired \u00b7 Hall-effect analog \u00b7 60% layout', image: '../images/wooting-60he.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 95, comfort: 70, competitive: 97, value: 65 }
     },
     {
         id: 'keyboard-g915tkl', slot: 'keyboard', brand: 'Logitech', name: 'G915 TKL',
-        price: 229.99, specs: 'Wireless \u00b7 Low-profile \u00b7 TKL layout', image: 'placeholder.jpg',
+        price: 229.99, specs: 'Wireless \u00b7 Low-profile \u00b7 TKL layout', image: '../images/logitech-g915-tkl.jpg',
         platforms: ['PC'], styles: ['rpg', 'streaming', 'content-creation', 'casual'],
         scores: { performance: 85, comfort: 88, competitive: 80, value: 60 }
     },
     {
         id: 'keyboard-apexpro', slot: 'keyboard', brand: 'SteelSeries', name: 'Apex Pro',
-        price: 199.99, specs: 'Wired \u00b7 Adjustable actuation \u00b7 Full-size', image: 'placeholder.jpg',
+        price: 199.99, specs: 'Wired \u00b7 Adjustable actuation \u00b7 Full-size', image: '../images/steelseries-apex-pro.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'rpg', 'moba'],
         scores: { performance: 92, comfort: 82, competitive: 90, value: 68 }
     },
@@ -75,19 +75,19 @@ const SETUP_PRODUCTS = [
     // ---- Monitor ----
     {
         id: 'monitor-pg27aqn', slot: 'monitor', brand: 'ASUS ROG', name: 'Swift PG27AQN',
-        price: 899.00, specs: '27" \u00b7 360 Hz \u00b7 1440p Fast IPS', image: 'placeholder.jpg',
+        price: 899.00, specs: '27" \u00b7 360 Hz \u00b7 1440p Fast IPS', image: '../images/asus-rog-swift-pg27aqn.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 98, comfort: 85, competitive: 99, value: 40 }
     },
     {
         id: 'monitor-raptor27', slot: 'monitor', brand: 'Razer', name: 'Raptor 27',
-        price: 699.99, specs: '27" \u00b7 165 Hz \u00b7 1440p IPS', image: 'placeholder.jpg',
+        price: 699.99, specs: '27" \u00b7 165 Hz \u00b7 1440p IPS', image: '../images/razer-raptor-27.jpg',
         platforms: ['PC'], styles: ['rpg', 'casual', 'streaming', 'content-creation'],
         scores: { performance: 85, comfort: 88, competitive: 82, value: 55 }
     },
     {
         id: 'monitor-vg259qm', slot: 'monitor', brand: 'ASUS TUF', name: 'Gaming VG259QM',
-        price: 259.99, specs: '24.5" \u00b7 280 Hz \u00b7 1080p IPS', image: 'placeholder.jpg',
+        price: 259.99, specs: '24.5" \u00b7 280 Hz \u00b7 1080p IPS', image: '../images/asus-tuf-vg259qm.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'casual'],
         scores: { performance: 88, comfort: 78, competitive: 90, value: 85 }
     },
@@ -95,19 +95,19 @@ const SETUP_PRODUCTS = [
     // ---- Headset ----
     {
         id: 'headset-cloud2', slot: 'headset', brand: 'HyperX', name: 'Cloud II',
-        price: 99.99, specs: 'Wired \u00b7 53 mm drivers \u00b7 Detachable mic', image: 'placeholder.jpg',
+        price: 99.99, specs: 'Wired \u00b7 53 mm drivers \u00b7 Detachable mic', image: '../images/hyperx-cloud-ii.jpg',
         platforms: ['PC', 'PlayStation', 'Xbox'], styles: ['casual', 'rpg', 'competitive-fps'],
         scores: { performance: 78, comfort: 90, competitive: 75, value: 90 }
     },
     {
         id: 'headset-novapro', slot: 'headset', brand: 'SteelSeries', name: 'Arctis Nova Pro Wireless',
-        price: 349.99, specs: 'Wireless \u00b7 Dual swappable battery \u00b7 ClearCast mic', image: 'placeholder.jpg',
+        price: 349.99, specs: 'Wireless \u00b7 Dual swappable battery \u00b7 ClearCast mic', image: '../images/steelseries-arctis-nova-pro-wireless.jpg',
         platforms: ['PC', 'PlayStation', 'Xbox'], styles: ['streaming', 'content-creation', 'rpg', 'competitive-fps'],
         scores: { performance: 95, comfort: 95, competitive: 88, value: 55 }
     },
     {
         id: 'headset-gprox2', slot: 'headset', brand: 'Logitech', name: 'G Pro X 2',
-        price: 199.99, specs: 'Wireless \u00b7 Lightweight \u00b7 Graphene drivers', image: 'placeholder.jpg',
+        price: 199.99, specs: 'Wireless \u00b7 Lightweight \u00b7 Graphene drivers', image: '../images/logitech-g-pro-x-2.jpg',
         platforms: ['PC', 'PlayStation'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 90, comfort: 85, competitive: 93, value: 65 }
     },
@@ -115,19 +115,19 @@ const SETUP_PRODUCTS = [
     // ---- Microphone ----
     {
         id: 'mic-quadcasts', slot: 'microphone', brand: 'HyperX', name: 'QuadCast S',
-        price: 159.99, specs: 'USB \u00b7 4 polar patterns \u00b7 RGB', image: 'placeholder.jpg',
+        price: 159.99, specs: 'USB \u00b7 4 polar patterns \u00b7 RGB', image: '../images/hyperx-quadcast-s.jpg',
         platforms: ['PC'], styles: ['streaming', 'content-creation'],
         scores: { performance: 85, comfort: 80, competitive: 60, value: 75 }
     },
     {
         id: 'mic-yetix', slot: 'microphone', brand: 'Blue', name: 'Yeti X',
-        price: 169.99, specs: 'USB \u00b7 4 polar patterns \u00b7 LED metering', image: 'placeholder.jpg',
+        price: 169.99, specs: 'USB \u00b7 4 polar patterns \u00b7 LED metering', image: '../images/blue-yeti-x.jpg',
         platforms: ['PC'], styles: ['streaming', 'content-creation', 'casual'],
         scores: { performance: 88, comfort: 82, competitive: 60, value: 70 }
     },
     {
         id: 'mic-solocast', slot: 'microphone', brand: 'HyperX', name: 'SoloCast',
-        price: 59.99, specs: 'USB \u00b7 Cardioid \u00b7 Tap-to-mute', image: 'placeholder.jpg',
+        price: 59.99, specs: 'USB \u00b7 Cardioid \u00b7 Tap-to-mute', image: '../images/hyperx-solocast.jpg',
         platforms: ['PC'], styles: ['casual', 'competitive-fps', 'moba'],
         scores: { performance: 70, comfort: 75, competitive: 60, value: 92 }
     },
@@ -135,19 +135,19 @@ const SETUP_PRODUCTS = [
     // ---- Mousepad ----
     {
         id: 'mousepad-g840xl', slot: 'mousepad', brand: 'Logitech', name: 'G840 XL',
-        price: 34.99, specs: 'Cloth \u00b7 900 x 400 mm \u00b7 Stitched edges', image: 'placeholder.jpg',
+        price: 34.99, specs: 'Cloth \u00b7 900 x 400 mm \u00b7 Stitched edges', image: '../images/logitech-g840-xl.jpg',
         platforms: ['PC'], styles: ['rpg', 'casual', 'content-creation'],
         scores: { performance: 75, comfort: 85, competitive: 70, value: 90 }
     },
     {
         id: 'mousepad-goliathus', slot: 'mousepad', brand: 'Razer', name: 'Goliathus Extended Chroma',
-        price: 59.99, specs: 'Cloth \u00b7 RGB \u00b7 920 x 294 mm', image: 'placeholder.jpg',
+        price: 59.99, specs: 'Cloth \u00b7 RGB \u00b7 920 x 294 mm', image: '../images/razer-goliathus-extended-chroma.jpg',
         platforms: ['PC'], styles: ['streaming', 'content-creation', 'casual'],
         scores: { performance: 78, comfort: 82, competitive: 72, value: 78 }
     },
     {
         id: 'mousepad-sphexv3', slot: 'mousepad', brand: 'Razer', name: 'Sphex V3',
-        price: 29.99, specs: 'Hard surface \u00b7 Ultra-thin \u00b7 Speed-tuned', image: 'placeholder.jpg',
+        price: 29.99, specs: 'Hard surface \u00b7 Ultra-thin \u00b7 Speed-tuned', image: '../images/razer-sphex-v3.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 88, comfort: 65, competitive: 92, value: 88 }
     },
@@ -155,13 +155,13 @@ const SETUP_PRODUCTS = [
     // ---- Earpiece (true wireless earbuds) ----
     {
         id: 'earpiece-gfits', slot: 'earpiece', brand: 'Logitech', name: 'G FITS',
-        price: 229.99, specs: 'True wireless \u00b7 Custom-molded fit', image: 'placeholder.jpg',
+        price: 229.99, specs: 'True wireless \u00b7 Custom-molded fit', image: '../images/logitech-g-fits.jpg',
         platforms: ['PC'], styles: ['content-creation', 'casual'],
         scores: { performance: 80, comfort: 95, competitive: 65, value: 55 }
     },
     {
         id: 'earpiece-hammerhead', slot: 'earpiece', brand: 'Razer', name: 'Hammerhead True Wireless Pro',
-        price: 179.99, specs: 'True wireless \u00b7 Hybrid ANC', image: 'placeholder.jpg',
+        price: 179.99, specs: 'True wireless \u00b7 Hybrid ANC', image: '../images/razer-hammerhead-true-wireless-pro.jpg',
         platforms: ['PC', 'PlayStation', 'Xbox'], styles: ['casual', 'streaming', 'content-creation'],
         scores: { performance: 82, comfort: 88, competitive: 68, value: 65 }
     },
@@ -169,90 +169,42 @@ const SETUP_PRODUCTS = [
     // ---- Controller (optional slot) ----
     {
         id: 'controller-xbox', slot: 'controller', brand: 'Xbox', name: 'Wireless Controller',
-        price: 59.99, specs: 'Wireless \u00b7 Hybrid D-pad', image: 'placeholder.jpg',
+        price: 59.99, specs: 'Wireless \u00b7 Hybrid D-pad', image: '../images/xbox-wireless-controller.jpg',
         platforms: ['PC', 'Xbox'], styles: ['casual', 'rpg'],
         scores: { performance: 75, comfort: 88, competitive: 65, value: 92 }
     },
     {
         id: 'controller-dualsense', slot: 'controller', brand: 'PlayStation', name: 'DualSense',
-        price: 69.99, specs: 'Wireless \u00b7 Haptic feedback \u00b7 Adaptive triggers', image: 'placeholder.jpg',
+        price: 69.99, specs: 'Wireless \u00b7 Haptic feedback \u00b7 Adaptive triggers', image: '../images/playstation-dualsense.jpg',
         platforms: ['PlayStation'], styles: ['casual', 'rpg'],
         scores: { performance: 78, comfort: 90, competitive: 68, value: 88 }
     },
     {
         id: 'controller-wolverinev2', slot: 'controller', brand: 'Razer', name: 'Wolverine V2 Chroma',
-        price: 99.99, specs: 'Wired \u00b7 Remappable buttons \u00b7 RGB', image: 'placeholder.jpg',
+        price: 99.99, specs: 'Wired \u00b7 Remappable buttons \u00b7 RGB', image: '../images/razer-wolverine-v2-chroma.jpg',
         platforms: ['PC', 'Xbox'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 85, comfort: 80, competitive: 88, value: 70 }
     }
 ];
 
-// Fictional esports & streaming personas (not real people) used for the
-// "Pro Player Setups" section. Each maps slot id -> a SETUP_PRODUCTS id.
-//
-// These are deliberately invented characters rather than real players or
-// streamers. Real pros' sponsored gear changes constantly and sources
-// disagree on it even for well-documented players, so attributing a
-// specific, static setup to a real named person risks presenting
-// inaccurate claims about them. See PRO_SCENE_TRENDS below for real,
-// general trends from the competitive scene instead.
+// Fictional esports personas (not real people) used for the "Pro Player
+// Setups" section. Each maps slot id -> a SETUP_PRODUCTS id.
 const PRO_SETUPS = [
     {
         id: 'pro-vex', name: 'Vex', game: 'Valorant', team: 'Nightfall Esports', role: 'Duelist', initials: 'VX',
-        platform: 'Twitch', followers: '1.2M', catchphrase: 'First contact, every time.',
         setup: { mouse: 'mouse-viper8k', keyboard: 'keyboard-wooting60he', monitor: 'monitor-vg259qm', headset: 'headset-gprox2', microphone: 'mic-quadcasts', mousepad: 'mousepad-sphexv3', earpiece: null, controller: null }
     },
     {
         id: 'pro-kestrel', name: 'Kestrel', game: 'Counter-Strike 2', team: 'Shadow Wolves', role: 'IGL', initials: 'KS',
-        platform: 'YouTube', followers: '840K', catchphrase: 'Read the round, win the round.',
         setup: { mouse: 'mouse-superlight2', keyboard: 'keyboard-apexpro', monitor: 'monitor-pg27aqn', headset: 'headset-cloud2', microphone: 'mic-solocast', mousepad: 'mousepad-g840xl', earpiece: null, controller: null }
     },
     {
         id: 'pro-juno', name: 'Juno', game: 'League of Legends', team: 'Arcane Five', role: 'Support', initials: 'JN',
-        platform: 'Twitch', followers: '2.1M', catchphrase: 'Peel first, ask questions later.',
         setup: { mouse: 'mouse-g502x', keyboard: 'keyboard-g915tkl', monitor: 'monitor-raptor27', headset: 'headset-novapro', microphone: 'mic-yetix', mousepad: 'mousepad-goliathus', earpiece: null, controller: null }
     },
     {
         id: 'pro-rook', name: 'Rook', game: 'Apex Legends', team: 'Static Order', role: 'Slayer', initials: 'RK',
-        platform: 'YouTube', followers: '650K', catchphrase: 'Third-party? I am the third party.',
         setup: { mouse: 'mouse-viper8k', keyboard: 'keyboard-wooting60he', monitor: 'monitor-pg27aqn', headset: 'headset-gprox2', microphone: 'mic-quadcasts', mousepad: 'mousepad-sphexv3', earpiece: 'earpiece-hammerhead', controller: 'controller-wolverinev2' }
-    },
-    {
-        id: 'pro-milo', name: 'Milo', game: 'Variety / Just Chatting', team: 'Independent Creator', role: 'Full-time Streamer', initials: 'ML',
-        platform: 'Twitch', followers: '3.4M', catchphrase: 'One more game turned into six hours, as usual.',
-        setup: { mouse: 'mouse-g502x', keyboard: 'keyboard-g915tkl', monitor: 'monitor-raptor27', headset: 'headset-novapro', microphone: 'mic-yetix', mousepad: 'mousepad-goliathus', earpiece: null, controller: 'controller-xbox' }
-    },
-    {
-        id: 'pro-sable', name: 'Sable', game: 'RPG Let\u2019s Plays', team: 'Independent Creator', role: 'Content Creator', initials: 'SB',
-        platform: 'YouTube', followers: '1.8M', catchphrase: 'We\u2019re not leaving this dungeon without the lore.',
-        setup: { mouse: 'mouse-g502x', keyboard: 'keyboard-g915tkl', monitor: 'monitor-raptor27', headset: 'headset-cloud2', microphone: 'mic-yetix', mousepad: 'mousepad-g840xl', earpiece: 'earpiece-gfits', controller: 'controller-dualsense' }
-    }
-];
-
-// Real, general trends from the competitive/streaming gear scene, sourced
-// from public reporting rather than attributed to any single named person
-// (individual pros' sponsored gear changes too often, and too
-// inconsistently across sources, to state as a fixed fact per player).
-const PRO_SCENE_TRENDS = [
-    {
-        icon: 'bi-mouse2-fill',
-        statement: 'Most top competitive FPS players have moved to sub-65g wireless mice with 4000Hz+ polling for near-zero input lag.',
-        slot: 'mouse'
-    },
-    {
-        icon: 'bi-keyboard-fill',
-        statement: 'Hall-effect ("analog") keyboards with adjustable actuation points have become the pro-scene standard for movement-heavy shooters.',
-        slot: 'keyboard'
-    },
-    {
-        icon: 'bi-display-fill',
-        statement: '240Hz+ monitors are now the competitive baseline, with many top-tier players running 360Hz or higher.',
-        slot: 'monitor'
-    },
-    {
-        icon: 'bi-mic-fill',
-        statement: 'USB condenser mics remain the streaming-scene default over XLR setups, valued for simplicity without an audio interface.',
-        slot: 'microphone'
     }
 ];
 
@@ -296,7 +248,6 @@ const SetupPlannerPage = (() => {
         initModals();
         renderStyleSelector();
         renderProPlayers();
-        renderTrends();
         renderWishlist();
         renderSavedSetups();
         populateComparisonSelects();
@@ -338,7 +289,6 @@ const SetupPlannerPage = (() => {
         els.compatibilityList = document.getElementById('compatibilityList');
 
         els.proPlayersRow = document.getElementById('proPlayersRow');
-        els.trendsRow = document.getElementById('trendsRow');
         els.proSetupModalEl = document.getElementById('proSetupModal');
         els.proSetupModalLabel = document.getElementById('proSetupModalLabel');
         els.proSetupModalBody = document.getElementById('proSetupModalBody');
@@ -832,16 +782,11 @@ const SetupPlannerPage = (() => {
         els.proPlayersRow.innerHTML = PRO_SETUPS.map((pro) => {
             const items = Object.keys(pro.setup).map((slotId) => pro.setup[slotId]).filter(Boolean).map(findProduct).filter(Boolean);
             const preview = items.slice(0, 3).map((p) => p.name).join(' \u00b7 ');
-            const platformIcon = pro.platform === 'Twitch' ? 'bi-twitch' : 'bi-youtube';
             return '<div class="card pro-player-card" data-pro-id="' + pro.id + '">' +
-                '<div class="d-flex justify-content-between align-items-start mb-1">' +
                 '<div class="pro-player-avatar">' + escapeHtml(pro.initials) + '</div>' +
-                '<span class="small text-muted d-flex align-items-center gap-1"><i class="bi ' + platformIcon + '" aria-hidden="true"></i>' + escapeHtml(pro.followers) + '</span>' +
-                '</div>' +
                 '<h3 class="h6 mb-0">' + escapeHtml(pro.name) + '</h3>' +
                 '<p class="small text-muted mb-1">' + escapeHtml(pro.team) + ' \u00b7 ' + escapeHtml(pro.role) + '</p>' +
                 '<p class="small mb-2"><span class="badge bg-secondary">' + escapeHtml(pro.game) + '</span></p>' +
-                '<p class="small fst-italic text-muted mb-2 pro-player-catchphrase">\u201c' + escapeHtml(pro.catchphrase) + '\u201d</p>' +
                 '<p class="small text-muted mb-3 pro-player-preview">' + escapeHtml(preview) + '</p>' +
                 '<div class="d-flex gap-2">' +
                 '<button type="button" class="btn btn-sm btn-outline-primary flex-grow-1 pro-view-btn" data-pro-id="' + pro.id + '">View Setup</button>' +
@@ -885,18 +830,7 @@ const SetupPlannerPage = (() => {
         const total = Object.keys(pro.setup).map((slotId) => pro.setup[slotId]).filter(Boolean).map(findProduct).filter(Boolean)
             .reduce((sum, p) => sum + p.price, 0);
 
-        const platformIcon = pro.platform === 'Twitch' ? 'bi-twitch' : 'bi-youtube';
-        const intro =
-            '<div class="d-flex align-items-center gap-3 mb-3">' +
-            '<div class="pro-player-avatar pro-player-avatar-lg">' + escapeHtml(pro.initials) + '</div>' +
-            '<div>' +
-            '<p class="mb-1"><span class="badge bg-secondary me-1">' + escapeHtml(pro.game) + '</span><span class="small text-muted"><i class="bi ' + platformIcon + ' me-1" aria-hidden="true"></i>' + escapeHtml(pro.followers) + ' followers</span></p>' +
-            '<p class="mb-0 fst-italic text-muted">\u201c' + escapeHtml(pro.catchphrase) + '\u201d</p>' +
-            '</div>' +
-            '</div>';
-
         els.proSetupModalBody.innerHTML =
-            intro +
             '<div class="table-responsive">' +
             '<table class="table table-sm pro-setup-table align-middle">' +
             '<thead><tr><th>Slot</th><th>Item</th><th class="text-end">Price</th></tr></thead>' +
@@ -936,33 +870,6 @@ const SetupPlannerPage = (() => {
         });
         recalculateEverything();
         showToast('\u2713 ' + pro.name + '\u2019s setup copied!', 'success');
-    }
-
-    // ---------------------------------------------------------------
-    // Trending in the Pro Scene (general, non-attributed gear trends)
-    // ---------------------------------------------------------------
-
-    function renderTrends() {
-        if (!els.trendsRow) return;
-        els.trendsRow.innerHTML = PRO_SCENE_TRENDS.map((trend) => {
-            const example = SETUP_PRODUCTS.filter((p) => p.slot === trend.slot)
-                .sort((a, b) => b.scores.performance - a.scores.performance)[0];
-            return '<div class="col-md-6">' +
-                '<div class="card trend-card h-100">' +
-                '<i class="bi ' + trend.icon + ' trend-card-icon" aria-hidden="true"></i>' +
-                '<p class="small mb-3">' + escapeHtml(trend.statement) + '</p>' +
-                (example
-                    ? '<button type="button" class="btn btn-sm btn-outline-primary trend-example-btn" data-slot="' + trend.slot + '" data-product-id="' + example.id + '">See a matching ' + escapeHtml(findSlotMeta(trend.slot).label) + '</button>'
-                    : '') +
-                '</div>' +
-                '</div>';
-        }).join('');
-
-        els.trendsRow.querySelectorAll('.trend-example-btn').forEach((btn) => {
-            btn.addEventListener('click', () => {
-                selectItem(btn.getAttribute('data-slot'), btn.getAttribute('data-product-id'));
-            });
-        });
     }
 
     // ---------------------------------------------------------------
