@@ -35,19 +35,19 @@ const SETUP_PRODUCTS = [
     // ---- Mouse ----
     {
         id: 'mouse-superlight2', slot: 'mouse', brand: 'Logitech', name: 'G Pro X Superlight 2',
-        price: 159.99, specs: 'Wireless \u00b7 32,000 DPI HERO 2 \u00b7 60 g', image: 'placeholder.jpg',
+        price: 159.99, specs: 'Wireless \u00b7 32,000 DPI HERO 2 \u00b7 60 g', image: '../images/equipment/logitech-g-pro-x-superlight-2.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 95, comfort: 80, competitive: 98, value: 70 }
     },
     {
         id: 'mouse-viper8k', slot: 'mouse', brand: 'Razer', name: 'Viper 8KHz',
-        price: 79.99, specs: 'Wired \u00b7 20,000 DPI \u00b7 8000 Hz polling', image: 'placeholder.jpg',
+        price: 79.99, specs: 'Wired \u00b7 20,000 DPI \u00b7 8000 Hz polling', image: '../images/equipment/razer-viper-8khz.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba', 'casual'],
         scores: { performance: 90, comfort: 75, competitive: 92, value: 85 }
     },
     {
         id: 'mouse-g502x', slot: 'mouse', brand: 'Logitech', name: 'G502 X',
-        price: 99.99, specs: 'Wireless \u00b7 25,600 DPI \u00b7 ergonomic shape', image: 'placeholder.jpg',
+        price: 99.99, specs: 'Wireless \u00b7 25,600 DPI \u00b7 ergonomic shape', image: '../images/equipment/logitech-g502-x.jpg',
         platforms: ['PC'], styles: ['rpg', 'casual', 'content-creation'],
         scores: { performance: 80, comfort: 92, competitive: 75, value: 80 }
     },
@@ -55,19 +55,19 @@ const SETUP_PRODUCTS = [
     // ---- Keyboard ----
     {
         id: 'keyboard-wooting60he', slot: 'keyboard', brand: 'Wooting', name: '60HE',
-        price: 174.99, specs: 'Wired \u00b7 Hall-effect analog \u00b7 60% layout', image: 'placeholder.jpg',
+        price: 174.99, specs: 'Wired \u00b7 Hall-effect analog \u00b7 60% layout', image: '../images/equipment/wooting-60he.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 95, comfort: 70, competitive: 97, value: 65 }
     },
     {
         id: 'keyboard-g915tkl', slot: 'keyboard', brand: 'Logitech', name: 'G915 TKL',
-        price: 229.99, specs: 'Wireless \u00b7 Low-profile \u00b7 TKL layout', image: 'placeholder.jpg',
+        price: 229.99, specs: 'Wireless \u00b7 Low-profile \u00b7 TKL layout', image: '../images/equipment/logitech-g915-tkl.jpg',
         platforms: ['PC'], styles: ['rpg', 'streaming', 'content-creation', 'casual'],
         scores: { performance: 85, comfort: 88, competitive: 80, value: 60 }
     },
     {
         id: 'keyboard-apexpro', slot: 'keyboard', brand: 'SteelSeries', name: 'Apex Pro',
-        price: 199.99, specs: 'Wired \u00b7 Adjustable actuation \u00b7 Full-size', image: 'placeholder.jpg',
+        price: 199.99, specs: 'Wired \u00b7 Adjustable actuation \u00b7 Full-size', image: '../images/equipment/steelseries-apex-pro.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'rpg', 'moba'],
         scores: { performance: 92, comfort: 82, competitive: 90, value: 68 }
     },
@@ -75,19 +75,19 @@ const SETUP_PRODUCTS = [
     // ---- Monitor ----
     {
         id: 'monitor-pg27aqn', slot: 'monitor', brand: 'ASUS ROG', name: 'Swift PG27AQN',
-        price: 899.00, specs: '27" \u00b7 360 Hz \u00b7 1440p Fast IPS', image: 'placeholder.jpg',
+        price: 899.00, specs: '27" \u00b7 360 Hz \u00b7 1440p Fast IPS', image: '../images/equipment/asus-rog-swift-pg27aqn.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 98, comfort: 85, competitive: 99, value: 40 }
     },
     {
         id: 'monitor-raptor27', slot: 'monitor', brand: 'Razer', name: 'Raptor 27',
-        price: 699.99, specs: '27" \u00b7 165 Hz \u00b7 1440p IPS', image: 'placeholder.jpg',
+        price: 699.99, specs: '27" \u00b7 165 Hz \u00b7 1440p IPS', image: '../images/equipment/razer-raptor-27.jpg',
         platforms: ['PC'], styles: ['rpg', 'casual', 'streaming', 'content-creation'],
         scores: { performance: 85, comfort: 88, competitive: 82, value: 55 }
     },
     {
         id: 'monitor-vg259qm', slot: 'monitor', brand: 'ASUS TUF', name: 'Gaming VG259QM',
-        price: 259.99, specs: '24.5" \u00b7 280 Hz \u00b7 1080p IPS', image: 'placeholder.jpg',
+        price: 259.99, specs: '24.5" \u00b7 280 Hz \u00b7 1080p IPS', image: '../images/equipment/asus-tuf-vg259qm.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'casual'],
         scores: { performance: 88, comfort: 78, competitive: 90, value: 85 }
     },
@@ -95,19 +95,19 @@ const SETUP_PRODUCTS = [
     // ---- Headset ----
     {
         id: 'headset-cloud2', slot: 'headset', brand: 'HyperX', name: 'Cloud II',
-        price: 99.99, specs: 'Wired \u00b7 53 mm drivers \u00b7 Detachable mic', image: 'placeholder.jpg',
+        price: 99.99, specs: 'Wired \u00b7 53 mm drivers \u00b7 Detachable mic', image: '../images/equipment/hyperx-cloud-ii.jpg',
         platforms: ['PC', 'PlayStation', 'Xbox'], styles: ['casual', 'rpg', 'competitive-fps'],
         scores: { performance: 78, comfort: 90, competitive: 75, value: 90 }
     },
     {
         id: 'headset-novapro', slot: 'headset', brand: 'SteelSeries', name: 'Arctis Nova Pro Wireless',
-        price: 349.99, specs: 'Wireless \u00b7 Dual swappable battery \u00b7 ClearCast mic', image: 'placeholder.jpg',
+        price: 349.99, specs: 'Wireless \u00b7 Dual swappable battery \u00b7 ClearCast mic', image: '../images/equipment/steelseries-arctis-nova-pro-wireless.jpg',
         platforms: ['PC', 'PlayStation', 'Xbox'], styles: ['streaming', 'content-creation', 'rpg', 'competitive-fps'],
         scores: { performance: 95, comfort: 95, competitive: 88, value: 55 }
     },
     {
         id: 'headset-gprox2', slot: 'headset', brand: 'Logitech', name: 'G Pro X 2',
-        price: 199.99, specs: 'Wireless \u00b7 Lightweight \u00b7 Graphene drivers', image: 'placeholder.jpg',
+        price: 199.99, specs: 'Wireless \u00b7 Lightweight \u00b7 Graphene drivers', image: '../images/equipment/logitech-g-pro-x-2.jpg',
         platforms: ['PC', 'PlayStation'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 90, comfort: 85, competitive: 93, value: 65 }
     },
@@ -115,19 +115,19 @@ const SETUP_PRODUCTS = [
     // ---- Microphone ----
     {
         id: 'mic-quadcasts', slot: 'microphone', brand: 'HyperX', name: 'QuadCast S',
-        price: 159.99, specs: 'USB \u00b7 4 polar patterns \u00b7 RGB', image: 'placeholder.jpg',
+        price: 159.99, specs: 'USB \u00b7 4 polar patterns \u00b7 RGB', image: '../images/equipment/hyperx-quadcast-s.jpg',
         platforms: ['PC'], styles: ['streaming', 'content-creation'],
         scores: { performance: 85, comfort: 80, competitive: 60, value: 75 }
     },
     {
         id: 'mic-yetix', slot: 'microphone', brand: 'Blue', name: 'Yeti X',
-        price: 169.99, specs: 'USB \u00b7 4 polar patterns \u00b7 LED metering', image: 'placeholder.jpg',
+        price: 169.99, specs: 'USB \u00b7 4 polar patterns \u00b7 LED metering', image: '../images/equipment/blue-yeti-x.jpg',
         platforms: ['PC'], styles: ['streaming', 'content-creation', 'casual'],
         scores: { performance: 88, comfort: 82, competitive: 60, value: 70 }
     },
     {
         id: 'mic-solocast', slot: 'microphone', brand: 'HyperX', name: 'SoloCast',
-        price: 59.99, specs: 'USB \u00b7 Cardioid \u00b7 Tap-to-mute', image: 'placeholder.jpg',
+        price: 59.99, specs: 'USB \u00b7 Cardioid \u00b7 Tap-to-mute', image: '../images/equipment/hyperx-solocast.jpg',
         platforms: ['PC'], styles: ['casual', 'competitive-fps', 'moba'],
         scores: { performance: 70, comfort: 75, competitive: 60, value: 92 }
     },
@@ -135,19 +135,19 @@ const SETUP_PRODUCTS = [
     // ---- Mousepad ----
     {
         id: 'mousepad-g840xl', slot: 'mousepad', brand: 'Logitech', name: 'G840 XL',
-        price: 34.99, specs: 'Cloth \u00b7 900 x 400 mm \u00b7 Stitched edges', image: 'placeholder.jpg',
+        price: 34.99, specs: 'Cloth \u00b7 900 x 400 mm \u00b7 Stitched edges', image: '../images/equipment/logitech-g840-xl.jpg',
         platforms: ['PC'], styles: ['rpg', 'casual', 'content-creation'],
         scores: { performance: 75, comfort: 85, competitive: 70, value: 90 }
     },
     {
         id: 'mousepad-goliathus', slot: 'mousepad', brand: 'Razer', name: 'Goliathus Extended Chroma',
-        price: 59.99, specs: 'Cloth \u00b7 RGB \u00b7 920 x 294 mm', image: 'placeholder.jpg',
+        price: 59.99, specs: 'Cloth \u00b7 RGB \u00b7 920 x 294 mm', image: '../images/equipment/razer-goliathus-extended-chroma.jpg',
         platforms: ['PC'], styles: ['streaming', 'content-creation', 'casual'],
         scores: { performance: 78, comfort: 82, competitive: 72, value: 78 }
     },
     {
         id: 'mousepad-sphexv3', slot: 'mousepad', brand: 'Razer', name: 'Sphex V3',
-        price: 29.99, specs: 'Hard surface \u00b7 Ultra-thin \u00b7 Speed-tuned', image: 'placeholder.jpg',
+        price: 29.99, specs: 'Hard surface \u00b7 Ultra-thin \u00b7 Speed-tuned', image: '../images/equipment/razer-sphex-v3.jpg',
         platforms: ['PC'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 88, comfort: 65, competitive: 92, value: 88 }
     },
@@ -155,13 +155,13 @@ const SETUP_PRODUCTS = [
     // ---- Earpiece (true wireless earbuds) ----
     {
         id: 'earpiece-gfits', slot: 'earpiece', brand: 'Logitech', name: 'G FITS',
-        price: 229.99, specs: 'True wireless \u00b7 Custom-molded fit', image: 'placeholder.jpg',
+        price: 229.99, specs: 'True wireless \u00b7 Custom-molded fit', image: '../images/equipment/logitech-g-fits.jpg',
         platforms: ['PC'], styles: ['content-creation', 'casual'],
         scores: { performance: 80, comfort: 95, competitive: 65, value: 55 }
     },
     {
         id: 'earpiece-hammerhead', slot: 'earpiece', brand: 'Razer', name: 'Hammerhead True Wireless Pro',
-        price: 179.99, specs: 'True wireless \u00b7 Hybrid ANC', image: 'placeholder.jpg',
+        price: 179.99, specs: 'True wireless \u00b7 Hybrid ANC', image: '../images/equipment/razer-hammerhead-true-wireless-pro.jpg',
         platforms: ['PC', 'PlayStation', 'Xbox'], styles: ['casual', 'streaming', 'content-creation'],
         scores: { performance: 82, comfort: 88, competitive: 68, value: 65 }
     },
@@ -169,19 +169,19 @@ const SETUP_PRODUCTS = [
     // ---- Controller (optional slot) ----
     {
         id: 'controller-xbox', slot: 'controller', brand: 'Xbox', name: 'Wireless Controller',
-        price: 59.99, specs: 'Wireless \u00b7 Hybrid D-pad', image: 'placeholder.jpg',
+        price: 59.99, specs: 'Wireless \u00b7 Hybrid D-pad', image: '../images/equipment/xbox-wireless-controller.jpg',
         platforms: ['PC', 'Xbox'], styles: ['casual', 'rpg'],
         scores: { performance: 75, comfort: 88, competitive: 65, value: 92 }
     },
     {
         id: 'controller-dualsense', slot: 'controller', brand: 'PlayStation', name: 'DualSense',
-        price: 69.99, specs: 'Wireless \u00b7 Haptic feedback \u00b7 Adaptive triggers', image: 'placeholder.jpg',
+        price: 69.99, specs: 'Wireless \u00b7 Haptic feedback \u00b7 Adaptive triggers', image: '../images/equipment/playstation-dualsense.jpg',
         platforms: ['PlayStation'], styles: ['casual', 'rpg'],
         scores: { performance: 78, comfort: 90, competitive: 68, value: 88 }
     },
     {
         id: 'controller-wolverinev2', slot: 'controller', brand: 'Razer', name: 'Wolverine V2 Chroma',
-        price: 99.99, specs: 'Wired \u00b7 Remappable buttons \u00b7 RGB', image: 'placeholder.jpg',
+        price: 99.99, specs: 'Wired \u00b7 Remappable buttons \u00b7 RGB', image: '../images/equipment/razer-wolverine-v2-chroma.jpg',
         platforms: ['PC', 'Xbox'], styles: ['competitive-fps', 'moba'],
         scores: { performance: 85, comfort: 80, competitive: 88, value: 70 }
     }
