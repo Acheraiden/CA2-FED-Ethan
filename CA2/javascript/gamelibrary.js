@@ -1,9 +1,8 @@
 // ReadyPlayer3 - gamelibrary.html data
 //
-// Read-only game catalog, reused from the Games page for consistency.
-// Kept strictly separate from the user's library state (see LIBRARY_STATUSES
-// and the library array in gamelibrary.js) - this is "what a game is",
-// never "what the user did with it".
+// Read-only game catalog, reused from the Games page. Kept separate from
+// the user's library state - this is "what a game is", not "what the
+// user did with it".
 const GAMES = [
     { id: 'fps-valorant', name: 'Valorant', image: '../images/valo.jpg', genre: 'FPS', platform: ['PC'], type: 'Multiplayer', rating: 4.6, price: 0, releaseDate: '2020-06-02' },
     { id: 'fps-cod-mw3', name: 'Call of Duty: Modern Warfare III', image: '../images/CODMordenWarfare3.jpg', genre: 'FPS', platform: ['PC', 'PS5', 'Xbox'], type: 'Both', rating: 4, price: 69.99, releaseDate: '2023-11-10' },
@@ -32,17 +31,14 @@ const GAMES = [
 ];
 // ReadyPlayer3 - gamelibrary.html interactions
 //
-// Self-contained controller for the Game Library: five drag-and-drop
-// statuses, search/filter/sort, statistics, personal ratings/notes/
-// playtime, a details modal, Wishlist/Comparison/Tier List hand-off, and
-// localStorage persistence.
+// Controller for the Game Library: 5 drag-and-drop statuses, search/
+// filter/sort, statistics, ratings/notes/playtime, a details modal,
+// Wishlist/Comparison/Tier List hand-off, and localStorage persistence.
 //
-// STATE MODEL: two separate things, per the design brief.
-//   GAMES (gamelibrary-data.js)  - read-only catalog: "what a game is".
-//   library (below)              - mutable: "what the user did with it".
-// A library entry exists at most once per gameId - that's how duplicate
-// prevention works structurally, the same approach used on the Tier List
-// and Setup Planner pages.
+// STATE: GAMES is the read-only catalog ("what a game is"); library
+// (below) is mutable ("what the user did with it"). One entry per
+// gameId at most, same duplicate-prevention approach as Tier List
+// and Setup Planner.
 
 document.addEventListener('DOMContentLoaded', () => {
     GameLibraryPage.init();
@@ -247,17 +243,14 @@ const GameLibraryPage = (() => {
         renderRecentlyPlayed();
     }
 
-    // Every state-mutating action calls this right after updating
-    // `library`: saves to storage, then re-renders everything that could
-    // have changed as a result.
+    // Runs after any state change: saves to storage, then re-renders.
     function commitChange() {
         saveLibrary();
         renderAll();
     }
 
     // ---------------------------------------------------------------
-    // Search / Filter / Sort pipeline - these compose, not replace
-    // each other, since each is just a step feeding into the next.
+    // Search / Filter / Sort pipeline (composes, doesn't replace)
     // ---------------------------------------------------------------
 
     function populateFilterOptions() {
@@ -312,8 +305,7 @@ const GameLibraryPage = (() => {
     }
 
     // ---------------------------------------------------------------
-    // Board (5 status sections, all visible - required so drag-and-drop
-    // has every drop zone on screen at once)
+    // Board (5 statuses, all visible so drag-and-drop always has a target)
     // ---------------------------------------------------------------
 
     function renderBoard() {
@@ -356,9 +348,9 @@ const GameLibraryPage = (() => {
         const ratingDisplay = entry.userRating != null ? entry.userRating + ' / 10' : 'Not rated';
         if (viewMode === 'list') {
             return (
-                '<div class="library-card library-card-list" draggable="true" data-game-id="' + game.id + '">' +
+                '<div class="library-card library-card-list d-flex align-items-center" draggable="true" data-game-id="' + game.id + '">' +
                 '<img src="' + game.image + '" class="library-card-list-img" alt="Cover art for ' + escapeHtml(game.name) + '" />' +
-                '<div class="library-card-list-info">' +
+                '<div class="library-card-list-info d-flex flex-column flex-grow-1">' +
                 '<span class="fw-semibold">' + escapeHtml(game.name) + '</span>' +
                 '<span class="text-muted small">' + escapeHtml(game.genre) + ' \u00b7 \u2b50 ' + ratingDisplay + ' \u00b7 ' + entry.playtime + ' hrs</span>' +
                 '</div>' +
@@ -440,8 +432,7 @@ const GameLibraryPage = (() => {
     }
 
     // ---------------------------------------------------------------
-    // Statistics (pure derived values, recalculated every render -
-    // never stored, so they can never drift out of sync)
+    // Statistics (derived values, recalculated every render)
     // ---------------------------------------------------------------
 
     function renderStatistics() {
@@ -515,8 +506,7 @@ const GameLibraryPage = (() => {
     }
 
     // ---------------------------------------------------------------
-    // Add Game (from the catalog, or effectively "from Wishlist" when
-    // status is set to wishlist - same flow either way)
+    // Add Game (also handles "from Wishlist" - same flow, different status)
     // ---------------------------------------------------------------
 
     function openAddGameModal() {
@@ -579,8 +569,7 @@ const GameLibraryPage = (() => {
     }
 
     // ---------------------------------------------------------------
-    // Game Details Modal (single, reused, repopulated per game).
-    // Uses Bootstrap Tabs internally: Details / My Rating & Notes / Playtime.
+    // Game Details Modal (single, reused; Bootstrap Tabs inside)
     // ---------------------------------------------------------------
 
     function openDetailsModal(gameId) {
@@ -654,9 +643,7 @@ const GameLibraryPage = (() => {
     }
 
     function buildStarRating(userRating) {
-        // 5 clickable stars, each representing 2 points, so the stored
-        // scale stays 0-10 as specced while the UI stays a simple 5-star
-        // control - clicking star N sets rating to N*2.
+        // 5 stars = 10-point scale; clicking star N sets rating to N*2.
         const filledCount = userRating != null ? Math.round(userRating / 2) : 0;
         let stars = '';
         for (let i = 1; i <= 5; i++) {
@@ -763,9 +750,7 @@ const GameLibraryPage = (() => {
     }
 
     // ---------------------------------------------------------------
-    // Reset Library (only clears the library - Wishlist status is just
-    // one of the 5 statuses here, and Comparison/Tier List data live
-    // under their own separate keys, so they're untouched)
+    // Reset Library (Comparison/Tier List data live under their own keys)
     // ---------------------------------------------------------------
 
     function confirmResetLibrary() {
@@ -777,9 +762,7 @@ const GameLibraryPage = (() => {
 
     // ---------------------------------------------------------------
     // Cross-page integration: Comparison + Tier List
-    // (Wishlist integration is just moveGameToStatus(id, 'wishlist') -
-    // "Wishlist" is one of the 5 statuses already, so no extra channel
-    // is needed for that one.)
+    // (Wishlist is just one of the 5 statuses, no separate channel needed)
     // ---------------------------------------------------------------
 
     function addToComparison(game) {

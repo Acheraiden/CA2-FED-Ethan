@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ReadyPlayer3 - setupplanner.html data
-// Product catalog, slot definitions, gaming style presets, and fictional
-// pro-player setups used by setupplanner.js.
+// Product catalog, slots, gaming style presets, and fictional pro setups.
 
 const SETUP_SLOTS = [
     { id: 'mouse', label: 'Mouse', icon: 'bi-mouse2-fill', required: true },
@@ -28,9 +27,8 @@ const GAMING_STYLES = [
 
 const PLATFORMS = ['PC', 'PlayStation', 'Xbox'];
 
-// scores are 0-100 and feed the Setup Score panel; platforms lists which
-// consoles the item works on natively (PC is implied for anything without
-// a dedicated console version).
+// scores are 0-100 for the Setup Score panel; platforms lists which
+// consoles the item works on natively.
 const SETUP_PRODUCTS = [
     // ---- Mouse ----
     {
@@ -187,8 +185,7 @@ const SETUP_PRODUCTS = [
     }
 ];
 
-// Fictional esports personas (not real people) used for the "Pro Player
-// Setups" section. Each maps slot id -> a SETUP_PRODUCTS id.
+// Fictional esports personas (not real people). Each maps slot id -> a SETUP_PRODUCTS id.
 const PRO_SETUPS = [
     {
         id: 'pro-vex', name: 'Vex', game: 'Valorant', team: 'Nightfall Esports', role: 'Duelist', initials: 'VX',
@@ -210,13 +207,10 @@ const PRO_SETUPS = [
 
 // ReadyPlayer3 - setupplanner.html interactions
 //
-// Self-contained controller for the Setup Planner tool. Owns: the 8
-// equipment slots, live price/score/compatibility dashboards, the budget
-// tracker, gaming-style recommendations, pro-player presets, a wishlist,
-// saved/compared setups (persisted to localStorage), and the reset flow.
-//
-// Organized as small named functions grouped by feature so any one piece
-// can be read or changed without touching the rest.
+// Controller for the Setup Planner: 8 equipment slots, live price/score/
+// compatibility dashboards, budget tracker, style recommendations, pro
+// presets, wishlist, saved/compared setups, and reset. Small named
+// functions grouped by feature so each piece can be read on its own.
 
 const SetupPlannerPage = (() => {
     const SAVED_SETUPS_KEY = 'rp3-setup-planner-saved';
@@ -734,8 +728,7 @@ const SetupPlannerPage = (() => {
             '<span>Finding recommendations\u2026</span>' +
             '</div>';
 
-        // Brief simulated delay so the spinner is perceptible; bail out if
-        // the user picked a different style before this one finished.
+        // Brief delay so the spinner is perceptible; bail if the style changed mid-wait.
         setTimeout(() => {
             if (state.activeStyle !== requestedStyle) return;
             paintStyleRecommendations(requestedStyle);
@@ -783,7 +776,7 @@ const SetupPlannerPage = (() => {
             const items = Object.keys(pro.setup).map((slotId) => pro.setup[slotId]).filter(Boolean).map(findProduct).filter(Boolean);
             const preview = items.slice(0, 3).map((p) => p.name).join(' \u00b7 ');
             return '<div class="card pro-player-card" data-pro-id="' + pro.id + '">' +
-                '<div class="pro-player-avatar">' + escapeHtml(pro.initials) + '</div>' +
+                '<div class="pro-player-avatar rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">' + escapeHtml(pro.initials) + '</div>' +
                 '<h3 class="h6 mb-0">' + escapeHtml(pro.name) + '</h3>' +
                 '<p class="small text-muted mb-1">' + escapeHtml(pro.team) + ' \u00b7 ' + escapeHtml(pro.role) + '</p>' +
                 '<p class="small mb-2"><span class="badge bg-secondary">' + escapeHtml(pro.game) + '</span></p>' +

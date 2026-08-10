@@ -1,3 +1,53 @@
+/* ==========================================================
+   Bootstrap primary color override - site-wide purple accent
+   (#8b5cf6) instead of Bootstrap's default blue. Bootstrap
+   compiles some components (like .btn-primary) with fixed
+   values rather than live references to --bs-primary, so both
+   the root variable AND the component-level variables are
+   overridden directly here to guarantee every page actually
+   renders purple, not stock blue, regardless of which Bootstrap
+   internals a given class happens to reference.
+   ========================================================== */
+:root {
+    --bs-primary: #8b5cf6;
+    --bs-primary-rgb: 139, 92, 246;
+}
+
+.text-primary {
+    color: #8b5cf6 !important;
+}
+
+.bg-primary {
+    background-color: #8b5cf6 !important;
+}
+
+.border-primary {
+    border-color: #8b5cf6 !important;
+}
+
+.btn-primary {
+    --bs-btn-bg: #8b5cf6;
+    --bs-btn-border-color: #8b5cf6;
+    --bs-btn-hover-bg: #7c4fe0;
+    --bs-btn-hover-border-color: #7449d6;
+    --bs-btn-active-bg: #7449d6;
+    --bs-btn-active-border-color: #6d3fd1;
+    --bs-btn-disabled-bg: #8b5cf6;
+    --bs-btn-disabled-border-color: #8b5cf6;
+    --bs-btn-focus-shadow-rgb: 139, 92, 246;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: #8b5cf6;
+    --bs-btn-border-color: #8b5cf6;
+    --bs-btn-hover-bg: #8b5cf6;
+    --bs-btn-hover-border-color: #8b5cf6;
+    --bs-btn-active-bg: #8b5cf6;
+    --bs-btn-active-border-color: #8b5cf6;
+    --bs-btn-disabled-color: #8b5cf6;
+    --bs-btn-disabled-border-color: #8b5cf6;
+}
+
 .hover-dropdown:hover .dropdown-menu {
     display: block;
 }
@@ -449,8 +499,6 @@ body.has-compare-tray {
 
 .compare-tray-actions {
     flex: 0 0 auto;
-    display: flex;
-    gap: 0.5rem;
 }
 
 @media (max-width: 767.98px) {
@@ -490,9 +538,6 @@ body.has-compare-tray {
 .compare-overlay-header {
     padding: 1rem 1.25rem;
     border-bottom: 1px solid #2a2244;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .compare-overlay-body {
@@ -920,20 +965,9 @@ body.has-compare-tray {
 .pro-player-avatar {
     width: 48px;
     height: 48px;
-    border-radius: 50%;
     background-color: #8b5cf6;
     color: #fff;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.pro-player-avatar-lg {
-    width: 64px;
-    height: 64px;
-    font-size: 1.1rem;
 }
 
 .pro-player-catchphrase {
@@ -1144,7 +1178,6 @@ body.has-compare-tray {
 
 /* ---- Tier rows ---- */
 .tier-row {
-    display: flex;
     border: 1px solid #2a2244;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -1153,14 +1186,9 @@ body.has-compare-tray {
 
 .tier-label {
     flex: 0 0 130px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 0.35rem;
     padding: 0.75rem 0.5rem;
     color: #1a1a1a;
-    text-align: center;
 }
 
 .tier-name {
@@ -1174,23 +1202,11 @@ body.has-compare-tray {
     text-align: center;
 }
 
-.tier-label-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
-
 .tier-label-controls .btn {
     background: rgba(0, 0, 0, 0.15);
-    border: none;
     color: #1a1a1a;
     width: 26px;
     height: 26px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
 }
 
 .tier-label-controls .btn:hover {
@@ -1410,8 +1426,6 @@ body.has-compare-tray {
 
 /* ---- List-mode card ---- */
 .library-card-list {
-    display: flex;
-    align-items: center;
     gap: 0.75rem;
     background-color: #161228;
     border: 1px solid #2a2244;
@@ -1440,9 +1454,6 @@ body.has-compare-tray {
 }
 
 .library-card-list-info {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
     min-width: 0;
 }
 

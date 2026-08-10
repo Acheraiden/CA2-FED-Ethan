@@ -1,8 +1,7 @@
 // ReadyPlayer3 - tierlist.html data
 //
-// Game catalog for the Tier List Creator. Titles reused from the site's
-// main Games catalog for consistency. Kept separate from the controller
-// logic in tierlist.js so the data is easy to read/extend on its own.
+// Game catalog for the Tier List Creator, reused from the Games catalog.
+// Kept separate from the controller logic in tierlist.js.
 
 const GAMES = [
     { id: 1, name: 'Valorant', image: '../images/valo.jpg', genre: 'Shooter', platform: ['PC'], type: 'Multiplayer', releaseDate: '2020', rating: 4.6, description: 'A 5v5 tactical shooter where precise aim and team coordination decide every round.' },
@@ -41,17 +40,13 @@ function createDefaultTiers() {
 
 // ReadyPlayer3 - tierlist.html interactions
 //
-// Self-contained controller for the Tier List Creator: the game pool,
-// drag-and-drop tier assignment, tier CRUD (add/remove/rename/recolor),
-// search/filter, undo/redo, statistics, localStorage save/load, PNG
-// export (html2canvas), and clipboard copy.
+// Controller for the Tier List Creator: game pool, drag-and-drop tier
+// assignment, tier CRUD, search/filter, undo/redo, statistics,
+// localStorage save/load, PNG export (html2canvas), and clipboard copy.
 //
-// STATE MODEL: a game's location (pool vs. a specific tier) is never
-// stored twice. tierState.tiers[x].games holds ordered arrays of game
-// IDs; the pool is DERIVED as "every game ID not currently in any tier."
-// This makes the spec's "a game only exists in one place at a time"
-// requirement structurally guaranteed rather than something we have to
-// remember to enforce.
+// STATE: a game's location is never stored twice. tierState.tiers[x].games
+// holds ordered game IDs; the pool is DERIVED as "every ID not in any
+// tier" - so "one location at a time" is structurally guaranteed.
 
 document.addEventListener('DOMContentLoaded', () => {
     TierListPage.init();
@@ -81,6 +76,7 @@ const TierListPage = (() => {
 
     function init() {
         savedLists = loadFromStorage(SAVED_KEY, []);
+        importFromLibraryInbox();
         cacheElements();
         initModals();
         populateFilterOptions();
@@ -193,12 +189,50 @@ const TierListPage = (() => {
         return GAMES.find((g) => g.id === Number(id)) || null;
     }
 
+    // Reads what Game Library's "Add to Tier List" queued up. Tier List
+    // has its own numeric ids, so a new inbox game not already in GAMES
+    // by name gets appended with a freshly generated id.
+    const TIERLIST_INBOX_KEY = 'rp3-tierlist-inbox';
+
+    function importFromLibraryInbox() {
+        const inbox = loadFromStorage(TIERLIST_INBOX_KEY, []);
+        if (!inbox.length) return;
+
+        let nextId = GAMES.reduce((max, g) => Math.max(max, g.id), 0) + 1;
+        let importedCount = 0;
+
+        inbox.forEach((item) => {
+            if (!item || !item.name) return;
+            const alreadyInCatalog = GAMES.some((g) => g.name.toLowerCase() === item.name.toLowerCase());
+            if (alreadyInCatalog) return;
+
+            GAMES.push({
+                id: nextId,
+                name: item.name,
+                image: item.image || 'placeholder.jpg',
+                genre: item.genre || 'Other',
+                platform: ['PC'],
+                type: 'Both',
+                releaseDate: '\u2014',
+                rating: 4.0,
+                description: 'Added from your Game Library.'
+            });
+            nextId += 1;
+            importedCount += 1;
+        });
+
+        saveToStorage(TIERLIST_INBOX_KEY, []);
+        if (importedCount > 0) {
+            showToast(importedCount + ' game(s) brought in from your Game Library.', 'success');
+        }
+    }
+
     function findTier(tierId) {
         return tierState.tiers.find((t) => t.id === tierId) || null;
     }
 
-    // A game's ID is "assigned" if any tier's games array contains it.
-    // The pool is simply every game NOT in that set - see file header.
+    // A game is "assigned" if any tier's games array contains it; the
+    // pool is everything not in that set.
     function getAssignedGameIds() {
         const assigned = new Set();
         tierState.tiers.forEach((tier) => tier.games.forEach((id) => assigned.add(id)));
@@ -220,9 +254,7 @@ const TierListPage = (() => {
         renderStatistics();
     }
 
-    // Every state-mutating action calls this right after updating
-    // tierState: it snapshots for undo, then re-renders everything that
-    // could have changed as a result.
+    // Runs after any state change: snapshots for undo, then re-renders.
     function commitChange() {
         pushUndoSnapshot();
         renderAll();
@@ -346,13 +378,13 @@ const TierListPage = (() => {
         const cards = games.map(buildGameCard).join('');
 
         return (
-            '<div class="tier-row" data-tier-id="' + tier.id + '">' +
-            '<div class="tier-label" style="background-color: ' + tier.color + ';">' +
+            '<div class="tier-row d-flex" data-tier-id="' + tier.id + '">' +
+            '<div class="tier-label d-flex flex-column align-items-center justify-content-center text-center" style="background-color: ' + tier.color + ';">' +
             '<span class="tier-name" id="tier-name-' + tier.id + '">' + escapeHtml(tier.name) + '</span>' +
-            '<div class="tier-label-controls">' +
+            '<div class="tier-label-controls d-flex align-items-center gap-1">' +
             '<input type="color" class="tier-color-input" data-tier-id="' + tier.id + '" value="' + tier.color + '" title="Change tier color" aria-label="Change color for ' + escapeHtml(tier.name) + '" />' +
-            '<button type="button" class="btn btn-sm tier-rename-btn" data-tier-id="' + tier.id + '" title="Rename tier" aria-label="Rename ' + escapeHtml(tier.name) + '"><i class="bi bi-pencil-fill" aria-hidden="true"></i></button>' +
-            '<button type="button" class="btn btn-sm tier-remove-btn" data-tier-id="' + tier.id + '" title="Remove tier" aria-label="Remove ' + escapeHtml(tier.name) + '"><i class="bi bi-x-lg" aria-hidden="true"></i></button>' +
+            '<button type="button" class="btn btn-sm tier-rename-btn p-0 border-0 rounded-circle d-flex align-items-center justify-content-center" data-tier-id="' + tier.id + '" title="Rename tier" aria-label="Rename ' + escapeHtml(tier.name) + '"><i class="bi bi-pencil-fill" aria-hidden="true"></i></button>' +
+            '<button type="button" class="btn btn-sm tier-remove-btn p-0 border-0 rounded-circle d-flex align-items-center justify-content-center" data-tier-id="' + tier.id + '" title="Remove tier" aria-label="Remove ' + escapeHtml(tier.name) + '"><i class="bi bi-x-lg" aria-hidden="true"></i></button>' +
             '</div>' +
             '</div>' +
             '<div class="tier-games" id="tier-games-' + tier.id + '" data-tier-id="' + tier.id + '">' + cards + '</div>' +
@@ -388,8 +420,7 @@ const TierListPage = (() => {
             zone.classList.remove('drag-over');
             if (draggedGameId == null) return;
 
-            // Dropping onto a specific game card reorders to that position;
-            // dropping on empty tier space just appends to the end.
+            // Dropping on a card reorders to that position; empty space appends.
             const targetCard = event.target.closest('.tier-game-card');
             const insertBeforeId = targetCard ? Number(targetCard.getAttribute('data-game-id')) : null;
             moveGame(draggedGameId, tierId, insertBeforeId);
@@ -414,11 +445,9 @@ const TierListPage = (() => {
     }
 
     /**
-     * Moves a game to a target tier (or back to the pool if targetTierId
-     * is null), inserting before insertBeforeGameId if given, otherwise
-     * appending to the end. Removes the game from wherever it currently
-     * is first, so this single function covers every case the spec
-     * lists: pool->tier, tier->tier, reorder within a tier, tier->pool.
+     * Moves a game to a tier (or back to the pool if targetTierId is
+     * null), inserting before insertBeforeGameId or appending to the
+     * end. Covers pool<->tier, tier<->tier, and reorder-within-tier.
      */
     function moveGame(gameId, targetTierId, insertBeforeGameId) {
         // Remove from every tier first (a game can only be in one place).
@@ -437,8 +466,7 @@ const TierListPage = (() => {
                 tier.games.push(gameId);
             }
         }
-        // targetTierId === null: game has been removed from all tiers,
-        // which means it's back in the pool - nothing further to do.
+        // targetTierId === null: already removed from all tiers, so it's back in the pool.
 
         commitChange();
     }
@@ -464,9 +492,8 @@ const TierListPage = (() => {
     }
 
     function removeTier(tierId) {
-        // Games in a removed tier are never deleted - since the pool is
-        // derived from "not in any tier", simply removing the tier from
-        // tierState.tiers automatically returns its games to the pool.
+        // Games aren't deleted - since the pool is derived, removing the
+        // tier automatically returns its games to the pool.
         tierState.tiers = tierState.tiers.filter((t) => t.id !== tierId);
         commitChange();
         showToast('Tier removed. Its games are back in the pool.', 'secondary');
@@ -574,8 +601,7 @@ const TierListPage = (() => {
     }
 
     // ---------------------------------------------------------------
-    // Undo / Redo (full-state snapshots - simple to reason about and
-    // covers every action the spec lists with one mechanism)
+    // Undo / Redo (full-state snapshots)
     // ---------------------------------------------------------------
 
     function pushUndoSnapshot() {
@@ -717,8 +743,7 @@ const TierListPage = (() => {
     }
 
     // ---------------------------------------------------------------
-    // Save as Image (html2canvas) - works regardless of whether every
-    // game has been assigned to a tier; only #tier-list is captured.
+    // Save as Image (html2canvas, captures only #tier-list)
     // ---------------------------------------------------------------
 
     function saveAsImage() {

@@ -1,8 +1,7 @@
 // ReadyPlayer3 - survey.html (Game Finder Survey) data
 //
-// Questions the survey asks, the game catalog it recommends from, and the
-// gamer-personality lookup. Kept separate from the controller logic in
-// survey.js so the data is easy to read/extend on its own.
+// Questions the survey asks, the game catalog it recommends from, and
+// the gamer-personality lookup. Kept separate from the controller logic.
 
 const QUESTIONS = [
     {
@@ -93,8 +92,8 @@ const QUESTIONS = [
     }
 ];
 
-// Neutral starting answers. Used to seed the summary/results if a step is
-// ever skipped, and as the shape every answers object should match.
+// Neutral starting answers - seeds the summary if a step is skipped, and
+// defines the shape every answers object should match.
 const DEFAULT_ANSWERS = {
     story: 5, exploration: 5, action: 5, difficulty: 5, strategy: 5, multiplayer: 3,
     playStyle: null,
@@ -104,9 +103,8 @@ const DEFAULT_ANSWERS = {
     budget: null
 };
 
-// Every game is rated 0-10 on the same six traits the sliders measure, so
-// comparing a game to the user's answers is a straight subtraction. Titles
-// reused from the site's main Games catalog for consistency.
+// Each game is rated 0-10 on the same six traits as the sliders, so
+// matching is a straight subtraction. Titles reused from Games catalog.
 const GAMES = [
     {
         id: 'valorant', name: 'Valorant', genre: 'Tactical Shooter',
@@ -200,12 +198,9 @@ const GAMES = [
     }
 ];
 
-// Survey and Games each keep their own separate game catalog with their
-// own id scheme (e.g. Survey's 'valorant' vs. Games' 'fps-valorant'), so
-// a plain id can't be reused between pages. This maps Survey's ids to
-// the matching id on the Games page, for the "View in Games" link on
-// each result card - Games supports ?id=<gameId> as a deep link that
-// opens that game's details modal directly.
+// Survey and Games each keep their own id scheme (Survey's 'valorant' vs
+// Games' 'fps-valorant'), so this maps Survey ids to Games ids for the
+// "View in Games" link, which deep-links via ?id=<gameId>.
 const GAMES_PAGE_ID_MAP = {
     'valorant': 'fps-valorant',
     'counter-strike-2': 'fps-counter-strike-2',
@@ -224,8 +219,7 @@ const GAMES_PAGE_ID_MAP = {
     'project-zomboid': 'strategy-project-zomboid'
 };
 
-// Which personality a user gets is decided by their single highest-rated
-// trait (see determinePersonality() in survey.js).
+// Personality is decided by the single highest-rated trait.
 const PERSONALITY_BY_TRAIT = {
     action: { emoji: '\u2694\ufe0f', name: 'The Competitor', description: 'You want fast, skill-testing action where every reflex matters.' },
     story: { emoji: '\ud83d\udcd6', name: 'The Storyteller', description: 'You play games for the narrative \u2014 characters, choices, and worlds worth remembering.' },
@@ -237,10 +231,9 @@ const PERSONALITY_BY_TRAIT = {
 
 // ReadyPlayer3 - survey.html (Game Finder Survey) interactions
 //
-// Self-contained controller for the survey: question flow, the scoring
-// algorithm, results (with per-game "Why?" explanations), gamer
-// personality, wishlist, a compare modal, and recommendation history
-// (all persisted to localStorage).
+// Controller for the survey: question flow, scoring, results (with
+// per-game "Why?"), gamer personality, wishlist, compare modal, and
+// recommendation history - all persisted to localStorage.
 
 document.addEventListener('DOMContentLoaded', () => {
     GameFinderPage.init();
@@ -400,14 +393,9 @@ const GameFinderPage = (() => {
     // ---------------------------------------------------------------
 
     /**
-     * Stepped over-budget penalty. Being over budget at all matters more
-     * than exactly how far over - the first few dollars cost the most,
-     * then it levels off.
-     *   up to $5 over  -> -5
-     *   up to $10 over -> -8
-     *   up to $20 over -> -10
-     *   up to $40 over -> -15
-     *   beyond that     -> -20 (capped)
+     * Stepped over-budget penalty (first dollars cost the most, then
+     * levels off): $5 over -> -5, $10 -> -8, $20 -> -10, $40 -> -15,
+     * beyond that -> -20 (capped).
      */
     function getOverBudgetPenalty(overBy) {
         if (overBy <= 5) return 5;
@@ -418,21 +406,14 @@ const GameFinderPage = (() => {
     }
 
     /**
-     * Calculates how well a game matches the user's survey answers.
-     *
-     * The score blends two things:
-     *   1. TRAIT MATCH (75% of the score) - how close the game's
-     *      story/action/difficulty/exploration/strategy/multiplayer
-     *      ratings are to what the user asked for on the sliders. Each
-     *      trait's absolute difference (0-10 scale) converts to a 0-100
-     *      similarity: identical = 100, maximally different = 0.
-     *   2. PRACTICAL FIT (25% of the score) - budget, play style, and
-     *      session/game length, applied as bonuses/penalties around a
-     *      neutral baseline of 50.
-     *
-     * Platform compatibility is NOT part of the score - games the user
-     * can't even play on are filtered out before scoring runs at all,
-     * since that's a hard requirement, not a matter of degree.
+     * Match score = 75% trait match + 25% practical fit.
+     *   Trait match: per-trait similarity (0-10 diff -> 100-0 score),
+     *     averaged across story/action/difficulty/exploration/
+     *     strategy/multiplayer.
+     *   Practical fit: budget, play style, session/game length as
+     *     bonuses/penalties around a neutral baseline of 50.
+     * Platform compatibility isn't scored - incompatible games are
+     * filtered out entirely first, since that's a hard requirement.
      */
     function computeMatchScore(answers, game) {
         const traits = ['story', 'action', 'difficulty', 'exploration', 'strategy', 'multiplayer'];
@@ -465,9 +446,8 @@ const GameFinderPage = (() => {
     }
 
     /**
-     * Builds the "Why was this recommended?" bullet list for a game by
-     * checking which traits the user cared about (answered >= 7) and
-     * which the game actually delivers on (rated >= 7 on that trait too).
+     * Builds "Why?" bullets: traits the user cared about (>= 7) that
+     * the game also delivers on (>= 7).
      */
     function buildWhyExplanation(answers, game) {
         const reasons = [];
@@ -732,9 +712,7 @@ const GameFinderPage = (() => {
         if (els.topMatchesRow) els.topMatchesRow.innerHTML = '';
         if (els.fullRankedList) els.fullRankedList.innerHTML = '';
 
-        // Brief simulated delay so the spinner is perceptible - the actual
-        // computation is instant, but a flash of "calculating" feels right
-        // for what is presented as a matchmaking result.
+        // Brief delay so the spinner is perceptible for this "matchmaking" moment.
         setTimeout(() => {
             state.results = getRankedRecommendations(state.answers);
             state.personality = determinePersonality(state.answers);
