@@ -5,16 +5,23 @@ document.addEventListener('DOMContentLoaded', function () {
     initChatWidget();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize other widgets if defined in your project
+    if (typeof initRecommendGame === 'function') initRecommendGame();
+    if (typeof initChatWidget === 'function') initChatWidget();
+
     const heroSection = document.getElementById("heroSection");
-    const gameCards = document.querySelectorAll(".game-card");
+    
+    // Updated selector to match your HTML class "hero-game-card"
+    // Also includes ".game-card" just in case you use both elsewhere
+    const gameCards = document.querySelectorAll(".hero-game-card, .game-card");
 
     if (!heroSection) {
         console.error("Hero Banner element with id='heroSection' was NOT found in the DOM!");
         return;
     }
 
-    // Preload background GIFs so switching feels instant
+    // Preload background images so switching feels instant
     gameCards.forEach((card) => {
         const bgUrl = card.getAttribute("data-bg");
         if (bgUrl) {
@@ -28,10 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener("mouseenter", () => {
             const newBg = card.getAttribute("data-bg");
             if (newBg) {
+                // Cleaned background-image string without invisible syntax-breaking characters
                 heroSection.style.backgroundImage = `linear-gradient(rgba(17, 11, 41, 0.75), rgba(17, 11, 41, 0.85)), url("${newBg}")`;
             }
         });
-        // "mouseleave" listener removed so the background stays on the last hovered game!
     });
 });
 /**
