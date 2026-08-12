@@ -1,19 +1,9 @@
-// ReadyPlayer3 - index.html interactions
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     initRecommendGame();
     initChatWidget();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize other widgets if defined in your project
-    if (typeof initRecommendGame === 'function') initRecommendGame();
-    if (typeof initChatWidget === 'function') initChatWidget();
 
     const heroSection = document.getElementById("heroSection");
-    
-    // Updated selector to match your HTML class "hero-game-card"
-    // Also includes ".game-card" just in case you use both elsewhere
+
     const gameCards = document.querySelectorAll(".hero-game-card, .game-card");
 
     if (!heroSection) {
@@ -21,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Preload background images so switching feels instant
     gameCards.forEach((card) => {
         const bgUrl = card.getAttribute("data-bg");
         if (bgUrl) {
@@ -30,22 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Update background on hover and KEEP IT
     gameCards.forEach((card) => {
         card.addEventListener("mouseenter", () => {
             const newBg = card.getAttribute("data-bg");
             if (newBg) {
-                // Cleaned background-image string without invisible syntax-breaking characters
+
                 heroSection.style.backgroundImage = `linear-gradient(rgba(17, 11, 41, 0.75), rgba(17, 11, 41, 0.85)), url("${newBg}")`;
             }
         });
     });
 });
-/**
- * "Recommend Me a Game" interaction.
- * Picks a random game from a small local catalog and renders it
- * into the #recommendResult container on the home page.
- */
+
 function initRecommendGame() {
     var btn = document.getElementById('recommendBtn');
     var resultBox = document.getElementById('recommendResult');
@@ -90,7 +74,6 @@ function initRecommendGame() {
     btn.addEventListener('click', function () {
         var index = Math.floor(Math.random() * catalog.length);
 
-        // Avoid showing the same recommendation twice in a row when possible
         if (catalog.length > 1) {
             while (index === lastIndex) {
                 index = Math.floor(Math.random() * catalog.length);
@@ -110,10 +93,6 @@ function initRecommendGame() {
     });
 }
 
-/**
- * Minimal HTML escaping helper so dynamically inserted text
- * never introduces markup from the data source.
- */
 function escapeHtml(value) {
     return String(value)
         .replace(/&/g, '&amp;')
@@ -123,12 +102,6 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
-/**
- * Floating chat widget (bottom-left, fixed).
- * - Toggle button opens/closes a small chat panel.
- * - After the visitor has been on the page for 1 minute without
- *   opening the chat, a nudge notification appears above it.
- */
 function initChatWidget() {
     var toggleBtn = document.getElementById('chatToggleBtn');
     var panel = document.getElementById('chatPanel');
@@ -140,11 +113,11 @@ function initChatWidget() {
     var messagesContainer = document.getElementById('chatMessages');
 
     if (!toggleBtn || !panel) {
-        return; // Widget isn't on this page
+        return;
     }
 
-    var NUDGE_DELAY_MS = 60 * 1000; // 1 minute - the "still deciding?" bubble outside the widget
-    var INACTIVITY_DELAY_MS = 30 * 1000; // 30 seconds - bot follow-up prompt inside an open chat
+    var NUDGE_DELAY_MS = 60 * 1000;
+    var INACTIVITY_DELAY_MS = 30 * 1000;
     var chatOpenedAlready = false;
     var nudgeTimer = null;
     var inactivityTimer = null;
@@ -188,15 +161,13 @@ function initChatWidget() {
         }
     }
 
-    // Resets the 30-second "still there?" bot prompt that appears inside
-    // an open chat panel after a lull in typing/sending.
     function resetInactivityTimer() {
         if (!messagesContainer) return;
         if (inactivityTimer) {
             clearTimeout(inactivityTimer);
         }
         inactivityTimer = setTimeout(function () {
-            if (panel.classList.contains('d-none')) return; // only prompt while open
+            if (panel.classList.contains('d-none')) return;
             appendBotBubble('Still there? Let me know if you need any help finding games, genres, or gear!');
         }, INACTIVITY_DELAY_MS);
     }
@@ -254,7 +225,6 @@ function initChatWidget() {
         notificationCloseBtn.addEventListener('click', hideNotification);
     }
 
-    // Clicking the nudge notification itself opens the chat panel
     if (notification) {
         notification.addEventListener('click', function (event) {
             if (event.target === notificationCloseBtn || (notificationCloseBtn && notificationCloseBtn.contains(event.target))) {
@@ -279,7 +249,6 @@ function initChatWidget() {
             chatInput.value = '';
             resetInactivityTimer();
 
-            // Simulated bot response
             setTimeout(function () {
                 appendBotBubble(buildBotReply(userText));
                 resetInactivityTimer();
